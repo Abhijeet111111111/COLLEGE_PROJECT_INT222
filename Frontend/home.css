@@ -28,7 +28,6 @@ body {
   padding: 0;
   margin: 0;
   flex-grow: 0.1;
-  padding-right: 8rem;
 }
 .nav__item {
   font-size: large;
@@ -146,29 +145,231 @@ body {
     rgba(50, 49, 49, 1) 54%,
     rgba(38, 37, 37, 1) 100%
   );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 .main__about__feature {
-    letter-spacing: 1px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: x-large;
-    text-align: center;
-    flex-grow: 1;
+  letter-spacing: 1px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: x-large;
+  text-align: center;
+  flex-grow: 1;
   border-right: 1px solid rgba(255, 255, 255, 0.4);
 }
-.main__about__feature-number{
-    color: rgba(46, 199, 110, 1);
-    margin-bottom: 2px;
+.main__about__feature-number {
+  color: rgba(46, 199, 110, 1);
+  margin-bottom: 2px;
 }
-.main__about__feature-text{
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: 2px;
+.main__about__feature-text {
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2px;
 }
 
-.main__destinations{
-    
+.main__destinations {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 4rem;
+  gap: 1rem;
+  background: #262525;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 37, 37, 1) 0%,
+    rgba(50, 49, 49, 1) 54%,
+    rgba(38, 37, 37, 1) 100%
+  );
 }
-.main__destinations-header{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+.main__destinations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__destinations-header__head {
+  color: white;
+}
+
+.main__destinations-header__a {
+  color: greenyellow;
+  text-decoration: none;
+  font-size: large;
+}
+
+.main__top-destinations {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.main__top-destination {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 16rem;
+  width: 16rem;
+  border-radius: 1rem;
+  position: relative;
+}
+.top-destination__img {
+  height: 80%;
+  background: #ffa047;
+  /* background: linear-gradient(
+    90deg,
+    rgba(255, 160, 71, 1) 0%,
+    rgba(242, 136, 136, 1) 52%,
+    rgba(252, 176, 69, 1) 100%
+  ); */
+  background-image: url("https://s7ap1.scene7.com/is/image/incredibleindia/1-umaid-bhavan-jodhpur-rajasthan-city-hero?qlt=82&ts=1726661010066");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  border-radius: 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.top-destination__about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  height: 40%;
+  background-color: rgba(38, 37, 37, 0.9);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  border-radius: 1rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.top-destination__about-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-destination__about p {
+  margin: 0;
+}
+
+.main__top-destination-trending {
+  position: absolute;
+  top: 120px;
+  left: 16px;
+  z-index: 2;
+  border: 1px solid black;
+  border-radius: 8rem;
+  background-color: rgba(252, 176, 69, 1);
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: small;
+  padding: 0.2rem 0.4rem;
+}
+
+.main__featured-hotels {
+  background: #262525;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 37, 37, 1) 0%,
+    rgba(50, 49, 49, 1) 54%,
+    rgba(38, 37, 37, 1) 100%
+  );
+  padding: 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.main__featured-hotels__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main__featured-hotels__header a {
+  text-decoration: none;
+  color: greenyellow;
+  font-size: large;
+}
+
+.main__featured-hotels__header h2 {
+  color: white;
+}
+
+.main__featured-hotels__hotels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.main__featured-hotel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  width: 48%;
+  flex-grow: 1;
+}
+
+.main__featured-hotel__about-img {
+  height: 6rem;
+  width: 6rem;
+  background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHVAweoSZwIxInScQ_VkIsdQPVk6UM7bN8a1LdAi_FUXAwh085yTUDNet-yQfShVM5V3iQhfjBbc1JjfRu7OJfmgbwbBN6V0SLLh6yBqTWuQN6kCwKOCGJ8xRhZTC8Sa029oXU4Ut5kw=s294-w294-h220-k-no");
+  /* background-color: pink; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  border-radius: 1rem;
+}
+
+.main__featured-hotel__about {
+  display: flex;
+  gap: 1rem;
+}
+.main__featured-hotel__about-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.main__featured-hotel__about-details p {
+  margin: 0;
+}
+.main__featured-hotel__about-details__types {
+  display: flex;
+  flex-direction: row;
+}
+.main__featured-hotel__price p {
+  margin: 0;
+  margin-bottom: 0.2rem;
+  font-size: large;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #10855c;
+  color: white;
+  align-items: center;
+  padding: 2rem;
+}
+.footer__details {
+  width: 32rem;
+  font-size: large;
+  letter-spacing: 0.1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.footer__button {
+  padding: 0.5rem 2rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  font-size: large;
+}
+
+.footer__button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
