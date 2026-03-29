@@ -105,7 +105,11 @@ body {
   border-radius: 8rem;
   gap: 0.1rem;
   padding-left: 0;
+  box-shadow: 5px 0px 38px 3px rgba(29, 236, 232, 0.75);
+  -webkit-box-shadow: 5px 0px 38px 3px rgba(29, 236, 232, 0.75);
+  -moz-box-shadow: 5px 0px 38px 3px rgba(29, 236, 232, 0.75);
 }
+
 .main__first__search-item {
   border-radius: 0.5rem;
   padding: 0.7rem;
@@ -121,6 +125,8 @@ body {
   border-bottom-left-radius: 2rem;
   letter-spacing: 2px;
 }
+
+
 #main__first__search-date {
   flex-grow: 1;
 }
@@ -192,7 +198,9 @@ body {
   text-decoration: none;
   font-size: large;
 }
-
+.main__destinations-header__a:hover{
+  color: rgb(132, 207, 20);
+}
 .main__top-destinations {
   display: flex;
   justify-content: center;
@@ -207,6 +215,14 @@ body {
   width: 16rem;
   border-radius: 1rem;
   position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.main__top-destination:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 .top-destination__img {
   height: 80%;
@@ -289,6 +305,9 @@ body {
   font-size: large;
 }
 
+.main__featured-hotels__header a:hover{
+  color: rgb(147, 236, 14);
+}
 .main__featured-hotels__header h2 {
   color: white;
 }
@@ -309,6 +328,12 @@ body {
   background: rgba(255, 255, 255, 0.1);
   width: 48%;
   flex-grow: 1;
+  transition: transform 0.3s ease;
+}
+
+.main__featured-hotel:hover {
+  transform: scale(1.04);
+  cursor: pointer;
 }
 
 .main__featured-hotel__about-img {
@@ -323,14 +348,25 @@ body {
 }
 
 .main__featured-hotel__about {
+  flex-grow: 2;
   display: flex;
   gap: 1rem;
 }
+
+.main__featured-hotel__price {
+  flex-shrink: 0;
+}
+
+.main__featured-hotel__about-img {
+  flex-shrink: 0;
+}
+
 .main__featured-hotel__about-details {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.4rem;
 }
 .main__featured-hotel__about-details p {
   margin: 0;
@@ -338,11 +374,50 @@ body {
 .main__featured-hotel__about-details__types {
   display: flex;
   flex-direction: row;
+  justify-content: left;
+  gap: 0.8rem;
 }
+.main__featured-hotel__about-details__types p {
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 0.2rem 0.4rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #262525;
+  font-weight: lighter;
+}
+
+#eco-certified {
+  border: 1px solid rgb(93, 219, 247);
+  background-color: rgb(195, 230, 251);
+  color: rgb(25, 130, 249);
+}
+
 .main__featured-hotel__price p {
   margin: 0;
   margin-bottom: 0.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main__featured-hotel__price-rupees {
   font-size: large;
+  color: #15ba5a;
+}
+.main__featured-hotel__price-pernight {
+  text-align: right;
+  font-size: small;
+  color: rgb(255, 255, 255, 0.5);
+}
+
+.main__featured-hotel__about-details-name {
+  font-size: large;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main__featured-hotel__about-details-location {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 footer {
