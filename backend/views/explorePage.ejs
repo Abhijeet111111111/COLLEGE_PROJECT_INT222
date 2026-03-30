@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="explorePage.css" />
+  </head>
+  <body>
+    <header>
+      <div id="navbar">
+        <h1 class="navbar-logo">
+          <a style="text-decoration: none" href="/"
+            ><span style="color: white">Wander</span
+            ><span style="color: rgb(6, 187, 6)">Smart</span></a
+          >
+        </h1>
+        <ul class="nav__items">
+          <li class="nav__item">Explore</li>
+          <li class="nav__item">Hotels</li>
+          <li class="nav__item">Tours</li>
+          <li class="nav__item">Dashboard</li>
+        </ul>
+        <div class="nav__item-ctx">
+          <button class="nav__item__ctx-button">Plan a Trip</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="main__header">
+        <h1 class="main__header-head">Explore Destinations</h1>
+        <p class="main__header-desc">
+          340 destinations across India — find your next adventure
+        </p>
+      </section>
+      <section class="main__filter">
+        <input
+          type="text"
+          id=""
+          class="main__filter-search"
+          placeholder="Search destinations"
+        />
+        <button class="main__filter-btn" onclick="getDestinations('all')">All</button>
+        <button class="main__filter-btn" onclick="getDestinations('adventure')" >Adventure</button>
+        <button class="main__filter-btn" onclick="getDestinations('culture')">Culture</button>
+        <button class="main__filter-btn" onclick="getDestinations('beach')">Beach</button>
+        <button class="main__filter-btn" onclick="getDestinations('hills')">Hills</button>
+        <button class="main__filter-btn" onclick="getDestinations('wildlife')">Wildlife</button>
+        <button class="main__filter-btn" onclick="getDestinations('budget')">Budget</button>
+      </section>
+      <section class="main__map">
+        <p class="main__map-head">Destination Map</p>
+        <div class="main__map-map"></div>
+      </section>
+      <section class="main__destinations"></section>
+    </main>
+  </body>
+</html>
+
+<script>
+  async function getDestinations(id) {
+    const fetchedData = await fetch(`http://localhost:3000/explore/filter/${id}`);
+    const body = await fetchedData.json();
+    let destinationsArray = JSON.parse(body.destinations);
+    const filteredDestinationsArray = JSON.parse(body.filteredDestinations);
+    const destinationSection = document.querySelector(".main__destinations");
+    if (filteredDestinationsArray.length) {
+      destinationsArray = filteredDestinationsArray;
+    }
+    destinationSection.innerHTML = destinationsArray
+      .map(
+        (el) => `
+    <article class="main__top-destination">
+          <p class="main__destination-rating-package">${el.rating}💠${el.totalPackages} packages</p>
+          <section class="top-destination__img" style="background-image:url('/destinations/${el.image}')"></section>
+          <section class="top-destination__about">
+            <p>${el.name}, ${el.state}</p>
+            <div class="top-destination__about-rating">
+              <p style="color:rgba(255,255,255,.4);font-Size:small">${el.badges[0]}💠${el.badges[1].split(" ")[0]}</p>
+              <p>⭐${el.rating}</p>
+            </div>
+          </section>
+        </article>
+    `,
+      )
+      .join("");
+  }
+  getDestinations("Heritage");
+</script>

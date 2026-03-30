@@ -1,0 +1,559 @@
+[
+  {
+    "id": "D001",
+    "name": "Jaipur",
+    "state": "Rajasthan",
+    "region": "North India",
+    "tagline": "The Pink City — a living museum of Rajput culture",
+    "categories": ["Culture", "Heritage", "Shopping"],
+    "badges": ["Trending", "UNESCO Listed"],
+    "rating": 4.9,
+    "totalReviews": 5820,
+    "totalPackages": 48,
+    "startingPrice": 3200,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February"
+    ],
+    "weather": {
+      "summer": "Hot (30–45°C)",
+      "winter": "Pleasant (8–22°C)",
+      "monsoon": "Moderate (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Amber Fort",
+      "Hawa Mahal",
+      "City Palace",
+      "Jantar Mantar",
+      "Nahargarh Fort"
+    ],
+    "localCuisine": ["Dal Baati Churma", "Ghewar", "Laal Maas", "Kachori"],
+    "nearbyDestinations": ["Ajmer", "Pushkar", "Ranthambore"],
+    "howToReach": {
+      "byAir": "Jaipur International Airport (JAI) — 13 km",
+      "byTrain": "Jaipur Junction (JP) — well connected to Delhi, Mumbai",
+      "byRoad": "NH48 from Delhi (280 km, ~5 hrs)"
+    },
+    "ecoRating": 3,
+    "image": "jaipur.jpg",
+    "available": true
+  },
+  {
+    "id": "D002",
+    "name": "Alleppey",
+    "nickname": "Venice of the East",
+    "state": "Kerala",
+    "region": "South India",
+    "tagline": "Tranquil backwaters, floating houseboats, and lush paddy fields",
+    "categories": ["Nature", "Backwaters", "Wellness"],
+    "badges": ["Eco Pick", "Hidden Gem"],
+    "rating": 4.8,
+    "totalReviews": 3410,
+    "totalPackages": 62,
+    "startingPrice": 2800,
+    "currency": "INR",
+    "bestTimeToVisit": ["November", "December", "January", "February", "March"],
+    "weather": {
+      "summer": "Humid (28–35°C)",
+      "winter": "Pleasant (20–30°C)",
+      "monsoon": "Heavy rains (Jun–Sep)"
+    },
+    "topAttractions": [
+      "Vembanad Lake",
+      "Punnamada Lake",
+      "Kuttanad Backwaters",
+      "Marari Beach",
+      "Krishnapuram Palace"
+    ],
+    "localCuisine": [
+      "Kerala Fish Curry",
+      "Appam & Stew",
+      "Karimeen Pollichathu",
+      "Puttu & Kadala"
+    ],
+    "nearbyDestinations": ["Kochi", "Kumarakom", "Thekkady"],
+    "howToReach": {
+      "byAir": "Cochin International Airport (COK) — 75 km",
+      "byTrain": "Alappuzha Railway Station — direct trains from Kochi, Trivandrum",
+      "byRoad": "NH66 from Kochi (55 km, ~1.5 hrs)"
+    },
+    "ecoRating": 5,
+    "image": "alleppey.jpg",
+    "available": true
+  },
+  {
+    "id": "D003",
+    "name": "Manali",
+    "state": "Himachal Pradesh",
+    "region": "North India",
+    "tagline": "High-altitude adventure in the heart of the Himalayas",
+    "categories": ["Adventure", "Mountains", "Trekking"],
+    "badges": ["Adventure", "Trending"],
+    "rating": 4.7,
+    "totalReviews": 6130,
+    "totalPackages": 39,
+    "startingPrice": 2400,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "March",
+      "April",
+      "May",
+      "October",
+      "November",
+      "December",
+      "January"
+    ],
+    "weather": {
+      "summer": "Cool & Pleasant (10–25°C)",
+      "winter": "Heavy snow (-10 to 10°C)",
+      "monsoon": "Risky — landslides (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Rohtang Pass",
+      "Solang Valley",
+      "Hadimba Temple",
+      "Old Manali",
+      "Beas River"
+    ],
+    "localCuisine": ["Siddu", "Dham", "Trout Fish Curry", "Chha Gosht"],
+    "nearbyDestinations": ["Kasol", "Kulu", "Spiti Valley", "Leh"],
+    "howToReach": {
+      "byAir": "Bhuntar Airport (KUU) — 50 km",
+      "byTrain": "Nearest station: Joginder Nagar (145 km)",
+      "byRoad": "NH3 from Delhi (570 km, ~13 hrs)"
+    },
+    "ecoRating": 3,
+    "image": "manali.jpg",
+    "available": true
+  },
+  {
+    "id": "D004",
+    "name": "Goa",
+    "state": "Goa",
+    "region": "West India",
+    "tagline": "Sun, sand, and a Portuguese soul — India's beach capital",
+    "categories": ["Beach", "Nightlife", "Culture"],
+    "badges": ["Hot Deal", "Most Popular"],
+    "rating": 4.8,
+    "totalReviews": 9870,
+    "totalPackages": 55,
+    "startingPrice": 1600,
+    "currency": "INR",
+    "bestTimeToVisit": ["November", "December", "January", "February", "March"],
+    "weather": {
+      "summer": "Hot & Humid (28–36°C)",
+      "winter": "Perfect (20–30°C)",
+      "monsoon": "Heavy rains — great for budget travel (Jun–Sep)"
+    },
+    "topAttractions": [
+      "Palolem Beach",
+      "Baga Beach",
+      "Basilica of Bom Jesus",
+      "Dudhsagar Falls",
+      "Fort Aguada"
+    ],
+    "localCuisine": [
+      "Fish Curry Rice",
+      "Prawn Balchão",
+      "Bebinca",
+      "Vindaloo",
+      "Feni"
+    ],
+    "nearbyDestinations": ["Coorg", "Hampi", "Mumbai"],
+    "howToReach": {
+      "byAir": "Goa International Airport (GOI) — 30 km from Panaji",
+      "byTrain": "Madgaon / Vasco-da-Gama Railway Station",
+      "byRoad": "NH748 from Mumbai (590 km, ~10 hrs)"
+    },
+    "ecoRating": 2,
+    "image": "goa.jpg",
+    "available": true
+  },
+  {
+    "id": "D005",
+    "name": "Varanasi",
+    "state": "Uttar Pradesh",
+    "region": "North India",
+    "tagline": "The spiritual capital of India — where eternity meets the Ganges",
+    "categories": ["Spiritual", "Culture", "History"],
+    "badges": ["Culture", "UNESCO Listed"],
+    "rating": 4.9,
+    "totalReviews": 4520,
+    "totalPackages": 71,
+    "startingPrice": 1200,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March"
+    ],
+    "weather": {
+      "summer": "Very Hot (30–46°C)",
+      "winter": "Cool & Foggy (5–18°C)",
+      "monsoon": "Warm & Rainy (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Dashashwamedh Ghat (Ganga Aarti)",
+      "Kashi Vishwanath Temple",
+      "Manikarnika Ghat",
+      "Sarnath",
+      "Banaras Hindu University"
+    ],
+    "localCuisine": [
+      "Banarasi Paan",
+      "Malaiyo",
+      "Kachori Sabzi",
+      "Thandai",
+      "Baati Chokha"
+    ],
+    "nearbyDestinations": ["Prayagraj", "Ayodhya", "Sarnath", "Bodhgaya"],
+    "howToReach": {
+      "byAir": "Lal Bahadur Shastri Airport (VNS) — 25 km",
+      "byTrain": "Varanasi Junction (BSB) — well connected nationally",
+      "byRoad": "NH19 from Delhi (820 km, ~14 hrs)"
+    },
+    "ecoRating": 2,
+    "image": "varanasi.jpg",
+    "available": true
+  },
+  {
+    "id": "D006",
+    "name": "Coorg",
+    "nickname": "Scotland of India",
+    "state": "Karnataka",
+    "region": "South India",
+    "tagline": "Misty hills, coffee estates, and untouched natural beauty",
+    "categories": ["Nature", "Hills", "Wellness"],
+    "badges": ["Hidden Gem", "Eco Pick"],
+    "rating": 4.6,
+    "totalReviews": 2180,
+    "totalPackages": 14,
+    "startingPrice": 1900,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March"
+    ],
+    "weather": {
+      "summer": "Mild (15–28°C)",
+      "winter": "Cool & Misty (8–20°C)",
+      "monsoon": "Lush green but wet (Jun–Sep)"
+    },
+    "topAttractions": [
+      "Abbey Falls",
+      "Raja's Seat",
+      "Dubare Elephant Camp",
+      "Nagarhole National Park",
+      "Talacauvery"
+    ],
+    "localCuisine": [
+      "Kadambuttu",
+      "Pandi Curry",
+      "Coorg Fish Curry",
+      "Bamboo Shoot Curry",
+      "Akki Roti"
+    ],
+    "nearbyDestinations": ["Mysore", "Wayanad", "Ooty"],
+    "howToReach": {
+      "byAir": "Mangalore Airport (IXE) — 135 km",
+      "byTrain": "Nearest station: Mysore (117 km)",
+      "byRoad": "NH275 from Bangalore (260 km, ~5 hrs)"
+    },
+    "ecoRating": 5,
+    "image": "coorg.jpg",
+    "available": true
+  },
+  {
+    "id": "D007",
+    "name": "Jaisalmer",
+    "nickname": "The Golden City",
+    "state": "Rajasthan",
+    "region": "North India",
+    "tagline": "A desert fortress rising from the Thar like a mirage",
+    "categories": ["Heritage", "Desert", "Adventure"],
+    "badges": ["Trending", "Hidden Gem"],
+    "rating": 4.8,
+    "totalReviews": 3760,
+    "totalPackages": 32,
+    "startingPrice": 2600,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February"
+    ],
+    "weather": {
+      "summer": "Extreme Heat (35–48°C)",
+      "winter": "Pleasant Days, Cold Nights (5–25°C)",
+      "monsoon": "Rare rains (Jul–Aug)"
+    },
+    "topAttractions": [
+      "Jaisalmer Fort (UNESCO)",
+      "Sam Sand Dunes",
+      "Patwon Ki Haveli",
+      "Gadisar Lake",
+      "Thar Desert National Park"
+    ],
+    "localCuisine": [
+      "Dal Baati Churma",
+      "Ker Sangri",
+      "Gatte Ki Sabzi",
+      "Mawa Kachori"
+    ],
+    "nearbyDestinations": ["Jodhpur", "Bikaner", "Barmer"],
+    "howToReach": {
+      "byAir": "Jaisalmer Airport (JSA) — 17 km",
+      "byTrain": "Jaisalmer Railway Station — overnight train from Jodhpur, Jaipur",
+      "byRoad": "NH11 from Jodhpur (285 km, ~5 hrs)"
+    },
+    "ecoRating": 2,
+    "image": "jaisalmer.jpg",
+    "available": true
+  },
+  {
+    "id": "D008",
+    "name": "Ranthambore",
+    "state": "Rajasthan",
+    "region": "North India",
+    "tagline": "India's most famous tiger reserve — raw wilderness meets ancient ruins",
+    "categories": ["Wildlife", "Nature", "Adventure"],
+    "badges": ["Wildlife", "Eco Pick"],
+    "rating": 4.7,
+    "totalReviews": 2940,
+    "totalPackages": 22,
+    "startingPrice": 4500,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May"
+    ],
+    "weather": {
+      "summer": "Hot (32–44°C) — best tiger sightings",
+      "winter": "Cool (8–24°C) — comfortable safaris",
+      "monsoon": "Park closed (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Ranthambore National Park",
+      "Tiger Safaris (Zone 1–10)",
+      "Ranthambore Fort (UNESCO)",
+      "Padam Talao Lake",
+      "Surwal Lake"
+    ],
+    "localCuisine": ["Dal Baati", "Rajasthani Thali", "Laal Maas"],
+    "nearbyDestinations": ["Jaipur", "Agra", "Bharatpur Bird Sanctuary"],
+    "howToReach": {
+      "byAir": "Jaipur International Airport (JAI) — 180 km",
+      "byTrain": "Sawai Madhopur Railway Station — 13 km from park gate",
+      "byRoad": "NH48 from Jaipur (180 km, ~3.5 hrs)"
+    },
+    "ecoRating": 4,
+    "image": "ranthambore.jpg",
+    "available": true
+  },
+  {
+    "id": "D009",
+    "name": "Udaipur",
+    "nickname": "City of Lakes",
+    "state": "Rajasthan",
+    "region": "North India",
+    "tagline": "Palaces, lakes, and sunsets that feel painted by hand",
+    "categories": ["Heritage", "Romantic", "Culture"],
+    "badges": ["Trending", "Romantic Getaway"],
+    "rating": 4.9,
+    "totalReviews": 5310,
+    "totalPackages": 44,
+    "startingPrice": 2200,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "September",
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March"
+    ],
+    "weather": {
+      "summer": "Hot (28–42°C)",
+      "winter": "Ideal (10–25°C)",
+      "monsoon": "Scenic green hills (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Lake Pichola",
+      "City Palace",
+      "Jag Mandir",
+      "Sajjangarh (Monsoon Palace)",
+      "Fateh Sagar Lake"
+    ],
+    "localCuisine": [
+      "Dal Baati Churma",
+      "Haldi Ki Sabzi",
+      "Mawa Kachori",
+      "Rabri"
+    ],
+    "nearbyDestinations": ["Kumbhalgarh", "Chittorgarh", "Mount Abu"],
+    "howToReach": {
+      "byAir": "Maharana Pratap Airport (UDR) — 22 km",
+      "byTrain": "Udaipur City Railway Station — connected to Jaipur, Ahmedabad",
+      "byRoad": "NH27 from Jaipur (395 km, ~6 hrs)"
+    },
+    "ecoRating": 3,
+    "image": "udaipur.jpg",
+    "available": true
+  },
+  {
+    "id": "D010",
+    "name": "Andaman Islands",
+    "state": "Andaman & Nicobar Islands",
+    "region": "Island India",
+    "tagline": "Crystal waters, coral reefs, and the last true tropical escape in India",
+    "categories": ["Beach", "Diving", "Adventure"],
+    "badges": ["Hidden Gem", "Eco Pick"],
+    "rating": 4.9,
+    "totalReviews": 3120,
+    "totalPackages": 27,
+    "startingPrice": 5500,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+      "April"
+    ],
+    "weather": {
+      "summer": "Warm & Sunny (26–35°C)",
+      "winter": "Perfect (20–30°C)",
+      "monsoon": "Rough seas — avoid (May–Sep)"
+    },
+    "topAttractions": [
+      "Radhanagar Beach (Havelock)",
+      "Cellular Jail (Kaala Pani)",
+      "Elephant Beach Snorkeling",
+      "North Bay Island",
+      "Baratang Island Mangroves"
+    ],
+    "localCuisine": [
+      "Grilled Seafood",
+      "Fish Amritsari",
+      "Coconut Prawn Curry",
+      "Andamani Lobster"
+    ],
+    "nearbyDestinations": ["Havelock Island", "Neil Island", "Port Blair"],
+    "howToReach": {
+      "byAir": "Veer Savarkar International Airport (IXZ) — Port Blair — flights from Chennai, Kolkata, Delhi",
+      "byTrain": "No railway — nearest mainland: Chennai",
+      "byRoad": "Not accessible by road — ferry from Port Blair to islands"
+    },
+    "ecoRating": 5,
+    "image": "andaman.jpg",
+    "available": true
+  },
+  {
+    "id": "D011",
+    "name": "Leh-Ladakh",
+    "state": "Ladakh (UT)",
+    "region": "North India",
+    "tagline": "The roof of India — where mountains touch the sky and time stands still",
+    "categories": ["Adventure", "Mountains", "Culture"],
+    "badges": ["Adventure", "Bucket List"],
+    "rating": 4.9,
+    "totalReviews": 4880,
+    "totalPackages": 36,
+    "startingPrice": 7200,
+    "currency": "INR",
+    "bestTimeToVisit": ["June", "July", "August", "September"],
+    "weather": {
+      "summer": "Cool & Sunny (10–25°C)",
+      "winter": "Extreme Cold (-20 to -5°C) — Chadar Trek only",
+      "monsoon": "Dry (rain shadow region)"
+    },
+    "topAttractions": [
+      "Pangong Tso Lake",
+      "Nubra Valley & Bactrian Camels",
+      "Magnetic Hill",
+      "Thiksey Monastery",
+      "Leh Palace"
+    ],
+    "localCuisine": [
+      "Thukpa",
+      "Momos",
+      "Skyu",
+      "Butter Tea (Gur Gur Chai)",
+      "Tsampa"
+    ],
+    "nearbyDestinations": ["Kargil", "Zanskar Valley", "Srinagar"],
+    "howToReach": {
+      "byAir": "Kushok Bakula Rimpochee Airport (IXL) — 3 km from Leh",
+      "byTrain": "No railway — nearest: Jammu",
+      "byRoad": "Manali-Leh Highway (490 km, 2 days) — open Jun–Oct only"
+    },
+    "ecoRating": 4,
+    "image": "ladakh.jpg",
+    "available": true
+  },
+  {
+    "id": "D012",
+    "name": "Pushkar",
+    "state": "Rajasthan",
+    "region": "North India",
+    "tagline": "A sacred lake town famous for its camel fair and Brahma temple",
+    "categories": ["Spiritual", "Culture", "Budget"],
+    "badges": ["Hidden Gem", "Budget Friendly"],
+    "rating": 4.5,
+    "totalReviews": 1980,
+    "totalPackages": 18,
+    "startingPrice": 900,
+    "currency": "INR",
+    "bestTimeToVisit": [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February"
+    ],
+    "weather": {
+      "summer": "Very Hot (32–44°C)",
+      "winter": "Pleasant (8–22°C)",
+      "monsoon": "Dry (Jul–Sep)"
+    },
+    "topAttractions": [
+      "Pushkar Lake",
+      "Brahma Temple (only one in the world)",
+      "Savitri Temple",
+      "Pushkar Camel Fair (Nov)",
+      "Ghats Walk"
+    ],
+    "localCuisine": ["Malpua", "Lassi", "Kachori", "Bati", "Churma"],
+    "nearbyDestinations": ["Ajmer", "Jaipur", "Jodhpur"],
+    "howToReach": {
+      "byAir": "Jaipur International Airport (JAI) — 150 km",
+      "byTrain": "Ajmer Railway Station — 14 km, then bus/taxi",
+      "byRoad": "NH58 from Jaipur (145 km, ~2.5 hrs)"
+    },
+    "ecoRating": 3,
+    "image": "pushkar.jpg",
+    "available": true
+  }
+]

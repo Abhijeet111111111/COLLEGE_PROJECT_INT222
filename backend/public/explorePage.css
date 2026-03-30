@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 1rem 4rem;
+  background: #262525;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 37, 37, 1) 0%,
+    rgba(50, 49, 49, 1) 54%,
+    rgba(38, 37, 37, 1) 100%
+  );
+  color: white;
+}
+.nav__items {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 0.1;
+}
+.nav__item {
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav__item:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.nav__item__ctx-button {
+  font-size: large;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav__item-ctx {
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item__ctx-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+main {
+  background-color: #262525;
+}
+
+.main__header-head {
+  color: white;
+  margin-bottom: 0.4rem;
+}
+
+.main__header {
+  padding: 1rem 7rem;
+}
+
+.main__header-desc {
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main__filter {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.main__filter-search {
+  flex-grow: 1;
+  max-width: 24rem;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.25s ease;
+  font-size: large;
+  /* background: #111; */
+  /* optional dark bg */
+  /* color: white; */
+}
+
+.main__filter-search:hover {
+  border: 1px solid white;
+}
+
+.main__filter-search:focus {
+  border-color: #60a5fa; /* light blue */
+  box-shadow: 0 0 8px 2px rgba(96, 165, 250, 0.6);
+}
+
+.main__filter-btn {
+  font-size: large;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+.main__filter-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.main__filter-btn:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.main__map {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.4rem;
+  height: 18rem;
+  margin: 1rem auto;
+  width: 80%;
+  padding: 0.8rem 1rem;
+}
+
+.main__map-head {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+}
+
+.main__map-map {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.4rem;
+  height: 70%;
+}
+
+.main__destinations{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-evenly;
+    padding: 1rem 7rem;
+}
+
+.main__top-destination {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 16rem;
+  width: 16rem;
+  border-radius: 1rem;
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.main__top-destination:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.top-destination__img {
+  height: 80%;
+  background: #ffa047;
+  /* background: linear-gradient(
+    90deg,
+    rgba(255, 160, 71, 1) 0%,
+    rgba(242, 136, 136, 1) 52%,
+    rgba(252, 176, 69, 1) 100%
+  ); */
+  background-image: url("https://s7ap1.scene7.com/is/image/incredibleindia/1-umaid-bhavan-jodhpur-rajasthan-city-hero?qlt=82&ts=1726661010066");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  border-radius: 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.top-destination__about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  height: 40%;
+  background-color: rgba(38, 37, 37, 0.9);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  border-radius: 1rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.top-destination__about-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-destination__about p {
+  margin: 0;
+}
+
+.main__destination-rating-package {
+  position: absolute;
+  top: 116px;
+  left: 16px;
+  z-index: 2;
+  border-radius: 8rem;
+  background-color:rgba(255, 255, 255, 0.6);
+  color: black;
+  font-family: sans-serif;
+  font-size: medium;
+  padding: 0.2rem 0.4rem;
+
+}

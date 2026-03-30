@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <header>
+      <div id="navbar">
+        <h1 class="navbar-logo">
+          <a style="text-decoration: none" href="/"
+            ><span style="color: white">Wander</span
+            ><span style="color: rgb(6, 187, 6)">Smart</span></a
+          >
+        </h1>
+        <ul class="nav__items">
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+          <li class="nav__item">Hotels</li>
+          <li class="nav__item">Tours</li>
+          <li class="nav__item">Dashboard</li>
+        </ul>
+        <div class="nav__item-ctx">
+          <button class="nav__item__ctx-button">Plan a Trip</button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="main__first">
+        <p class="smart_tourism__platform">Smart Tourism Platform</p>
+        <h1 class="main__first__heading" id="main__heading__discover">
+          Discover. Experience
+        </h1>
+        <h1 class="main__first__heading">Belong.</h1>
+        <p class="main__first__description">
+          AI powered travel planning that boosts local economies &amp;
+          unforgettable experience
+        </p>
+        <p class="main__first__search-inputs">
+          <input
+            type="text"
+            id="main__first__search-text"
+            class="main__first__search-item"
+            placeholder="Where do you want to go?"
+          />
+          <input
+            type="date"
+            id="main__first__search-date"
+            class="main__first__search-item"
+            placeholder="Date"
+          />
+          <button
+            id="main__first__search-button"
+            class="main__first__search-item"
+          >
+            Search
+          </button>
+        </p>
+      </section>
+      <ul class="main__about__features">
+        <li class="main__about__feature">
+          <p class="main__about__feature-number">12,400+</p>
+          <p class="main__about__feature-text">Hotels Listed</p>
+        </li>
+        <li class="main__about__feature">
+          <p class="main__about__feature-number">840+</p>
+          <p class="main__about__feature-text">Tour Packages</p>
+        </li>
+        <li class="main__about__feature">
+          <p class="main__about__feature-number">2.1M</p>
+          <p class="main__about__feature-text">Happy Travelers</p>
+        </li>
+        <li class="main__about__feature">
+          <p class="main__about__feature-number">320+</p>
+          <p class="main__about__feature-text">Local Guides</p>
+        </li>
+      </ul>
+      <section class="main__destinations">
+        <div class="main__destinations-header">
+          <h2 class="main__destinations-header__head">Top Destinations</h2>
+          <a href="#" class="main__destinations-header__a">view all ➡️</a>
+        </div>
+        <section class="main__top-destinations">
+          <% for(let i=0;i<5;i++){ %>
+            <article class="main__top-destination">
+            <p class="main__top-destination-<%=destination[i].badges[0].toLowerCase().split(' ').join('')%>"><%=destination[i].badges[0] %></p>
+            <section class="top-destination__img" style="background-image: url('destinations/<%=destination[i].image%>');"></section>
+            <section class="top-destination__about">
+              <p><%=destination[i].state %></p>
+              <div class="top-destination__about-rating">
+                <p><%=destination[i].totalPackages %> Packages</p>
+                <p>⭐<%=destination[i].rating %> </p>
+              </div>
+            </section>
+          </article>
+            <% } %>
+          
+        </section>
+      </section>
+
+      <section class="main__featured-hotels">
+        <section class="main__featured-hotels__header">
+          <h2>Featured Hotels</h2>
+          <a href="#">view all➡️</a>
+        </section>
+        <section class="main__featured-hotels__hotels">
+          <% for(let i=0;i<4;i++){ %>
+            <article class="main__featured-hotel">
+            <section class="main__featured-hotel__about">
+              <div class="main__featured-hotel__about-img" style="background-image: url('hotels/<%= hotel[i].images[0] %>')"></div>
+              <div class="main__featured-hotel__about-details">
+                <p class="main__featured-hotel__about-details-name">
+                  <%= hotel[i].name %>
+                </p>
+                <p class="main__featured-hotel__about-details-location">
+                  <%= hotel[i].location.city %>, <%= hotel[i].location.state %>
+                </p>
+                <div class="main__featured-hotel__about-details__types">
+                  <p id=<%= hotel[i].tags[0].toLowerCase().split(' ').join('') %>><%=hotel[i].tags[0] %></p>
+                  <p><%=hotel[i].category %></p>
+                  <p><%=hotel[i].stars %> stars</p>
+                </div>
+              </div>
+            </section>
+            <section class="main__featured-hotel__price">
+              <p class="main__featured-hotel__price-rupees"><%=hotel[i].pricePerNight %></p>
+              <p class="main__featured-hotel__price-pernight">per night</p>
+            </section>
+          </article>
+            <% } %>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p class="footer__details">
+        WanderSmart boosts tourism by connecting travelers with local
+        experiences, certified eco-stays, and community-first guides.
+      </p>
+      <button class="footer__button">Join the mission</button>
+    </footer>
+  </body>
+</html>
+
+<script>
+  const amount = document.querySelectorAll('.main__featured-hotel__price-rupees');
+   console.log(amount);
+  const formattedAmt = Array.from(amount).map(el =>{
+    const amt = parseInt(el.innerText);
+    const formatted = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amt);
+    return formatted
+  })
+
+
+  
+  const rupee = document.querySelectorAll(
+    ".main__featured-hotel__price-rupees",
+  );
+  rupee.forEach((el,idx) => (el.innerText = formattedAmt[idx]));
+
+  console.log(formattedAmt);
+</script>

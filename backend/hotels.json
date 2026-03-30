@@ -1,0 +1,355 @@
+[
+  {
+    "id": "H001",
+    "name": "The Maharaja Haveli",
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "address": "Mirza Ismail Road, Jaipur",
+      "distanceFromCenter": "2.1 km"
+    },
+    "stars": 4,
+    "rating": 4.9,
+    "reviews": 1284,
+    "pricePerNight": 4200,
+    "currency": "INR",
+    "category": "Heritage",
+    "tags": ["Eco-Certified", "Heritage", "Breakfast Included", "Pool"],
+    "ecoScore": 4,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Parking",
+      "Spa",
+      "Restaurant",
+      "Room Service",
+      "24hr Reception"
+    ],
+    "images": ["maharaja1.jpg", "maharaja2.jpg"],
+    "description": "A restored 18th-century haveli turned luxury hotel in the heart of the Pink City, offering royal Rajasthani hospitality.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H002",
+    "name": "Dune Retreat & Spa",
+    "location": {
+      "city": "Jaisalmer",
+      "state": "Rajasthan",
+      "address": "Sam Sand Dunes Road, Jaisalmer",
+      "distanceFromCenter": "42 km"
+    },
+    "stars": 5,
+    "rating": 4.8,
+    "reviews": 896,
+    "pricePerNight": 6500,
+    "currency": "INR",
+    "category": "Luxury",
+    "tags": ["Hidden Gem", "Luxury", "Desert Camp"],
+    "ecoScore": 3,
+    "amenities": [
+      "WiFi",
+      "Camel Safari",
+      "Bonfire",
+      "Star Gazing",
+      "Traditional Meals",
+      "Spa"
+    ],
+    "images": ["dune1.jpg", "dune2.jpg"],
+    "description": "A remote luxury desert camp offering an intimate experience under the stars with premium tents and fine dining.",
+    "freeCancellation": false,
+    "available": true
+  },
+  {
+    "id": "H003",
+    "name": "City Palace Guesthouse",
+    "location": {
+      "city": "Udaipur",
+      "state": "Rajasthan",
+      "address": "Lake Pichola Road, Udaipur",
+      "distanceFromCenter": "0.8 km"
+    },
+    "stars": 3,
+    "rating": 4.6,
+    "reviews": 543,
+    "pricePerNight": 1800,
+    "currency": "INR",
+    "category": "Budget",
+    "tags": ["Best Value", "Lake View", "Free Cancellation"],
+    "ecoScore": 5,
+    "amenities": [
+      "WiFi",
+      "Rooftop",
+      "Free Cancellation",
+      "Breakfast",
+      "Parking"
+    ],
+    "images": ["citypalace1.jpg", "citypalace2.jpg"],
+    "description": "A charming budget guesthouse with stunning views of Lake Pichola and easy access to the City Palace.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H004",
+    "name": "Pushkar Lake Resort",
+    "location": {
+      "city": "Pushkar",
+      "state": "Rajasthan",
+      "address": "Pushkar Lake Shore, Pushkar",
+      "distanceFromCenter": "1.2 km"
+    },
+    "stars": 4,
+    "rating": 4.7,
+    "reviews": 412,
+    "pricePerNight": 3100,
+    "currency": "INR",
+    "category": "Wellness",
+    "tags": ["Eco-Certified", "Hidden Gem", "Yoga", "Organic Food"],
+    "ecoScore": 5,
+    "amenities": [
+      "WiFi",
+      "Yoga",
+      "Organic Restaurant",
+      "Meditation Hall",
+      "Ayurveda Spa",
+      "Cycling"
+    ],
+    "images": ["pushkar1.jpg", "pushkar2.jpg"],
+    "description": "A serene lakeside resort specializing in wellness, yoga retreats, and organic farm-to-table experiences.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H005",
+    "name": "Backwaters Retreat",
+    "location": {
+      "city": "Alleppey",
+      "state": "Kerala",
+      "address": "Punnamada Lake, Alleppey",
+      "distanceFromCenter": "3.5 km"
+    },
+    "stars": 4,
+    "rating": 4.8,
+    "reviews": 762,
+    "pricePerNight": 3800,
+    "currency": "INR",
+    "category": "Nature",
+    "tags": ["Hidden Gem", "Eco-Certified", "Houseboat Access"],
+    "ecoScore": 5,
+    "amenities": [
+      "WiFi",
+      "Houseboat Rides",
+      "Kayaking",
+      "Fishing",
+      "Ayurvedic Spa",
+      "Restaurant"
+    ],
+    "images": ["backwaters1.jpg", "backwaters2.jpg"],
+    "description": "A peaceful eco-resort nestled in the backwaters of Kerala with private houseboat access and lush surroundings.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H006",
+    "name": "Spice Garden Homestay",
+    "location": {
+      "city": "Thekkady",
+      "state": "Kerala",
+      "address": "Periyar Wildlife Sanctuary Road, Thekkady",
+      "distanceFromCenter": "1.0 km"
+    },
+    "stars": 3,
+    "rating": 4.5,
+    "reviews": 298,
+    "pricePerNight": 1400,
+    "currency": "INR",
+    "category": "Homestay",
+    "tags": ["Eco-Certified", "Best Value", "Spice Plantation Tour"],
+    "ecoScore": 5,
+    "amenities": [
+      "WiFi",
+      "Spice Tour",
+      "Home-cooked Meals",
+      "Parking",
+      "Nature Walks"
+    ],
+    "images": ["spice1.jpg", "spice2.jpg"],
+    "description": "A family-run homestay on a working spice plantation at the edge of Periyar Tiger Reserve.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H007",
+    "name": "Mountain Bloom Resort",
+    "location": {
+      "city": "Manali",
+      "state": "Himachal Pradesh",
+      "address": "Old Manali Road, Manali",
+      "distanceFromCenter": "2.8 km"
+    },
+    "stars": 4,
+    "rating": 4.7,
+    "reviews": 634,
+    "pricePerNight": 2900,
+    "currency": "INR",
+    "category": "Adventure",
+    "tags": ["Best Value", "Adventure Base", "Mountain View"],
+    "ecoScore": 3,
+    "amenities": [
+      "WiFi",
+      "Bonfire",
+      "Trekking Guide",
+      "Ski Equipment Rental",
+      "Restaurant",
+      "Parking"
+    ],
+    "images": ["mountain1.jpg", "mountain2.jpg"],
+    "description": "A cozy mountain resort ideal for adventure seekers heading to Rohtang Pass, Solang Valley, and beyond.",
+    "freeCancellation": false,
+    "available": true
+  },
+  {
+    "id": "H008",
+    "name": "Snow Peak Cottage",
+    "location": {
+      "city": "Shimla",
+      "state": "Himachal Pradesh",
+      "address": "The Ridge, Shimla",
+      "distanceFromCenter": "0.5 km"
+    },
+    "stars": 3,
+    "rating": 4.4,
+    "reviews": 389,
+    "pricePerNight": 2100,
+    "currency": "INR",
+    "category": "Heritage",
+    "tags": ["Heritage", "Best Value", "Colonial Style"],
+    "ecoScore": 2,
+    "amenities": ["WiFi", "Fireplace", "Breakfast", "Garden", "Parking"],
+    "images": ["snowpeak1.jpg", "snowpeak2.jpg"],
+    "description": "A colonial-era cottage on The Ridge offering panoramic views of the snow-capped Himalayan peaks.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H009",
+    "name": "Taj on the Ganges",
+    "location": {
+      "city": "Varanasi",
+      "state": "Uttar Pradesh",
+      "address": "Nadesar Palace Road, Varanasi",
+      "distanceFromCenter": "4.2 km"
+    },
+    "stars": 5,
+    "rating": 4.9,
+    "reviews": 1102,
+    "pricePerNight": 8500,
+    "currency": "INR",
+    "category": "Luxury",
+    "tags": ["Luxury", "Heritage", "Ganges View"],
+    "ecoScore": 3,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Spa",
+      "Fine Dining",
+      "Ghats Tour",
+      "Airport Shuttle",
+      "Gym"
+    ],
+    "images": ["tajganges1.jpg", "tajganges2.jpg"],
+    "description": "A palace hotel in Varanasi offering a regal stay with curated Ganges aarti experiences and Ayurvedic therapies.",
+    "freeCancellation": false,
+    "available": true
+  },
+  {
+    "id": "H010",
+    "name": "Cocohut Beach Resort",
+    "location": {
+      "city": "Goa",
+      "state": "Goa",
+      "address": "Palolem Beach, South Goa",
+      "distanceFromCenter": "0.1 km"
+    },
+    "stars": 3,
+    "rating": 4.6,
+    "reviews": 921,
+    "pricePerNight": 2200,
+    "currency": "INR",
+    "category": "Beach",
+    "tags": ["Beachfront", "Best Value", "Hidden Gem"],
+    "ecoScore": 4,
+    "amenities": [
+      "WiFi",
+      "Beach Access",
+      "Water Sports",
+      "Bar",
+      "Restaurant",
+      "Hammocks"
+    ],
+    "images": ["cocohut1.jpg", "cocohut2.jpg"],
+    "description": "Eco-friendly bamboo beach huts right on Palolem Beach — the quieter, more beautiful side of Goa.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H011",
+    "name": "Coorg Rainforest Bungalow",
+    "location": {
+      "city": "Coorg",
+      "state": "Karnataka",
+      "address": "Madikeri Estate Road, Coorg",
+      "distanceFromCenter": "6.0 km"
+    },
+    "stars": 4,
+    "rating": 4.7,
+    "reviews": 317,
+    "pricePerNight": 3400,
+    "currency": "INR",
+    "category": "Nature",
+    "tags": ["Hidden Gem", "Eco-Certified", "Coffee Estate"],
+    "ecoScore": 5,
+    "amenities": [
+      "WiFi",
+      "Coffee Estate Tour",
+      "Nature Walks",
+      "Bonfire",
+      "Home-cooked Meals",
+      "Bird Watching"
+    ],
+    "images": ["coorg1.jpg", "coorg2.jpg"],
+    "description": "A secluded estate bungalow on a working coffee and spice plantation in the misty hills of Coorg.",
+    "freeCancellation": true,
+    "available": true
+  },
+  {
+    "id": "H012",
+    "name": "Ranthambore Jungle Lodge",
+    "location": {
+      "city": "Sawai Madhopur",
+      "state": "Rajasthan",
+      "address": "Ranthambore National Park Gate, Sawai Madhopur",
+      "distanceFromCenter": "1.5 km"
+    },
+    "stars": 4,
+    "rating": 4.8,
+    "reviews": 478,
+    "pricePerNight": 5200,
+    "currency": "INR",
+    "category": "Wildlife",
+    "tags": ["Wildlife", "Eco-Certified", "Safari Included"],
+    "ecoScore": 4,
+    "amenities": [
+      "WiFi",
+      "Safari Jeep",
+      "Naturalist Guide",
+      "Pool",
+      "Restaurant",
+      "Bird Watching"
+    ],
+    "images": ["ranthambore1.jpg", "ranthambore2.jpg"],
+    "description": "A premium jungle lodge right outside Ranthambore, with in-house naturalists and daily tiger safari packages.",
+    "freeCancellation": false,
+    "available": true
+  }
+]
