@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path'
 import { fileURLToPath } from 'url';
-import fs, { stat } from 'fs';
+import fs, { readFileSync, stat } from 'fs';
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +44,20 @@ app.get('/explore/filter/:id', (req, res) => {
         destinations: JSON.stringify(destinations),
         filteredDestinations: JSON.stringify(filteredDestinations)
     })
+})
+
+app.get('/destinations/:id', (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    const readF = readFileSync('./destinations.json', 'utf-8');
+    const destinationArray = JSON.parse(readF);
+    const destination = destinationArray.filter(el => el.id === id);
+    res.status(200).json({
+        status: 'success',
+        destination: JSON.stringify(destination)
+    })
+
+
 })
 
 

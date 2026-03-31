@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body > section{
+            width: 48rem;
+            margin: auto;
+        }
+        .tabItinerary{
+            
+            padding: 1rem;
+             border: 1px solid black;
+             background-color: #262626;
+            
+        }
+        .ItineraryItems{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+            color: white;
+        }
+        .ItineraryItem{
+            border: 1px solid white;
+            padding: .4rem .8rem;
+            border-radius: 1rem;
+        }
+        .ItineraryItemBtn{
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+ 
+        .ItineraryItem{
+            padding: 0;
+        }
+        .ItineraryItem p{
+            padding: 0 .6rem;
+            margin: .4rem;
+        }
+        .ItineraryItem-btn{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="tabItinerary">
+        <ul class="ItineraryItems">
+            <li class="ItineraryItem">
+                <p>Day 1 — Arrival & Old City</p>
+                <p>Check-in at hotel · Johari Bazaar · Hawa Mahal evening view · Local dinner</p>
+            </li>
+            <li class="ItineraryItem ItineraryItem-btn">
+                <button class="ItineraryItemBtn">Generate Full custom Itineray</button>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
