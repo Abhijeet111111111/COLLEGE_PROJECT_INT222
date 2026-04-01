@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  background-color: #262525;
 }
 
 #navbar {
@@ -148,12 +149,12 @@ main {
   height: 70%;
 }
 
-.main__destinations{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-evenly;
-    padding: 1rem 7rem;
+.main__destinations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
+  padding: 1rem 7rem;
 }
 
 .main__top-destination {
@@ -220,10 +221,514 @@ main {
   left: 16px;
   z-index: 2;
   border-radius: 8rem;
-  background-color:rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   color: black;
   font-family: sans-serif;
   font-size: medium;
   padding: 0.2rem 0.4rem;
+}
 
+/* ************ DIALOG ********************/
+
+#destinationDialog {
+  height: 64rem;
+  width: 48rem;
+  padding: 0;
+  background: #262525;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 37, 37, 1) 0%,
+    rgba(50, 49, 49, 1) 54%,
+    rgba(38, 37, 37, 1) 100%
+  );
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+#destinationDialog::backdrop {
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #000000aa, #00000044);
+}
+
+#destinationDialog::-webkit-scrollbar {
+  display: none;
+}
+
+.destinationDialog__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 4px solid rgb(83, 146, 248);
+  padding: 1rem;
+}
+
+.destinationDialog__header-background-img {
+  background-color: #feb774;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 16rem;
+  width: 100%;
+}
+
+.destinationDialog__header-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.destinationDialog__header-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.destinationDialog__header-head h1 {
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0.2rem;
+}
+
+.destinationDialog__header-head p {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 0.2rem;
+}
+
+.destinationDialog__main {
+  padding: 1rem;
+}
+
+.destinationDialog__main-desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.destinationDialog__main-desc__rating p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.destinationDialog__main-desc__rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgb(2, 211, 2);
+  font-size: medium;
+}
+.destinationDialog__main-tagslist {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.destinationDialog__main-tagslist-item {
+  border: 0.8px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0.4rem 0.6rem;
+  border-radius: 1rem;
+}
+.destinationDialog__main-tabs {
+  margin: 1rem;
+}
+.destinationDialog__main-tabs-btns {
+  display: flex;
+  align-items: end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.destinationDialog__main-tabs-item {
+  margin: 0;
+}
+
+.destinationDialog__main-tabs-btn {
+  background-color: transparent;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.4rem;
+  border: none;
+  font-size: large;
+}
+
+.destinationDialog__main-tabs-btn:focus {
+  border-bottom: 2px solid green;
+  color: green;
+}
+
+.destinationDialog__main-tabs-topattractions {
+  padding: 1rem;
+}
+.destinationDialog__main-tabs-topattractions-head {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: large;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.destinationDialog__main-tabs-topattractions-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  row-gap: 1rem;
+  column-gap: 2rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 0;
+}
+.destinationDialog__main-tabs-topattraction {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 6rem;
+  width: 12rem;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border-radius: 0.4rem;
+  background-color: #262525;
+}
+
+.dialog-overviewinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.8rem 1rem;
+  column-gap: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+.overview-quickinfo {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: 1fr;
+}
+.overview-quickinfo p {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+}
+.overview-quickinfo-head {
+  margin-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 0;
+}
+.overview-localcuisine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.overview-localcuisine h2 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.overview-localcuisine-tags {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0;
+}
+.overview-localcuisine-tag {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid orange;
+  background-color: rgb(253, 224, 169);
+  color: brown;
+  border-radius: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.destinationDialogMonths {
+  padding: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+.bestTimeToVisit {
+  background-color: lightblue !important;
+  color: blue !important;
+  border: 1px solid blue;
+}
+.destinationDialogMonths p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+}
+.destinationDialogMonths {
+  margin-top: 0;
+  padding: 0 1rem;
+}
+.destinationDialogMonths ul {
+  list-style: none;
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+  padding: 0;
+}
+.destinationDialogMonths li {
+  padding: 0.2rem 0.6rem;
+  background-color: #262525;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 1rem;
+  font-size: small;
+}
+
+.destinationDialog__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: #262525;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+}
+.destinationDialog__footer-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-grow: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.destinationDialog__footer-price p {
+  color: white;
+  margin: 0;
+}
+
+.destinationDialog__footer-menu {
+  flex-grow: 2;
+  text-align: right;
+}
+
+.destinationDialog__footer-menu button {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: #262525;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0.4rem 0.8rem;
+  font-size: large;
+  border-radius: 0.5rem;
+}
+
+.destinationDialog__footer-menu button:hover {
+  background-color: #1d1c1c;
+  cursor: pointer;
+}
+
+/******************* SVG :-  ********************/
+
+.closeModal {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: black;
+  transition: 0.2s;
+  font-size: xx-large;
+}
+
+svg:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+/******************* BADGES *************/
+
+#trending {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#ecopick {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#unescolisted {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#hiddengem {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#adventure {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#hotdeal {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#mostpopular {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#culture {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#wildlife {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#romanticgetaway {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#bucketlist {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+#budgetfriendly {
+  background-color: #feb774;
+  color: brown;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+}
+
+/********** TOP ATTRACTION *********/
+.topAttractionImage {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.tabOverview {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.tabItinerary {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.howToReach {
+  display: none;
+}
+.active {
+  display: block;
+}
+
+.tabItinerary {
+  padding: 1rem;
+}
+.ItineraryItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+.ItineraryItem {
+  border: 1px solid white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+}
+.ItineraryItemBtn {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.ItineraryItem {
+  padding: 0;
+}
+.ItineraryItem p {
+  padding: 0 0.6rem;
+  margin: 0.4rem;
+}
+.ItineraryItem-btn {
+  border: none;
+}
+.howToReach {
+  padding: 1rem;
+}
+.howToReach > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.howToReach li p {
+  color: white;
+  margin: 0.2rem;
+}
+.howToReachItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.howToReachItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.reachBy- {
+  height: 4rem;
+  width: 4rem;
+  background-color: brown;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+body li button p div {
+  font-family: "DM Sans", sans-serif !important;
+}
+
+h1,
+h2,
+.page-title,
+.dest-name {
+  font-family: "Playfair Display", serif !important;
 }

@@ -27,6 +27,7 @@
       </div>
     </header>
     <main>
+      <dialog id="destinationDialog"></dialog>
       <section class="main__header">
         <h1 class="main__header-head">Explore Destinations</h1>
         <p class="main__header-desc">
@@ -40,13 +41,27 @@
           class="main__filter-search"
           placeholder="Search destinations"
         />
-        <button class="main__filter-btn" onclick="getDestinations('all')">All</button>
-        <button class="main__filter-btn" onclick="getDestinations('adventure')" >Adventure</button>
-        <button class="main__filter-btn" onclick="getDestinations('culture')">Culture</button>
-        <button class="main__filter-btn" onclick="getDestinations('beach')">Beach</button>
-        <button class="main__filter-btn" onclick="getDestinations('hills')">Hills</button>
-        <button class="main__filter-btn" onclick="getDestinations('wildlife')">Wildlife</button>
-        <button class="main__filter-btn" onclick="getDestinations('budget')">Budget</button>
+        <button class="main__filter-btn" onclick="getDestinations('all')">
+          All
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('adventure')">
+          Adventure
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('culture')">
+          Culture
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('beach')">
+          Beach
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('hills')">
+          Hills
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('wildlife')">
+          Wildlife
+        </button>
+        <button class="main__filter-btn" onclick="getDestinations('budget')">
+          Budget
+        </button>
       </section>
       <section class="main__map">
         <p class="main__map-head">Destination Map</p>
@@ -59,7 +74,9 @@
 
 <script>
   async function getDestinations(id) {
-    const fetchedData = await fetch(`http://localhost:3000/explore/filter/${id}`);
+    const fetchedData = await fetch(
+      `http://localhost:3000/explore/filter/${id}`,
+    );
     const body = await fetchedData.json();
     let destinationsArray = JSON.parse(body.destinations);
     const filteredDestinationsArray = JSON.parse(body.filteredDestinations);
@@ -70,7 +87,7 @@
     destinationSection.innerHTML = destinationsArray
       .map(
         (el) => `
-    <article class="main__top-destination">
+    <article id=${el.id} class="main__top-destination">
           <p class="main__destination-rating-package">${el.rating}💠${el.totalPackages} packages</p>
           <section class="top-destination__img" style="background-image:url('/destinations/${el.image}')"></section>
           <section class="top-destination__about">
@@ -85,5 +102,217 @@
       )
       .join("");
   }
-  getDestinations("Heritage");
+  function getFormattedAmout(amt) {
+    const formatted = new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amt);
+    return formatted;
+  }
+
+  // const dialog = document.querySelector("dialog");
+  document
+    .querySelector(".main__destinations")
+    .addEventListener("click", async (e) => {
+      if (e.target.parentElement.matches(".main__top-destination")) {
+        // const destinationEles = Array.from(nodes);
+        // console.log(destinationEles);
+        // destinationEles.forEach((destinationEle) => {
+        // destinationEle.addEventListener("click", async function (evt) {
+        //console.log(evt.currentTarget.id);
+        const fetchedData = await fetch(
+          `http://localhost:3000/destinations/${e.target.parentElement.id}`,
+        );
+        const body = await fetchedData.json();
+        const destination = JSON.parse(body.destination)[0];
+        console.log(destination);
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        let content = `<p>Select a Tab Button`;
+        const dialog = document.querySelector("#destinationDialog");
+        dialog.innerHTML = `
+    <header style="background-image:url(destinations/${destination.image})" class="destinationDialog__header destinationDialog__header-background-img">
+            <div class="destinationDialog__header-menu">
+              <div class="destinationDialog__header-tags">
+                ${destination.badges.map((el) => `<p id="${el.toLowerCase().split(" ").join("")}">${el}</p>`).join("")}
+              </div>
+              <form method="dialog" style="position:sticky;z-index:10;">
+              <button class="closeModal" onclick="(() =>  {document.body.style.overflow = '';})()">
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                </svg>
+                </button>
+              </form>
+            </div>
+          <div class="destinationDialog__header-head">
+            <h1>${destination.name}, ${destination.state}</h1>
+            <p><span>${destination.region}</span><span>${destination.totalPackages} Packages Available</span><span>${destination.rating}</span><span>${destination.totalReviews} reviews</span></p>
+          </div>
+
+        </header>
+        <main class="destinationDialog__main">
+            <div class="destinationDialog__main-desc">
+              <p>${destination.tagline}.</p>
+              <div class="destinationDialog__main-desc__rating">
+                <p style="font-size:large">⭐${destination.rating}</p>
+                <p style="font-size:x-small">${destination.totalReviews} reviews</p>
+              </div>
+            </div>
+            <ul class="destinationDialog__main-tagslist">
+              ${destination.categories.map((el) => `<li class="destinationDialog__main-tagslist-item">${el}</li>`).join("")}
+            </ul>
+            <section class="destinationDialog__main-tabs">
+              <ul class="destinationDialog__main-tabs-btns">
+                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.tabOverview').classList.add('active');document.querySelector('.tabItinerary').classList.remove('active');document.querySelector('.howToReach').classList.remove('active');})()">Overview</button></li>
+                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.tabItinerary').classList.add('active');document.querySelector('.tabOverview').classList.remove('active');document.querySelector('.howToReach').classList.remove('active');})()">Itineray Ideas</button></li>
+                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.howToReach').classList.add('active');document.querySelector('.tabOverview').classList.remove('active');document.querySelector('.tabItinerary').classList.remove('active');})()">How to reac</button></li>
+              </ul>
+
+              <div class="tabOverview">
+              <div class="destinationDialog__main-tabs-topattractions">
+                <p class="destinationDialog__main-tabs-topattractions-head">Top Attraction</p>
+                  <ul class="destinationDialog__main-tabs-topattractions-list">
+                  ${destination.topAttractions
+                    .map(
+                      (
+                        el,
+                      ) => `<li class="destinationDialog__main-tabs-topattraction">
+                    <div class="topAttractionImage" style="background-image:url(topAttractions/${el.split(" ")[0].toLowerCase()}.jpg)">
+                      <p class="topAttractionName">${el}</p>
+                    </li>`,
+                    )
+                    .join("")}
+                      </div>
+                </ul>
+
+              <section class="dialog-overviewinfo">
+                <div class="overview-quickinfo">
+                  <h2 class="overview-quickinfo-head"><span>Quick Info</span></h2>
+                  <p><span>State</span> <span>${destination.state}</span> </p>
+                  <p><span>Region</span> <span>${destination.region}</span> </p>
+                  <p><span>Summer</span> <span>${destination.weather.summer}</span> </p>
+                  <p><span>Winter</span> <span>${destination.weather.winter.slice(0, 27)}</span> </p>
+                  <p><span>Packages</span> <span>${destination.totalPackages}</span> </p>
+                  <p><span>Starting from</span> <span style="color:#42f54e;font-size:large">${getFormattedAmout(destination.startingPrice)}<span style="font-size:medium">/person</span></span>  </p>
+
+                </div>
+                <div class="overview-localcuisine">
+                  <h2>Local Cuisine</h2>
+                  <ul class="overview-localcuisine-tags">
+                    ${destination.localCuisine.map((el) => `<li class="overview-localcuisine-tag">${el}</li>`).join("")}
+                  </ul>
+                  <div class="overview-localcuisine-rating">
+                    rating - x/y moderate sustainablity
+                  </div>
+                </div>
+              </section>
+
+            <section class="destinationDialogMonths">
+              <p>Best Time to Visit</p>
+              <ul>
+                ${months.map((el) => `<li class="${destination.bestTimeToVisit.includes(el) ? "bestTimeToVisit" : ""}">${el.slice(0, 3)}</li>`).join("")}
+              </ul>
+            </section>
+            <section class="destinationDialogMonths">
+              <p>Near By destinations</p>
+              <ul>
+                ${destination.nearbyDestinations.map((el) => `<li>${el}</li>`).join("")}
+              </ul>
+            </section>
+
+            </div>
+            </div>
+
+             <section class="tabItinerary">
+        <ul class="ItineraryItems">
+            <li class="ItineraryItem">
+                <p>Day 1 — Arrival & Old City</p>
+                <p>Check-in at hotel · Johari Bazaar · Hawa Mahal evening view · Local dinner</p>
+            </li>
+            <li class="ItineraryItem">
+                <p>Day 1 — Arrival & Old City</p>
+                <p>Check-in at hotel · Johari Bazaar · Hawa Mahal evening view · Local dinner</p>
+            </li>
+            <li class="ItineraryItem">
+                <p>Day 1 — Arrival & Old City</p>
+                <p>Check-in at hotel · Johari Bazaar · Hawa Mahal evening view · Local dinner</p>
+            </li>
+            <li class="ItineraryItem ItineraryItem-btn">
+                <button class="ItineraryItemBtn">Generate Full custom Itineray</button>
+            </li>
+        </ul>
+    </section>
+
+    <section class="howToReach">
+      <ul class="howToReachItems">
+
+        <li class="howToReachItem">
+          <div class="reachBy-"></div>
+          <div class="reachByDesc">
+            <p>BY AIR</p>
+            <p>
+              ${destination.howToReach.byAir}
+            </p>
+          </div>
+        </li>
+        <li class="howToReachItem">
+          <div class="reachBy-"></div>
+          <div class="reachByDesc">
+            <p>BY TRAIN</p>
+            <p>
+              ${destination.howToReach.byTrain}
+            </p>
+          </div>
+        </li>
+        <li class="howToReachItem">
+          <div class="reachBy-"></div>
+          <div class="reachByDesc">
+            <p>BY ROAD</p>
+            <p>
+              ${destination.howToReach.byRoad}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+          </main>
+          <footer class="destinationDialog__footer">
+            <div class="destinationDialog__footer-price">
+              <p style="font-size: medium;">Starting From</p>
+              <p><span style="font-size:x-large;color: #42f54e;">${getFormattedAmout(destination.startingPrice)}</span><span>/person</span></p>
+              <p style="font-size: medium;" >${destination.totalPackages} packages available</p>
+            </div>
+            <menu class="destinationDialog__footer-menu">
+              <button>View Hotels</button>
+              <button>Browse Packages</button>
+            </menu>
+          </footer>
+    `;
+        document.body.style.overflow = "hidden";
+        dialog.showModal();
+        //   });
+        // });
+
+        // function closeDialog() {
+        //   document.body.style.overflow = "";
+        // }
+      }
+    });
 </script>

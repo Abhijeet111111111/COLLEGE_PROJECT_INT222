@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderSmart — Hotels</title>
+    <link rel="stylesheet" href="hotels.css" />
+  </head>
+  <body>
+    <!-- ── Navbar ───────────────────────────────────────────────── -->
+    <nav class="navbar">
+      <div class="nav-logo">Wander<span>Smart</span></div>
+      <div class="nav-links">
+        <a href="index.html">Explore</a>
+        <a href="hotels.html" class="active">Hotels</a>
+        <a href="tours.html">Tours</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <button class="btn-primary nav-cta">Plan a Trip</button>
+    </nav>
+
+    <!-- ── Search band ──────────────────────────────────────────── -->
+    <div class="search-band">
+      <input
+        id="search-destination"
+        class="search-field"
+        type="text"
+        placeholder="Destination"
+      />
+      <input
+        id="search-checkin"
+        class="search-field"
+        type="date"
+        placeholder="Check-in"
+      />
+      <input
+        id="search-checkout"
+        class="search-field"
+        type="date"
+        placeholder="Check-out"
+      />
+      <input
+        id="search-guests"
+        class="search-field"
+        type="number"
+        placeholder="Guests"
+        min="1"
+        max="20"
+      />
+      <button class="btn-primary" id="search-btn">Search Hotels</button>
+    </div>
+
+    <!-- ── Main layout ──────────────────────────────────────────── -->
+    <div class="layout">
+      <!-- Sidebar filters -->
+      <aside class="sidebar">
+        <div class="sf-group">
+          <div class="sf-title">Filters</div>
+          <label class="sf-check">
+            <input type="checkbox" id="f-eco" value="Eco-Certified" />
+            <span class="checkmark"></span>
+            Eco-Certified
+            <span class="tag tag-green">Green</span>
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="f-gem" value="Hidden Gem" />
+            <span class="checkmark"></span>
+            Hidden Gems
+            <span class="tag tag-amber">Unique</span>
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="f-deal" value="Hot Deal" />
+            <span class="checkmark"></span>
+            Hot Deals
+            <span class="tag tag-coral">Sale</span>
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="f-cancel" value="Free Cancellation" />
+            <span class="checkmark"></span>
+            Free Cancellation
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="f-pool" value="Pool" />
+            <span class="checkmark"></span>
+            Pool Included
+          </label>
+        </div>
+
+        <div class="sf-group">
+          <div class="sf-title">Price per night</div>
+          <div class="price-row">
+            <span>&#8377;500</span>
+            <span id="price-display">&#8377;8,000</span>
+          </div>
+          <input
+            type="range"
+            id="price-range"
+            min="500"
+            max="15000"
+            value="8000"
+            step="500"
+          />
+        </div>
+
+        <div class="sf-group">
+          <div class="sf-title">Star rating</div>
+          <div class="star-row">
+            <button class="star-btn" data-star="1">1&#9733;</button>
+            <button class="star-btn" data-star="2">2&#9733;</button>
+            <button class="star-btn" data-star="3">3&#9733;</button>
+            <button class="star-btn" data-star="4">4&#9733;</button>
+            <button class="star-btn" data-star="5">5&#9733;</button>
+          </div>
+        </div>
+
+        <div class="sf-group">
+          <div class="sf-title">Amenities</div>
+          <label class="sf-check">
+            <input type="checkbox" id="a-wifi" value="WiFi" />
+            <span class="checkmark"></span> WiFi
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="a-breakfast" value="Breakfast" />
+            <span class="checkmark"></span> Breakfast
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="a-parking" value="Parking" />
+            <span class="checkmark"></span> Parking
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="a-gym" value="Gym" />
+            <span class="checkmark"></span> Gym
+          </label>
+          <label class="sf-check">
+            <input type="checkbox" id="a-spa" value="Spa" />
+            <span class="checkmark"></span> Spa
+          </label>
+        </div>
+
+        <button class="btn-apply" id="apply-filters">Apply Filters</button>
+        <button class="btn-reset" id="reset-filters">Reset</button>
+      </aside>
+
+      <!-- Hotel listing -->
+      <main class="main">
+        <div class="result-bar">
+          <span class="result-count" id="result-count">Loading hotels...</span>
+          <select class="sort-sel" id="sort-select">
+            <option value="best_value">Sort: Best value</option>
+            <option value="price_asc">Price: Low to high</option>
+            <option value="price_desc">Price: High to low</option>
+            <option value="rating">Rating: Highest</option>
+            <option value="eco_score">Eco score</option>
+          </select>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loading" class="loading-state">Searching hotels...</div>
+
+        <!-- Error state -->
+        <div id="error-box" class="error-box" style="display: none">
+          <p id="error-msg">Something went wrong. Please try again.</p>
+        </div>
+
+        <!-- Hotel cards container -->
+        <div id="hotel-list" class="hotel-list"></div>
+
+        <!-- Empty state -->
+        <div id="no-results" class="no-results" style="display: none">
+          <p>No hotels match your filters.</p>
+          <button
+            class="btn-reset"
+            onclick="document.getElementById('reset-filters').click()"
+          >
+            Clear filters
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <!-- ── Hotel card template (cloned by JS) ───────────────────── -->
+    <template id="hotel-card-tpl">
+      <div class="hotel-card">
+        <div class="hotel-thumb">
+          <div class="thumb-placeholder"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <div class="hotel-name-row">
+              <span class="hotel-name"></span>
+              <span class="hotel-rating"></span>
+            </div>
+            <div class="hotel-loc"></div>
+            <div class="hotel-tags"></div>
+            <div class="hotel-amenities"></div>
+            <div class="eco-score-row">
+              <div class="eco-leaves"></div>
+              <span class="eco-label"></span>
+            </div>
+          </div>
+          <div class="hotel-bottom">
+            <div class="hotel-price-block">
+              <div class="hotel-price"></div>
+              <div class="hotel-price-sub"></div>
+            </div>
+            <button class="btn-book">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- <script src="hotels.js"></script> -->
+  </body>
+</html>
+
+<script>
+  /**
+   * hotels.js
+   * Collects all filter inputs → POST /api/hotels/search → renders results
+   */
+
+  const API_BASE = "http://localhost:3000"; // change to your server URL in production
+
+  // ── Colour map for hotel thumbs ──────────────────────────────────
+  const THUMB_COLORS = {
+    H001: "thumb-teal",
+    H002: "thumb-amber",
+    H003: "thumb-coral",
+    H004: "thumb-teal",
+    H005: "thumb-teal",
+    H006: "thumb-teal",
+    H007: "thumb-blue",
+    H008: "thumb-blue",
+    H009: "thumb-purple",
+    H010: "thumb-blue",
+    H011: "thumb-teal",
+    H012: "thumb-amber",
+  };
+
+  // ── Tag style map ────────────────────────────────────────────────
+  const TAG_CLASS = {
+    "Eco-Certified": "htag-eco",
+    "Hidden Gem": "htag-gem",
+    "Best Value": "htag-val",
+    "Hot Deal": "htag-hot",
+  };
+
+  // ── State ────────────────────────────────────────────────────────
+  let selectedStars = []; // array of star numbers (1-5)
+  let currentResults = []; // last results from server
+
+  // ── DOM refs ─────────────────────────────────────────────────────
+  const hotelList = document.getElementById("hotel-list");
+  const resultCount = document.getElementById("result-count");
+  const loadingEl = document.getElementById("loading");
+  const errorBox = document.getElementById("error-box");
+  const errorMsg = document.getElementById("error-msg");
+  const noResults = document.getElementById("no-results");
+  const priceRange = document.getElementById("price-range");
+  const priceDisplay = document.getElementById("price-display");
+  const sortSelect = document.getElementById("sort-select");
+  const cardTpl = document.getElementById("hotel-card-tpl");
+
+  // ── Price slider live update ──────────────────────────────────────
+  priceRange.addEventListener("input", () => {
+    priceDisplay.textContent =
+      "₹" + Number(priceRange.value).toLocaleString("en-IN");
+  });
+
+  // ── Star buttons toggle ───────────────────────────────────────────
+  document.querySelectorAll(".star-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const star = Number(btn.dataset.star);
+      if (selectedStars.includes(star)) {
+        selectedStars = selectedStars.filter((s) => s !== star);
+        btn.classList.remove("active");
+      } else {
+        selectedStars.push(star);
+        btn.classList.add("active");
+      }
+    });
+  });
+
+  // ── Sort change → re-sort without re-fetching ────────────────────
+  sortSelect.addEventListener("change", () => {
+    if (currentResults.length) renderHotels(sortResults(currentResults));
+  });
+
+  // ── Collect all filter values → return payload object ────────────
+  function collectFilters() {
+    const tags = [];
+    if (document.getElementById("f-eco").checked) tags.push("Eco-Certified");
+    if (document.getElementById("f-gem").checked) tags.push("Hidden Gem");
+    if (document.getElementById("f-deal").checked) tags.push("Hot Deal");
+
+    const amenities = [];
+    if (document.getElementById("a-wifi").checked) amenities.push("WiFi");
+    if (document.getElementById("a-breakfast").checked)
+      amenities.push("Breakfast");
+    if (document.getElementById("a-parking").checked) amenities.push("Parking");
+    if (document.getElementById("a-gym").checked) amenities.push("Gym");
+    if (document.getElementById("a-spa").checked) amenities.push("Spa");
+
+    return {
+      destination:
+        document.getElementById("search-destination").value.trim() || null,
+      checkIn: document.getElementById("search-checkin").value || null,
+      checkOut: document.getElementById("search-checkout").value || null,
+      guests: Number(document.getElementById("search-guests").value) || null,
+      maxPrice: Number(priceRange.value),
+      freeCancellation: document.getElementById("f-cancel").checked || null,
+      poolIncluded: document.getElementById("f-pool").checked || null,
+      tags: tags.length ? tags : null,
+      amenities: amenities.length ? amenities : null,
+      stars: selectedStars.length ? selectedStars : null,
+      sortBy: sortSelect.value,
+    };
+  }
+
+  // ── POST request to backend ───────────────────────────────────────
+  async function fetchHotels(filters) {
+    showLoading(false);
+    showError(false);
+    console.log(filters);
+    try {
+      const res = await fetch(`${API_BASE}/api/hotels/search`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(filters),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `Server error ${res.status}`);
+      }
+
+      const data = await res.json();
+      currentResults = data.hotels || [];
+
+      renderHotels(currentResults);
+      resultCount.textContent =
+        `${currentResults.length} hotel${currentResults.length !== 1 ? "s" : ""} found` +
+        (filters.destination ? ` in ${filters.destination}` : " in Rajasthan");
+    } catch (err) {
+      showError(true, err.message);
+    } finally {
+      showLoading(false);
+    }
+  }
+
+  // ── Client-side sort (mirrors backend sort for instant UX) ────────
+  function sortResults(hotels) {
+    const sorted = [...hotels];
+    const sortBy = sortSelect.value;
+    sorted.sort((a, b) => {
+      if (sortBy === "price_asc") return a.pricePerNight - b.pricePerNight;
+      if (sortBy === "price_desc") return b.pricePerNight - a.pricePerNight;
+      if (sortBy === "rating") return b.rating - a.rating;
+      if (sortBy === "eco_score") return b.ecoScore - a.ecoScore;
+      // best_value: sort by rating / (price/1000) ratio
+      return (
+        b.rating / (b.pricePerNight / 1000) -
+        a.rating / (a.pricePerNight / 1000)
+      );
+    });
+    return sorted;
+  }
+
+  // ── Render hotel cards ────────────────────────────────────────────
+  function renderHotels(hotels) {
+    hotelList.innerHTML = "";
+
+    if (!hotels.length) {
+      noResults.style.display = "block";
+      return;
+    }
+    noResults.style.display = "none";
+
+    hotels.forEach((hotel) => {
+      const card = cardTpl.content.cloneNode(true);
+      const el = card.querySelector(".hotel-card");
+
+      // Thumb colour
+      const thumb = card.querySelector(".thumb-placeholder");
+      thumb.classList.add(THUMB_COLORS[hotel.id] || "thumb-teal");
+
+      // Name & rating
+      card.querySelector(".hotel-name").textContent = hotel.name;
+      card.querySelector(".hotel-rating").textContent =
+        `★ ${hotel.rating.toFixed(1)}`;
+
+      // Location & reviews
+      card.querySelector(".hotel-loc").textContent =
+        `${hotel.location.city}, ${hotel.location.state} · ${hotel.location.distanceFromCenter} · ${hotel.reviews.toLocaleString("en-IN")} reviews`;
+
+      // Tags
+      const tagsEl = card.querySelector(".hotel-tags");
+      hotel.tags.slice(0, 4).forEach((tag) => {
+        const span = document.createElement("span");
+        span.className = "htag " + (TAG_CLASS[tag] || "");
+        span.textContent = tag;
+        tagsEl.appendChild(span);
+      });
+
+      // Amenities
+      const amenEl = card.querySelector(".hotel-amenities");
+      hotel.amenities.slice(0, 5).forEach((am) => {
+        const div = document.createElement("div");
+        div.className = "amen-item";
+        div.innerHTML = `<span class="amen-dot"></span>${am}`;
+        amenEl.appendChild(div);
+      });
+
+      // Eco score leaves
+      const leavesEl = card.querySelector(".eco-leaves");
+      for (let i = 1; i <= 5; i++) {
+        const leaf = document.createElement("div");
+        leaf.className = "leaf" + (i > hotel.ecoScore ? " empty" : "");
+        leavesEl.appendChild(leaf);
+      }
+      card.querySelector(".eco-label").textContent =
+        `Eco score ${hotel.ecoScore}/5`;
+
+      // Price
+      card.querySelector(".hotel-price").textContent =
+        "₹" + hotel.pricePerNight.toLocaleString("en-IN");
+      card.querySelector(".hotel-price-sub").textContent =
+        "per night" + (hotel.freeCancellation ? " · free cancel" : "");
+
+      // Book button
+      card.querySelector(".btn-book").addEventListener("click", (e) => {
+        e.stopPropagation();
+        alert(
+          `Booking flow for: ${hotel.name}\n(Connect to your booking route here)`,
+        );
+      });
+
+      // Card click → detail view
+      el.addEventListener("click", () => {
+        // Replace with your dialog/detail page logic
+        console.log("Hotel selected:", hotel.id, hotel.name);
+      });
+
+      hotelList.appendChild(card);
+    });
+  }
+
+  // ── UI helpers ────────────────────────────────────────────────────
+  function showLoading(show) {
+    loadingEl.style.display = show ? "block" : "none";
+    if (show) hotelList.innerHTML = "";
+  }
+  function showError(show, msg = "") {
+    errorBox.style.display = show ? "block" : "none";
+    if (msg) errorMsg.textContent = msg;
+  }
+
+  // ── Reset filters ─────────────────────────────────────────────────
+  document.getElementById("reset-filters").addEventListener("click", () => {
+    // Uncheck all checkboxes
+    document
+      .querySelectorAll('.sf-check input[type="checkbox"]')
+      .forEach((cb) => (cb.checked = false));
+    // Reset price
+    priceRange.value = 8000;
+    priceDisplay.textContent = "₹8,000";
+    // Reset stars
+    selectedStars = [];
+    document
+      .querySelectorAll(".star-btn")
+      .forEach((b) => b.classList.remove("active"));
+    // Reset search fields
+    document.getElementById("search-destination").value = "";
+    document.getElementById("search-checkin").value = "";
+    document.getElementById("search-checkout").value = "";
+    document.getElementById("search-guests").value = "";
+    // Re-fetch with clean filters
+    fetchHotels(collectFilters());
+  });
+
+  // ── Apply filters button ──────────────────────────────────────────
+  document.getElementById("apply-filters").addEventListener("click", () => {
+    console.log(collectFilters());
+    fetchHotels(collectFilters());
+  });
+
+  // ── Search button ─────────────────────────────────────────────────
+  document.getElementById("search-btn").addEventListener("click", () => {
+    console.log(collectFilters());
+    fetchHotels(collectFilters());
+  });
+
+  // ── Auto-fetch on page load ───────────────────────────────────────
+  window.addEventListener("DOMContentLoaded", async () => {
+    const fetchedData = await fetch(`${API_BASE}/api/hotels`);
+    const body = await fetchedData.json();
+    renderHotels(body.hotels);
+    showLoading(false);
+    showError(false);
+  });
+</script>
