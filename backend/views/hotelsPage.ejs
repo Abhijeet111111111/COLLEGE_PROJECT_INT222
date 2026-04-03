@@ -8,16 +8,33 @@
   </head>
   <body>
     <!-- ── Navbar ───────────────────────────────────────────────── -->
-    <nav class="navbar">
-      <div class="nav-logo">Wander<span>Smart</span></div>
-      <div class="nav-links">
-        <a href="index.html">Explore</a>
-        <a href="hotels.html" class="active">Hotels</a>
-        <a href="tours.html">Tours</a>
-        <a href="dashboard.html">Dashboard</a>
+    <header>
+      <div id="navbar">
+        <h1 class="navbar-logo">
+          <a style="text-decoration: none" href="/"
+            ><span style="color: white">Wander</span
+            ><span style="color: rgb(6, 187, 6)">Smart</span></a
+          >
+        </h1>
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a style="text-decoration: none; color: inherit" href="/explore"
+              >Explore</a
+            >
+          </li>
+          <li class="nav__item">
+            <a style="text-decoration: none; color: inherit" href="/hotels"
+              >Hotels</a
+            >
+          </li>
+          <li class="nav__item">Tours</li>
+          <li class="nav__item">Dashboard</li>
+        </ul>
+        <div class="nav__item-ctx">
+          <button class="nav__item__ctx-button">Plan a Trip</button>
+        </div>
       </div>
-      <button class="btn-primary nav-cta">Plan a Trip</button>
-    </nav>
+    </header>
 
     <!-- ── Search band ──────────────────────────────────────────── -->
     <div class="search-band">
@@ -319,7 +336,7 @@
 
   // ── POST request to backend ───────────────────────────────────────
   async function fetchHotels(filters) {
-    showLoading(false);
+    showLoading(true);
     showError(false);
     console.log(filters);
     try {
@@ -492,10 +509,11 @@
 
   // ── Auto-fetch on page load ───────────────────────────────────────
   window.addEventListener("DOMContentLoaded", async () => {
-    const fetchedData = await fetch(`${API_BASE}/api/hotels`);
-    const body = await fetchedData.json();
-    renderHotels(body.hotels);
-    showLoading(false);
-    showError(false);
+    fetchHotels(collectFilters());
+    // const fetchedData = await fetch(`${API_BASE}/api/hotels`);
+    // const body = await fetchedData.json();
+    // renderHotels(body.hotels);
+    // showLoading(false);
+    // showError(false);
   });
 </script>

@@ -63,6 +63,116 @@ app.get('/destinations/:id', (req, res) => {
 
 })
 
+app.get('/hotels/:city', (req, res) => {
+    const { city } = req.params
+    const readF = fs.readFileSync('./hotels.json');
+    const hotels = JSON.parse(readF);
+    const results = hotels.filter(h =>
+        h.location.city.toLowerCase() === city.toLowerCase()
+    );
+    res.render('hotelDetails', { hotel: results })
+})
+
+app.get('/tours', (req, res) => {
+    res.render('tours');
+})
+
+
+// ── GET /api/hotels/:id ───────────────────────────────────────────
+// Fetch a single hotel by ID
+app.get('/api/hotels/:id', (req, res) => {
+    const hotel = hotels.find(h => h.id === req.params.id);
+    if (!hotel) return res.status(404).json({ error: true, message: 'Hotel not found' });
+    res.json(hotel);
+});
+
+// ── GET /api/destinations ─────────────────────────────────────────
+app.get('/api/destinations', (req, res) => {
+    const { category, badge, region } = req.query;
+    let results = destinations;
+    if (category) results = results.filter(d => d.categories.map(norm).includes(norm(category)));
+    if (badge) results = results.filter(d => d.badges.map(norm).includes(norm(badge)));
+    if (region) results = results.filter(d => norm(d.region).includes(norm(region)));
+    res.json({ destinations: results, total: results.length });
+});
+
+// ── GET /api/destinations/:id ─────────────────────────────────────
+app.get('/api/destinations/:id', (req, res) => {
+    const dest = destinations.find(d => d.id === req.params.id);
+    if (!dest) return res.status(404).json({ error: true, message: 'Destination not found' });
+    res.json(dest);
+});
+
+// ── GET /api/stats ────────────────────────────────────────────────
+// Dashboard stats endpoint
+app.get('/api/stats', (req, res) => {
+    res.json({
+        totalHotels: hotels.length,
+        totalDestinations: destinations.length,
+        totalPackages: 840,
+        totalGuides: 320,
+        bookingsThisWeek: 3241,
+        revenueThisMonth: '₹2.4Cr',
+        topDestinations: destinations.slice(0, 5).map(d => ({
+            name: d.name,
+            state: d.state,
+            rating: d.rating,
+            packages: d.totalPackages,
+        })),
+    });
+});
+
+// ── Sort helper ───────────────────────────────────────────────────
+function sortHotels(list, sortBy) {
+    const sorted = [...list];
+    switch (sortBy) {
+        case 'price_asc':
+            return sorted.sort((a, b) => a.pricePerNight - b.pricePerNight);
+        case 'price_desc':
+            return sorted.sort((a, b) => b.pricePerNight - a.pricePerNight);
+        case 'rating':
+            return sorted.sort((a, b) => b.rating - a.rating);
+        case 'eco_score':
+            return sorted.sort((a, b) => b.ecoScore - a.ecoScore);
+        case 'best_value':
+        default:
+            // value score = rating divided by (price in thousands)
+            return sorted.sort((a, b) =>
+                (b.rating / (b.pricePerNight / 1000)) - (a.rating / (a.pricePerNight / 1000))
+            );
+    }
+}
+app.get('/api/tours', (req, res) => {
+    const readTours = readFileSync('./tours.json', 'utf-8');
+    const tours = JSON.parse(readTours);
+    const { category } = req.query;
+    let results = tours.filter(t => t.available);
+    if (category && category !== 'all') {
+        results = results.filter(t => t.category.toLowerCase() === category.toLowerCase());
+    }
+    res.json({ tours: results, total: results.length });
+});
+
+// GET /api/tours/:id
+app.get('/api/tours/:id', (req, res) => {
+    const readTours = readFileSync('./tours.json', 'utf-8');
+    const tours = JSON.parse(readTours);
+    const tour = tours.find(t => t.id === req.params.id);
+    if (!tour) return res.status(404).json({ error: true, message: 'Tour not found' });
+    res.json(tour);
+});
+
+// GET /api/guides
+app.get('/api/guides', (req, res) => {
+    res.json({
+        guides: [
+            { id: 'G001', initials: 'RK', name: 'Ravi Kumar', languages: 'Hindi, English', specialty: 'Rajasthan specialist', rating: 4.9, tours: 312, color: '#1D9E75' },
+            { id: 'G002', initials: 'PM', name: 'Priya Menon', languages: 'Malayalam, English', specialty: 'Kerala expert', rating: 4.8, tours: 185, color: '#378ADD' },
+            { id: 'G003', initials: 'AS', name: 'Arjun Singh', languages: 'Hindi, English', specialty: 'Himalaya trekker', rating: 4.9, tours: 247, color: '#BA7517' }
+        ]
+    });
+});
+
 
 app.post('/api/hotels/search', (req, res) => {
     try {
@@ -189,34 +299,9 @@ app.get('/api/hotels', (req, res) => {
     res.json({ hotels, total: hotels.length });
 })
 
-
-
-
-
-
-
-
-
-
-function sortHotels(list, sortBy) {
-    const sorted = [...list];
-    switch (sortBy) {
-        case 'price_asc':
-            return sorted.sort((a, b) => a.pricePerNight - b.pricePerNight);
-        case 'price_desc':
-            return sorted.sort((a, b) => b.pricePerNight - a.pricePerNight);
-        case 'rating':
-            return sorted.sort((a, b) => b.rating - a.rating);
-        case 'eco_score':
-            return sorted.sort((a, b) => b.ecoScore - a.ecoScore);
-        case 'best_value':
-        default:
-            // value score = rating divided by (price in thousands)
-            return sorted.sort((a, b) =>
-                (b.rating / (b.pricePerNight / 1000)) - (a.rating / (a.pricePerNight / 1000))
-            );
-    }
-}
+app.use((req, res) => {
+    res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });
+});
 
 
 app.listen(3000);

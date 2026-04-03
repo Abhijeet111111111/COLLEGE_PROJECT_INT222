@@ -43,46 +43,58 @@ body {
 }
 
 /* ── Navbar ───────────────────────────────────────────────────── */
-.navbar {
+
+#navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 14px 28px;
-  background: var(--bg-page);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  align-items: center;
+  margin: 0;
+  padding: 1rem 4rem;
+  background: #262525;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 37, 37, 1) 0%,
+    rgba(50, 49, 49, 1) 54%,
+    rgba(38, 37, 37, 1) 100%
+  );
+  color: white;
 }
-
-.nav-logo {
-  font-family: "Playfair Display", serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.nav-logo span {
-  color: var(--green);
-}
-
-.nav-links {
+.nav__items {
   display: flex;
-  gap: 6px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 0.1;
 }
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-sec);
-  font-size: 14px;
-  padding: 8px 18px;
-  border-radius: 22px;
-  border: 1px solid var(--border);
-  transition: all 0.2s;
+.nav__item {
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
 }
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text-primary);
-  border-color: var(--border-light);
-  background: var(--bg-hover);
+
+.nav__item:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.nav__item__ctx-button {
+  font-size: large;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav__item-ctx {
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item__ctx-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 /* ── Buttons ──────────────────────────────────────────────────── */

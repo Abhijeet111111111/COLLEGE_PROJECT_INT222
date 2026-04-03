@@ -1,0 +1,235 @@
+[
+  {
+    "id": "T001",
+    "title": "Himalayan Expedition — Manali to Leh",
+    "category": "Adventure",
+    "badge_color": "#B5D4F4",
+    "thumb_color": "#B5D4F4",
+    "days": 7,
+    "nights": 6,
+    "rating": 4.9,
+    "reviews": 312,
+    "price": 18500,
+    "currency": "INR",
+    "description": "High-altitude road journey through passes, monasteries, and remote valleys with an expert mountaineer guide.",
+    "itinerary": [
+      { "day": "D1", "place": "Manali" },
+      { "day": "D2", "place": "Rohtang" },
+      { "day": "D3", "place": "Keylong" },
+      { "day": "D4", "place": "Sarchu" },
+      { "day": "D5–7", "place": "Leh" }
+    ],
+    "includes": [
+      "Accommodation",
+      "Meals",
+      "Expert Guide",
+      "Transport",
+      "Permits"
+    ],
+    "difficulty": "Moderate–Hard",
+    "available": true
+  },
+  {
+    "id": "T002",
+    "title": "Royal Rajasthan Heritage Trail",
+    "category": "Culture",
+    "badge_color": "#9FE1CB",
+    "thumb_color": "#9FE1CB",
+    "days": 5,
+    "nights": 4,
+    "rating": 4.8,
+    "reviews": 278,
+    "price": 12800,
+    "currency": "INR",
+    "description": "Palaces, havelis, folk music, camel safaris, and local craft workshops across the golden triangle of Rajasthan.",
+    "itinerary": [
+      { "day": "D1", "place": "Jaipur" },
+      { "day": "D2", "place": "Pushkar" },
+      { "day": "D3", "place": "Jodhpur" },
+      { "day": "D4", "place": "Jaisalmer" },
+      { "day": "D5", "place": "Udaipur" }
+    ],
+    "includes": [
+      "Accommodation",
+      "Breakfast",
+      "Local Guide",
+      "Transport",
+      "Entry Fees"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T003",
+    "title": "Ranthambore Tiger Safari",
+    "category": "Wildlife",
+    "badge_color": "#FAC775",
+    "thumb_color": "#FAC775",
+    "days": 4,
+    "nights": 3,
+    "rating": 4.7,
+    "reviews": 194,
+    "price": 9400,
+    "currency": "INR",
+    "description": "Expert naturalist-led jeep safaris at one of India's best tiger reserves with early morning and evening drives.",
+    "itinerary": [
+      { "day": "D1", "place": "Arrive" },
+      { "day": "D2", "place": "Safari 1" },
+      { "day": "D3", "place": "Safari 2" },
+      { "day": "D4", "place": "Depart" }
+    ],
+    "includes": [
+      "Accommodation",
+      "All Meals",
+      "Naturalist Guide",
+      "Jeep Safari",
+      "Park Entry"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T004",
+    "title": "Sacred Varanasi & Ayodhya Pilgrimage",
+    "category": "Spiritual",
+    "badge_color": "#CECBF6",
+    "thumb_color": "#CECBF6",
+    "days": 6,
+    "nights": 5,
+    "rating": 4.9,
+    "reviews": 341,
+    "price": 11200,
+    "currency": "INR",
+    "description": "Ganga aarti, ghats, ancient temples, and spiritual walks with a resident Sanskrit scholar as guide.",
+    "itinerary": [
+      { "day": "D1", "place": "Arrive" },
+      { "day": "D2–4", "place": "Varanasi" },
+      { "day": "D5", "place": "Ayodhya" },
+      { "day": "D6", "place": "Depart" }
+    ],
+    "includes": [
+      "Accommodation",
+      "Meals",
+      "Sanskrit Scholar Guide",
+      "Boat Ride",
+      "Temple Passes"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T005",
+    "title": "Kerala Backwaters & Beach Escape",
+    "category": "Beach",
+    "badge_color": "#9FE1CB",
+    "thumb_color": "#9FE1CB",
+    "days": 5,
+    "nights": 4,
+    "rating": 4.8,
+    "reviews": 223,
+    "price": 14500,
+    "currency": "INR",
+    "description": "Houseboat stay on Vembanad Lake, kayaking through canals, Ayurvedic spa, and sunset on Marari Beach.",
+    "itinerary": [
+      { "day": "D1", "place": "Kochi" },
+      { "day": "D2–3", "place": "Alleppey" },
+      { "day": "D4", "place": "Marari" },
+      { "day": "D5", "place": "Depart" }
+    ],
+    "includes": [
+      "Houseboat",
+      "All Meals",
+      "Kayaking",
+      "Ayurvedic Spa",
+      "Local Guide"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T006",
+    "title": "Coorg Coffee & Jungle Trail",
+    "category": "Budget",
+    "badge_color": "#C0DD97",
+    "thumb_color": "#C0DD97",
+    "days": 3,
+    "nights": 2,
+    "rating": 4.6,
+    "reviews": 156,
+    "price": 5800,
+    "currency": "INR",
+    "description": "Coffee estate tour, nature walks through misty hills, waterfall hike, and a cooking class in Coorg.",
+    "itinerary": [
+      { "day": "D1", "place": "Arrive" },
+      { "day": "D2", "place": "Coorg" },
+      { "day": "D3", "place": "Depart" }
+    ],
+    "includes": [
+      "Homestay",
+      "Home-cooked Meals",
+      "Coffee Tour",
+      "Waterfall Trek",
+      "Cooking Class"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T007",
+    "title": "Luxury Rajasthan Palace Circuit",
+    "category": "Luxury",
+    "badge_color": "#FAC775",
+    "thumb_color": "#FAC775",
+    "days": 8,
+    "nights": 7,
+    "rating": 4.9,
+    "reviews": 189,
+    "price": 58000,
+    "currency": "INR",
+    "description": "Exclusive palace hotels, private elephant safaris, chef-curated Rajasthani dinners, and hot-air balloon over Jaipur.",
+    "itinerary": [
+      { "day": "D1–2", "place": "Jaipur" },
+      { "day": "D3–4", "place": "Udaipur" },
+      { "day": "D5–6", "place": "Jodhpur" },
+      { "day": "D7–8", "place": "Jaisalmer" }
+    ],
+    "includes": [
+      "Palace Hotels",
+      "All Meals",
+      "Private Guide",
+      "Balloon Ride",
+      "All Transfers"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  },
+  {
+    "id": "T008",
+    "title": "Andaman Islands Family Adventure",
+    "category": "Family",
+    "badge_color": "#B5D4F4",
+    "thumb_color": "#B5D4F4",
+    "days": 6,
+    "nights": 5,
+    "rating": 4.7,
+    "reviews": 142,
+    "price": 22000,
+    "currency": "INR",
+    "description": "Snorkeling at Elephant Beach, glass-bottom boat, Cellular Jail sound & light show, and beach bonfire nights.",
+    "itinerary": [
+      { "day": "D1", "place": "Port Blair" },
+      { "day": "D2–3", "place": "Havelock" },
+      { "day": "D4–5", "place": "Neil Island" },
+      { "day": "D6", "place": "Depart" }
+    ],
+    "includes": [
+      "Accommodation",
+      "Breakfast",
+      "Snorkeling",
+      "Ferry Tickets",
+      "Guide"
+    ],
+    "difficulty": "Easy",
+    "available": true
+  }
+]

@@ -19,8 +19,8 @@
         </h1>
         <ul class="nav__items">
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
-          <li class="nav__item">Hotels</li>
-          <li class="nav__item">Tours</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
           <li class="nav__item">Dashboard</li>
         </ul>
         <div class="nav__item-ctx">
@@ -353,13 +353,17 @@
               <p style="font-size: medium;" >${destination.totalPackages} packages available</p>
             </div>
             <menu class="destinationDialog__footer-menu">
-              <button>View Hotels</button>
+              <button class="goToHotels">View Hotels</button>
               <button>Browse Packages</button>
             </menu>
           </footer>
     `
     document.body.style.overflow = "hidden"; 
     dialog.showModal();
+     const goToHotels = document.querySelector(".goToHotels");
+        goToHotels.addEventListener("click", (evt) => {
+          window.location.href = `http://localhost:3000/hotels/${destination.name}`;
+        });
   })
   })
 
