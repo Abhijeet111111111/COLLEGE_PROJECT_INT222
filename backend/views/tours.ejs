@@ -39,7 +39,7 @@
               >Hotels</a
             >
           </li>
-          <li class="nav__item">Tours</li>
+          <li class="nav__item" id="tours-link">Tours</li>
           <li class="nav__item">Dashboard</li>
         </ul>
         <div class="nav__item-ctx">
@@ -909,6 +909,8 @@
   /* ══════════════════════════════════════════════════════════════
    12.  INIT — fetch on page load
 ══════════════════════════════════════════════════════════════ */
+const toursLink = document.getElementById('tours-link');
+toursLink.classList.add('active-link');
 
   window.addEventListener("DOMContentLoaded", () => {
     fetchTours("all");

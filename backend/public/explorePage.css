@@ -124,10 +124,18 @@ main {
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+.btn-active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .main__filter-btn:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
+.active-link{
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: .2rem .6rem;
+  border-radius: 1rem;
+}
 .main__map {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 0.4rem;

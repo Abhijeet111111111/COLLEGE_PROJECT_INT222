@@ -22,7 +22,7 @@
               >Explore</a
             >
           </li>
-          <li class="nav__item">
+          <li class="nav__item" id="hotelsLink">
             <a style="text-decoration: none; color: inherit" href="/hotels"
               >Hotels</a
             >
@@ -506,6 +506,9 @@
     console.log(collectFilters());
     fetchHotels(collectFilters());
   });
+
+  const hotelLink = document.getElementById("hotelsLink");
+  hotelLink.classList.add("active-link");
 
   // ── Auto-fetch on page load ───────────────────────────────────────
   window.addEventListener("DOMContentLoaded", async () => {

@@ -49,6 +49,29 @@ app.get('/explore/filter/:id', (req, res) => {
     })
 })
 
+app.get("/exploreSearch", (req, res) => {
+    const query = req.query.q?.toLowerCase();
+
+    if (!query) {
+        return res.json([]);
+    }
+
+    try {
+        const rawData = fs.readFileSync("./destinations.json", "utf-8");
+        const data = JSON.parse(rawData);
+
+        const results = data.filter(item =>
+            item.name.toLowerCase().includes(query) ||
+            item.state.toLowerCase().includes(query)
+        );
+
+        res.json(results.slice(0, 10)); // limit results
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: "Error reading file" });
+    }
+});
+
 app.get('/destinations/:id', (req, res) => {
     const { id } = req.params;
     console.log(id);

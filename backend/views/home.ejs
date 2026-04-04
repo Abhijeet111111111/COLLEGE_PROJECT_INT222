@@ -364,6 +364,10 @@
         goToHotels.addEventListener("click", (evt) => {
           window.location.href = `http://localhost:3000/hotels/${destination.name}`;
         });
+    
+    const overViewBtn = document.querySelector('.destinationDialog__main-tabs-btn')
+    overViewBtn.focus();
+    document.querySelector('.tabOverview').classList.add('active')
   })
   })
 

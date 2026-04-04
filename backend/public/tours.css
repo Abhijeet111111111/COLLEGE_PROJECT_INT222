@@ -825,6 +825,13 @@ body {
   }
 }
 
+.active-link{
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: .2rem .6rem;
+  border-radius: 1rem;
+}
+
 body li button p div {
   font-family: "DM Sans", sans-serif !important;
 }
