@@ -1,0 +1,71 @@
+[
+  {
+    "bookingRef": "WSDZTH3H",
+    "hotelId": "H010",
+    "hotelName": "Cocohut Beach Resort",
+    "hotelCity": "Goa",
+    "hotelState": "Goa",
+    "pricePerNight": 2200,
+    "nights": 21,
+    "totalAmount": 46200,
+    "paymentMethod": "upi",
+    "guest": {
+      "name": "aj",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "99999999",
+      "guests": "2",
+      "checkIn": "2026-04-08",
+      "checkOut": "2026-04-29",
+      "requests": "jllkj"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-08T17:08:36.404Z",
+    "createdAt": "2026-04-08T17:08:36.473Z"
+  },
+  {
+    "bookingRef": "WSCH33N6",
+    "hotelId": "H001",
+    "hotelName": "The Maharaja Haveli",
+    "hotelCity": "Jaipur",
+    "hotelState": "Rajasthan",
+    "pricePerNight": 4200,
+    "nights": 13,
+    "totalAmount": 54600,
+    "paymentMethod": "upi",
+    "guest": {
+      "name": "KJ",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "99999999",
+      "guests": "4",
+      "checkIn": "2026-04-17",
+      "checkOut": "2026-04-30",
+      "requests": "lskdjfslkf"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-08T17:09:35.720Z",
+    "createdAt": "2026-04-08T17:09:35.758Z"
+  },
+  {
+    "bookingRef": "WSHOH69C",
+    "hotelId": "H008",
+    "hotelName": "Snow Peak Cottage",
+    "hotelCity": "Shimla",
+    "hotelState": "Himachal Pradesh",
+    "pricePerNight": 2100,
+    "nights": 22,
+    "totalAmount": 46200,
+    "paymentMethod": "netbanking",
+    "guest": {
+      "name": "Aj",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "8888888",
+      "guests": "4",
+      "checkIn": "2026-04-08",
+      "checkOut": "2026-04-30",
+      "requests": "lskdjfslkfj"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-08T17:17:25.839Z",
+    "createdAt": "2026-04-08T17:17:25.849Z"
+  }
+]

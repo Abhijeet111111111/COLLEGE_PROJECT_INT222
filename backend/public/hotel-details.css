@@ -476,3 +476,18 @@ a {
     display: none;
   }
 }
+
+body,
+li,
+button,
+p,
+div {
+  font-family: "DM Sans", sans-serif !important;
+}
+
+h1,
+h2,
+.page-title,
+.dest-name {
+  font-family: "Playfair Display", serif !important;
+}

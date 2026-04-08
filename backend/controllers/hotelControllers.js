@@ -5,6 +5,59 @@ export function renderHotelPage(req, res) {
     res.render('hotelsPage');
 }
 
+
+export function hotelBook(req, res) {
+    const readf = fs.readFileSync("./hotels.json");
+    const hotels = JSON.parse(readf);
+    const hotel = hotels.find(h => h.id === req.params.id);
+    if (!hotel) return res.status(404).json({ error: true, message: 'Hotel not found' });
+
+    const { bookingRef, nights, totalAmount, guest, paymentMethod, bookedAt } = req.body;
+
+    const required = ['bookingRef', 'nights', 'totalAmount', 'guest', 'paymentMethod'];
+    const missing = required.filter(k => req.body[k] === undefined);
+    if (missing.length)
+        return res.status(400).json({ error: true, message: `Missing: ${missing.join(', ')}` });
+
+    const gRequired = ['name', 'email', 'phone', 'guests', 'checkIn', 'checkOut'];
+    const gMissing = gRequired.filter(k => !guest[k]);
+    if (gMissing.length)
+        return res.status(400).json({ error: true, message: `Missing guest fields: ${gMissing.join(', ')}` });
+
+    const booking = {
+        bookingRef,
+        hotelId: hotel.id,
+        hotelName: hotel.name,
+        hotelCity: hotel.location.city,
+        hotelState: hotel.location.state,
+        pricePerNight: hotel.pricePerNight,
+        nights: Number(nights),
+        totalAmount: Number(totalAmount),
+        paymentMethod,
+        guest: {
+            name: guest.name, email: guest.email, phone: guest.phone,
+            guests: guest.guests, checkIn: guest.checkIn, checkOut: guest.checkOut,
+            requests: guest.requests || null
+        },
+        status: 'confirmed',
+        bookedAt: bookedAt || new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+    };
+
+    try {
+        const readf = fs.readFileSync('./hotelGuests.json', 'utf-8');
+        const guests = JSON.parse(readf);
+        guests.push(booking);
+        const writef = fs.writeFileSync('./hotelGuests.json', JSON.stringify(guests));
+        console.log(`[BOOKING] ${bookingRef} — ${hotel.name} — ${guest.name} — Rs${totalAmount}`);
+    } catch (err) {
+        console.error('Save failed:', err);
+        return res.status(500).json({ error: true, message: 'Failed to save booking' });
+    }
+
+    res.status(201).json({ success: true, bookingRef, message: `Confirmed for ${guest.name} at ${hotel.name}`, booking });
+}
+
 export function getCityHotel(req, res) {
     const { city } = req.params
     const readF = fs.readFileSync('./hotels.json');

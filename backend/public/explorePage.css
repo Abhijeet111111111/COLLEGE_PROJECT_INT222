@@ -730,7 +730,8 @@ svg:hover {
   border-radius: 1rem;
 }
 
-body li button p div {
+
+body, li, button, p, div {
   font-family: "DM Sans", sans-serif !important;
 }
 
