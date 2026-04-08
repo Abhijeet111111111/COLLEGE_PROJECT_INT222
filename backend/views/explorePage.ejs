@@ -372,7 +372,7 @@
         return;
       }
       main_destinations.innerHTML = "Loading...";
-      const res = await fetch(`http://localhost:3000/exploreSearch?q=${query}`);
+      const res = await fetch(`http://localhost:3000/explore/search?q=${query}`);
       const data = await res.json();
       console.log(data);
       if (data.length === 0) {

@@ -447,8 +447,8 @@
     try {
       const url =
         category === "all"
-          ? `${API}/api/tours`
-          : `${API}/api/tours?category=${encodeURIComponent(category)}`;
+          ? `${API}/tours/alltours`
+          : `${API}/tours/alltours?category=${encodeURIComponent(category)}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
@@ -465,7 +465,7 @@
 
   async function fetchGuides() {
     try {
-      const res = await fetch(`${API}/api/guides`);
+      const res = await fetch(`${API}/guides`);
       if (!res.ok) return;
       const data = await res.json();
       renderGuides(data.guides || []);
@@ -909,8 +909,8 @@
   /* ══════════════════════════════════════════════════════════════
    12.  INIT — fetch on page load
 ══════════════════════════════════════════════════════════════ */
-const toursLink = document.getElementById('tours-link');
-toursLink.classList.add('active-link');
+  const toursLink = document.getElementById("tours-link");
+  toursLink.classList.add("active-link");
 
   window.addEventListener("DOMContentLoaded", () => {
     fetchTours("all");

@@ -340,7 +340,7 @@
     showError(false);
     console.log(filters);
     try {
-      const res = await fetch(`${API_BASE}/api/hotels/search`, {
+      const res = await fetch(`${API_BASE}/hotels/search`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),

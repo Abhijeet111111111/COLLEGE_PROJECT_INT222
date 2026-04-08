@@ -1,261 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hotels in Jaipur — WanderSmart</title>
-  <link rel="stylesheet" href="/hotel-details.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotels — WanderSmart</title>
+    <link rel="stylesheet" href="/hotel-details.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ── Top bar ────────────────────────────────────────────────── -->
+    <div class="top-bar">
+      <button class="back-btn" id="back-btn">
+        <span class="back-icon">&#8592;</span>
+        <span class="back-text"></span>
+      </button>
+      <select class="sort-sel" id="sort-select">
+        <option value="best_value">Sort: Best value</option>
+        <option value="price_asc">Price: Low to high</option>
+        <option value="price_desc">Price: High to low</option>
+        <option value="rating">Rating: Highest</option>
+        <option value="eco_score">Eco score</option>
+      </select>
+    </div>
 
-  <!-- ── Top bar ────────────────────────────────────────────────── -->
-  <div class="top-bar">
-    <button class="back-btn" id="back-btn">
-      <span class="back-icon">&#8592;</span>
-      <span class="back-text">Back to<br/><%=hotel[0].location.city %></span>
-    </button>
-    <select class="sort-sel" id="sort-select">
-      <option value="best_value">Sort: Best value</option>
-      <option value="price_asc">Price: Low to high</option>
-      <option value="price_desc">Price: High to low</option>
-      <option value="rating">Rating: Highest</option>
-      <option value="eco_score">Eco score</option>
-    </select>
-  </div>
+    <!-- ── Page header ───────────────────────────────────────────── -->
+    <div class="page-header">
+      <h1 class="page-title">Hotels in Jaipur</h1>
+      <p class="result-count" id="result-count">
+        3 hotels found · Rajasthan, North India
+      </p>
+    </div>
 
-  <!-- ── Breadcrumb ─────────────────────────────────────────────── -->
-  <div class="breadcrumb">
-    <a href="explore.html">Explore</a>
-    <span class="bc-sep">›</span>
-    <a href="explore.html?region=rajasthan"><%=hotel[0].state %></a>
-    <span class="bc-sep">›</span>
-    <a href="destination.html?id=D001" class="bc-active"><%=hotel[0].location.city %></a>
-    <span class="bc-sep">›</span>
-    <span>Hotels</span>
-  </div>
+    <!-- ── Filter chips ──────────────────────────────────────────── -->
+    <div class="filter-bar">
+      <button class="fchip active" data-filter="all">
+        All (<span id="total-count">3</span>)
+      </button>
+      <button class="fchip" data-filter="Eco-Certified">Eco-Certified</button>
+      <button class="fchip" data-filter="Heritage">Heritage</button>
+      <button class="fchip" data-filter="Luxury">Luxury</button>
+      <button class="fchip" data-filter="Free cancellation">
+        Free cancellation
+      </button>
+    </div>
 
-  <!-- ── Page header ───────────────────────────────────────────── -->
-  <div class="page-header">
-    <h1 class="page-title">Hotels in <%=hotel[0].location.city %></h1>
-    <p class="result-count" id="result-count"><%=hotel.length %> hotels found · <% hotel[0].state %></p>
-  </div>
+    <!-- ── Hotel list ─────────────────────────────────────────────── -->
+    <div class="hotel-list" id="hotel-list">
+      <!-- ── Card 1: The Maharaja Haveli ──────────────────────────── -->
+    </div>
+    <!-- /hotel-list -->
 
-  <!-- ── Filter chips ──────────────────────────────────────────── -->
-  <div class="filter-bar">
-    <button class="fchip active" data-filter="all">All (<span id="total-count"><%=hotel.length %></span>)</button>
-    <button class="fchip" data-filter="Eco-Certified">Eco-Certified</button>
-    <button class="fchip" data-filter="Heritage">Heritage</button>
-    <button class="fchip" data-filter="Luxury">Luxury</button>
-    <button class="fchip" data-filter="Free cancellation">Free cancellation</button>
-  </div>
+    <!-- ── Map CTA ────────────────────────────────────────────────── -->
+    <div class="map-cta" id="map-cta">
+      <div class="map-cta-text">
+        <div class="map-cta-title">View on map</div>
+        <div class="map-cta-sub">
+          See hotel locations across Jaipur &amp; nearby areas
+        </div>
+      </div>
+      <button class="btn-map">Open map &#8599;</button>
+    </div>
 
-  <!-- ── Hotel list ─────────────────────────────────────────────── -->
-  <div class="hotel-list" id="hotel-list">
+    <script>
+      // ── Filter chip logic ──────────────────────────────────────────
+      const chips = document.querySelectorAll(".fchip");
+      const cards = document.querySelectorAll(".hotel-card");
+      const countEl = document.getElementById("result-count");
+      const totalEl = document.getElementById("total-count");
+      const sortSel = document.getElementById("sort-select");
 
-    <!-- ── Card 1: The Maharaja Haveli ──────────────────────────── -->
+      function getVisibleCards() {
+        return [...cards].filter((c) => c.style.display !== "none");
+      }
+
+      function applyFilter(filter) {
+        let visible = 0;
+        cards.forEach((card) => {
+          const tags = card.dataset.tags || "";
+          const show =
+            filter === "all" ||
+            tags
+              .split(",")
+              .map((t) => t.trim())
+              .includes(filter);
+          card.style.display = show ? "flex" : "none";
+          if (show) visible++;
+        });
+        countEl.textContent = `${visible} hotel${visible !== 1 ? "s" : ""} found · Rajasthan, North India`;
+        totalEl.textContent = [...cards].length;
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chips.forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          applyFilter(chip.dataset.filter);
+        });
+      });
+
+      // ── Sort logic ─────────────────────────────────────────────────
+      function sortCards() {
+        const list = document.getElementById("hotel-list");
+        const cardArr = [...list.querySelectorAll(".hotel-card")];
+        const val = sortSel.value;
+
+        cardArr.sort((a, b) => {
+          const aPrice = Number(a.dataset.price);
+          const bPrice = Number(b.dataset.price);
+          const aRating = Number(a.dataset.rating);
+          const bRating = Number(b.dataset.rating);
+          const aEco = Number(a.dataset.eco);
+          const bEco = Number(b.dataset.eco);
+
+          if (val === "price_asc") return aPrice - bPrice;
+          if (val === "price_desc") return bPrice - aPrice;
+          if (val === "rating") return bRating - aRating;
+          if (val === "eco_score") return bEco - aEco;
+          // best_value = rating / (price in thousands)
+          return bRating / (bPrice / 1000) - aRating / (aPrice / 1000);
+        });
+
+        cardArr.forEach((c) => list.appendChild(c));
+      }
+
+      sortSel.addEventListener("change", sortCards);
+
+      // ── Book now buttons ───────────────────────────────────────────
+      document.querySelectorAll(".btn-book").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const hotel = btn.dataset.hotel;
+          // Replace this with your booking route / modal
+          alert(`Redirecting to booking for:\n${hotel}`);
+        });
+      });
+
+      // ── Back button ────────────────────────────────────────────────
+      document.getElementById("back-btn").addEventListener("click", () => {
+        window.history.back();
+      });
+
+      // ── Map CTA ────────────────────────────────────────────────────
+      document.getElementById("map-cta").addEventListener("click", () => {
+        alert("Map view coming soon! Connect to your maps integration here.");
+      });
+
+      function createHotelCard(hotel) {
+        const tags = [...hotel.tags];
+        if (hotel.freeCancellation) tags.push("Free cancellation");
+
+        return `
     <div class="hotel-card"
-         data-tags="Eco-Certified,Heritage,Free cancellation"
-         data-price="4200"
-         data-rating="4.9"
-         data-eco="4">
+      data-tags="${tags.join(",")}"
+      data-price="${hotel.pricePerNight}"
+      data-rating="${hotel.rating}"
+      data-eco="${hotel.ecoScore}">
 
-
-      <div class="hotel-body">
-
-    <!-- ── Card 2: Pushkar Lake Resort ─────────────────────────── -->
-      <% for(let i=0;i<hotel.length;i++){ %>
-        <div class="hotel-card"
-         data-tags="Eco-Certified,Hidden Gem,Free cancellation"
-         data-price="3100"
-         data-rating="4.7"
-         data-eco="5">
-
-      <div class="hotel-thumb thumb-teal">
-        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" width="260" height="200">
-          <!-- Sky -->
-          <rect width="260" height="200" fill="#9FE1CB"/>
-          <!-- Clouds -->
-          <circle cx="40" cy="28" r="18" fill="#fff" opacity="0.2"/>
-          <circle cx="62" cy="22" r="22" fill="#fff" opacity="0.15"/>
-          <circle cx="84" cy="28" r="16" fill="#fff" opacity="0.2"/>
-          <!-- Water / ground -->
-          <rect x="0" y="152" width="260" height="48" fill="#5DCAA5"/>
-          <ellipse cx="130" cy="152" rx="130" ry="10" fill="#1D9E75" opacity="0.35"/>
-          <!-- Water reflections -->
-          <ellipse cx="80"  cy="165" rx="30" ry="4" fill="#0F6E56" opacity="0.2"/>
-          <ellipse cx="180" cy="170" rx="25" ry="3" fill="#0F6E56" opacity="0.2"/>
-          <!-- Main temple body -->
-          <rect x="60" y="80" width="140" height="90" fill="#0F6E56"/>
-          <rect x="60" y="76" width="140" height="7" fill="#085041"/>
-          <!-- Central spire -->
-          <rect x="110" y="30" width="40" height="55" fill="#085041"/>
-          <polygon points="130,6 96,34 164,34" fill="#085041"/>
-          <circle cx="130" cy="4" r="8" fill="#1D9E75"/>
-          <!-- Dome detail -->
-          <rect x="118" y="18" width="24" height="18" fill="#1D9E75" opacity="0.5"/>
-          <!-- Left wing -->
-          <rect x="68" y="96" width="36" height="30" fill="#1D9E75" rx="1"/>
-          <path d="M68 111 Q86 100 104 111" fill="#5DCAA5"/>
-          <!-- Right wing -->
-          <rect x="156" y="96" width="36" height="30" fill="#1D9E75" rx="1"/>
-          <path d="M156 111 Q174 100 192 111" fill="#5DCAA5"/>
-          <!-- Centre door arch -->
-          <rect x="112" y="120" width="36" height="50" fill="#085041"/>
-          <ellipse cx="130" cy="120" rx="18" ry="12" fill="#085041"/>
-          <!-- Side small towers -->
-          <rect x="64" y="58" width="20" height="26" fill="#085041"/>
-          <polygon points="74,40 56,62 92,62" fill="#085041"/>
-          <rect x="176" y="58" width="20" height="26" fill="#085041"/>
-          <polygon points="186,40 168,62 204,62" fill="#085041"/>
-          <!-- Trees left -->
-          <rect x="14" y="110" width="12" height="50" fill="#27500A" rx="2"/>
-          <ellipse cx="20" cy="102" rx="18" ry="24" fill="#639922"/>
-          <!-- Trees right -->
-          <rect x="234" y="114" width="12" height="46" fill="#27500A" rx="2"/>
-          <ellipse cx="240" cy="106" rx="16" ry="22" fill="#639922"/>
-        </svg>
+      <div class="hotel-thumb">
+        <img src="/hotels/${hotel.images[0]}" alt="${hotel.name}" width="260" height="200"/>
       </div>
 
       <div class="hotel-body">
         <div class="hotel-top">
           <div class="name-row">
-            <span class="hotel-name"><%=hotel.name %></span>
-            <span class="rating-pill">&#9733; <%=hotel[i].rating %></span>
+            <span class="hotel-name">${hotel.name}</span>
+            <span class="rating-pill">★ ${hotel.rating}</span>
           </div>
-          <div class="hotel-loc"><%= hotel[i]?.location?.address || "N/A" %>, 
-<%= hotel[i]?.location?.city || "" %> 
-&nbsp;·&nbsp; <%= hotel[i]?.location?.distanceFromCenter ?? "?" %> km from center 
-&nbsp;·&nbsp; <%= hotel[i]?.reviews ?? 0 %> reviews</div>
+
+          <div class="hotel-loc">
+            ${hotel.location.address} · 
+            ${hotel.location.distanceFromCenter} from center · 
+            ${hotel.reviews} reviews
+          </div>
+
           <div class="hotel-tags">
-            <% for(let j=0;j<hotel[i].tags.length;j++){ %>
-<span class="htag <%= hotel[i].tags[j] === 'Eco-Certified' ? 'htag-eco' : hotel[i].tags[j] === 'Hidden Gem' ? 'htag-gem' : '' %>">
-  <%= hotel[i].tags[j] %>
-</span>
-                <% } %>
-            
-            <span class="htag"><%=hotel[i].stars %> Stars</span>
-            
+            ${tags.map((t) => `<span class="htag">${t}</span>`).join("")}
+            <span class="htag">${hotel.stars} Stars</span>
           </div>
+
           <div class="hotel-amenities">
-            <% for(let j=0;j<hotel[i].amenities.length;j++) {%>
-                <span class="amen"><span class="amen-dot"></span><%=hotel[i].amenities[j] %></span>
-                <% } %>
+            ${hotel.amenities
+              .slice(0, 5)
+              .map(
+                (a) => `
+              <span class="amen"><span class="amen-dot"></span>${a}</span>
+            `,
+              )
+              .join("")}
           </div>
         </div>
+
         <div class="hotel-bottom">
           <div class="eco-row">
             <div class="eco-leaves">
-              <span class="leaf"></span><span class="leaf"></span>
-              <span class="leaf"></span><span class="leaf"></span>
-              <span class="leaf"></span>
+              ${[1, 2, 3, 4, 5]
+                .map(
+                  (i) =>
+                    `<span class="leaf ${i > hotel.ecoScore ? "empty" : ""}"></span>`,
+                )
+                .join("")}
             </div>
-            <span class="eco-label">Eco <%=hotel[i].ecoScore %>/5</span>
+            <span class="eco-label">Eco ${hotel.ecoScore}/5</span>
           </div>
+
           <div class="price-action">
             <div class="price-block">
-              <div class="price-amt">&#8377;<%=hotel[i].pricePerNight %></div>
-              <div class="price-sub">per night &nbsp;·&nbsp; <% hotel[i].freeCancellation ? 'free cancel' : '' %></div>
+              <div class="price-amt">₹${hotel.pricePerNight}</div>
+              <div class="price-sub">
+                per night · ${hotel.freeCancellation ? "free cancel" : "no free cancel"}
+              </div>
             </div>
-            <button class="btn-book" data-hotel="Pushkar Lake Resort">Book now</button>
+            <button class="btn-book" data-hotel="${hotel.name}">
+              Book now
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <% } %>
-    
+  `;
+      }
+      function getCityFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("city") || "Jaipur"; // default fallback
+      }
+      function attachEvents() {
+        const cards = document.querySelectorAll(".hotel-card");
 
-   
+        // Booking buttons
+        document.querySelectorAll(".btn-book").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            alert(`Redirecting to booking for:\n${btn.dataset.hotel}`);
+          });
+        });
 
-  <!-- ── Map CTA ────────────────────────────────────────────────── -->
-  <div class="map-cta" id="map-cta">
-    <div class="map-cta-text">
-      <div class="map-cta-title">View on map</div>
-      <div class="map-cta-sub">See hotel locations across Jaipur &amp; nearby areas</div>
-    </div>
-    <button class="btn-map">Open map &#8599;</button>
-  </div>
+        // Reapply filter logic with updated cards
+        window.cards = cards;
+      }
+      async function loadHotels() {
+        try {
+          const res = await fetch(
+            `http://localhost:3000/hotels/${getCityFromURL()}`,
+          );
+          const data = await res.json();
+          const hotels = JSON.parse(data.hotels);
+          const list = document.getElementById("hotel-list");
+          list.innerHTML = "";
 
-  <script>
-    // ── Filter chip logic ──────────────────────────────────────────
-    const chips   = document.querySelectorAll('.fchip');
-    const cards   = document.querySelectorAll('.hotel-card');
-    const countEl = document.getElementById('result-count');
-    const totalEl = document.getElementById('total-count');
-    const sortSel = document.getElementById('sort-select');
+          hotels.forEach((hotel) => {
+            list.innerHTML += createHotelCard(hotel);
+          });
 
-    function getVisibleCards() {
-      return [...cards].filter(c => c.style.display !== 'none');
-    }
+          // Update counts
+          document.getElementById("total-count").textContent = hotels.length;
+          document.getElementById("result-count").textContent =
+            `${hotels.length} hotels found · ${getCityFromURL()}, North India`;
+          document.querySelector('.back-btn').innerHTML = `Back to<br/> ${getCityFromURL()}`
+          document.querySelector('.page-title').textContent = `Hotels in ${getCityFromURL()}`
 
-    function applyFilter(filter) {
-      let visible = 0;
-      cards.forEach(card => {
-        const tags = card.dataset.tags || '';
-        const show = filter === 'all' || tags.split(',').map(t => t.trim()).includes(filter);
-        card.style.display = show ? 'flex' : 'none';
-        if (show) visible++;
-      });
-      countEl.textContent = `${visible} hotel${visible !== 1 ? 's' : ''} found · Rajasthan, North India`;
-      totalEl.textContent = [...cards].length;
-    }
-
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        applyFilter(chip.dataset.filter);
-      });
-    });
-
-    // ── Sort logic ─────────────────────────────────────────────────
-    function sortCards() {
-      const list = document.getElementById('hotel-list');
-      const cardArr = [...list.querySelectorAll('.hotel-card')];
-      const val = sortSel.value;
-
-      cardArr.sort((a, b) => {
-        const aPrice  = Number(a.dataset.price);
-        const bPrice  = Number(b.dataset.price);
-        const aRating = Number(a.dataset.rating);
-        const bRating = Number(b.dataset.rating);
-        const aEco    = Number(a.dataset.eco);
-        const bEco    = Number(b.dataset.eco);
-
-        if (val === 'price_asc')  return aPrice - bPrice;
-        if (val === 'price_desc') return bPrice - aPrice;
-        if (val === 'rating')     return bRating - aRating;
-        if (val === 'eco_score')  return bEco - aEco;
-        // best_value = rating / (price in thousands)
-        return (bRating / (bPrice / 1000)) - (aRating / (aPrice / 1000));
-      });
-
-      cardArr.forEach(c => list.appendChild(c));
-    }
-
-    sortSel.addEventListener('change', sortCards);
-
-    // ── Book now buttons ───────────────────────────────────────────
-    document.querySelectorAll('.btn-book').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const hotel = btn.dataset.hotel;
-        // Replace this with your booking route / modal
-        alert(`Redirecting to booking for:\n${hotel}`);
-      });
-    });
-
-    // ── Back button ────────────────────────────────────────────────
-    document.getElementById('back-btn').addEventListener('click', () => {
-      window.history.back();
-    });
-
-    // ── Map CTA ────────────────────────────────────────────────────
-    document.getElementById('map-cta').addEventListener('click', () => {
-      alert('Map view coming soon! Connect to your maps integration here.');
-    });
-
-  </script>
-
-</body>
+           attachEvents(); // reattach events after rendering
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      window.addEventListener("DOMContentLoaded", loadHotels);
+    </script>
+  </body>
 </html>
