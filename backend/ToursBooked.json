@@ -1,0 +1,46 @@
+[
+  {
+    "bookingRef": "WSZU54F9",
+    "tourId": "T001",
+    "tourTitle": "Himalayan Expedition — Manali to Leh",
+    "tourCategory": "Adventure",
+    "days": 7,
+    "nights": 6,
+    "pricePerPerson": 18500,
+    "totalAmount": 55500,
+    "travellers": "3",
+    "travelDate": "2026-04-09",
+    "paymentMethod": "upi",
+    "traveller": {
+      "name": "Abhijeet kumar",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "9999999",
+      "requests": null
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-09T13:30:13.805Z",
+    "createdAt": "2026-04-09T13:30:13.835Z"
+  },
+  {
+    "bookingRef": "WS84WDYV",
+    "tourId": "T002",
+    "tourTitle": "Royal Rajasthan Heritage Trail",
+    "tourCategory": "Culture",
+    "days": 5,
+    "nights": 4,
+    "pricePerPerson": 12800,
+    "totalAmount": 51200,
+    "travellers": "4",
+    "travelDate": "2026-04-25",
+    "paymentMethod": "upi",
+    "traveller": {
+      "name": "Abhijeet kumar",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "9999999",
+      "requests": "*******SPECIAL********"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-09T13:30:52.827Z",
+    "createdAt": "2026-04-09T13:30:52.862Z"
+  }
+]

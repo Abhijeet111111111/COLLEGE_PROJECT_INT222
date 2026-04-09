@@ -763,7 +763,7 @@ body {
 .hd-thumb svg  { width: 100%; height: 100%; display: block; }
 .hd-thumb-badges {
   position:    absolute;
-  top:         14px;
+  top:         56px;
   left:        16px;
   display:     flex;
   gap:         6px;

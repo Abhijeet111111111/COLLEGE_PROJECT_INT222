@@ -67,5 +67,28 @@
     "status": "confirmed",
     "bookedAt": "2026-04-08T17:17:25.839Z",
     "createdAt": "2026-04-08T17:17:25.849Z"
+  },
+  {
+    "bookingRef": "WSPC6F91",
+    "hotelId": "H003",
+    "hotelName": "City Palace Guesthouse",
+    "hotelCity": "Udaipur",
+    "hotelState": "Rajasthan",
+    "pricePerNight": 1800,
+    "nights": 20,
+    "totalAmount": 36000,
+    "paymentMethod": "upi",
+    "guest": {
+      "name": "Aj",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "88888888",
+      "guests": "2",
+      "checkIn": "2026-04-09",
+      "checkOut": "2026-04-29",
+      "requests": "lskjdflsj"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-09T12:30:46.597Z",
+    "createdAt": "2026-04-09T12:30:46.602Z"
   }
 ]
