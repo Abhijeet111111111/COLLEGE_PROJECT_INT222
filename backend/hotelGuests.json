@@ -90,5 +90,51 @@
     "status": "confirmed",
     "bookedAt": "2026-04-09T12:30:46.597Z",
     "createdAt": "2026-04-09T12:30:46.602Z"
+  },
+  {
+    "bookingRef": "WSV6BB1O",
+    "hotelId": "H012",
+    "hotelName": "Ranthambore Jungle Lodge",
+    "hotelCity": "Sawai Madhopur",
+    "hotelState": "Rajasthan",
+    "pricePerNight": 5200,
+    "nights": 12,
+    "totalAmount": 62400,
+    "paymentMethod": "upi",
+    "guest": {
+      "name": "Abhijeet kumar",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "99999999",
+      "guests": "2",
+      "checkIn": "2026-04-24",
+      "checkOut": "2026-05-06",
+      "requests": "kj;lkk"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-10T13:11:39.518Z",
+    "createdAt": "2026-04-10T13:11:39.532Z"
+  },
+  {
+    "bookingRef": "WS3932XD",
+    "hotelId": "H003",
+    "hotelName": "City Palace Guesthouse",
+    "hotelCity": "Udaipur",
+    "hotelState": "Rajasthan",
+    "pricePerNight": 1800,
+    "nights": 10,
+    "totalAmount": 18000,
+    "paymentMethod": "upi",
+    "guest": {
+      "name": "Abhijeet kumar",
+      "email": "yabhijeet083@gmail.com",
+      "phone": "9999999",
+      "guests": "4",
+      "checkIn": "2026-04-11",
+      "checkOut": "2026-04-21",
+      "requests": "lskj"
+    },
+    "status": "confirmed",
+    "bookedAt": "2026-04-11T18:02:26.604Z",
+    "createdAt": "2026-04-11T18:02:26.615Z"
   }
 ]

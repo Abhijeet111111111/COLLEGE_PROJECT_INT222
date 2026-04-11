@@ -487,7 +487,11 @@
               >Hotels</a
             >
           </li>
-          <li class="nav__item">Tours</li>
+          <li class="nav__item">
+            <a style="text-decoration: none; color: inherit" href="/tours"
+              >Tours</a
+            >
+          </li>
           <li class="nav__item">Dashboard</li>
         </ul>
         <div class="nav__item-ctx">
@@ -689,6 +693,8 @@
     <!-- <script src="hotels.js"></script> -->
   </body>
 </html>
+
+<script src="/auth.js"></script>
 
 <script>
   /**
@@ -1063,7 +1069,7 @@
       const thumbnail = document.getElementById("hd-thumb");
       thumbnail.style.backgroundImage = `url(${_hotel.images[0]})`;
       thumbnail.style.backgroundSize = "contain";
-      thumbnail.style.backgroundRepeat = "no-repeat"
+      thumbnail.style.backgroundRepeat = "no-repeat";
       thumbnail.style.backgroundPosition = "center";
 
       _goStep(1);
@@ -1485,8 +1491,15 @@
 
     /* ── Step 1 → Book Now ────────────────────────────────────── */
     document.getElementById("hd-btn-book").addEventListener("click", () => {
+      const map = {
+        "hg-name": "name",
+        "hg-email" : "email",
+        "hg-phone" : "phone"
+      };
+      Auth.requireAuth(() => {});
       _resetForm();
       _goStep(2);
+      Auth.prefillForm(map);
     });
 
     /* ── Date change → recalc total ───────────────────────────── */

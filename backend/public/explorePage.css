@@ -70,7 +70,7 @@ main {
 }
 
 .main__header {
-  padding: 1rem 7rem;
+  padding: 1rem 9.5rem;
 }
 
 .main__header-desc {
@@ -88,7 +88,7 @@ main {
 
 .main__filter-search {
   flex-grow: 1;
-  max-width: 24rem;
+  max-width: 18rem;
   background-color: transparent;
   color: rgba(255, 255, 255, 0.6);
   padding: 10px 14px;

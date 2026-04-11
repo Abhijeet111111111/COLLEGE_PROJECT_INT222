@@ -1,7 +1,7 @@
+import dotenv from 'dotenv'
 import express from 'express';
 import path from 'path'
 import { fileURLToPath } from 'url';
-import fs, { readFileSync, stat } from 'fs';
 import cors from 'cors'
 import home from './routes/home.js'
 import exploreRoutes from './routes/exploreRoutes.js'
@@ -9,7 +9,18 @@ import destinationRoutes from './routes/destinationsRoutes.js'
 import hotelRoutes from './routes/hotelsRoutes.js'
 import tourRoutes from './routes/tourRoutes.js'
 import guidesRoutes from './routes/guides.js'
+import mongoose from 'mongoose';
+import userRouter from './routes/userRoutes.js'
+import loginRoutes from './routes/loginRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+dotenv.config({ path: './config.env' })
+
 const app = express();
+
+const url = process.env.MONGODB_URL.replace('<PASSWORD>', process.env.MONGODB_PASSWORD);
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log("DB connection successful"))
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,10 +43,25 @@ app.use('/destinations', destinationRoutes)
 app.use('/hotels', hotelRoutes)
 app.use('/tours', tourRoutes);
 app.use('/guides', guidesRoutes)
+app.use('/users', userRouter)
+app.use('/login', loginRoutes);
+app.use('/user', userRoutes)
 
 app.use((req, res) => {
     res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });
 });
+
+app.use((err, req, res, next) => {
+    let error = { ...err };
+    error.statusCode = error.statusCode || 500;
+    error.status = error.status || 'error'
+    res.status(err.statusCode || 500).json({
+        message: err.message,
+        status: err.status,
+        error: err,
+        errStack: err.stack
+    })
+})
 
 
 app.listen(3000);

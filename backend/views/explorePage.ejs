@@ -26,7 +26,9 @@
               >Hotels</a
             >
           </li>
-          <li class="nav__item">Tours</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit" href="/tours"
+              >Tours</a
+            ></li>
           <li class="nav__item">Dashboard</li>
         </ul>
         <div class="nav__item-ctx">
@@ -327,7 +329,7 @@
         // }
         const goToHotels = document.querySelector(".goToHotels");
         goToHotels.addEventListener("click", (evt) => {
-          window.location.href = `http://localhost:3000/hotels/${destination.name}`;
+          window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
         });
       }
       const overViewBtn = document.querySelector(
