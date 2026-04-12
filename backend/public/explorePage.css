@@ -13,13 +13,7 @@ body {
   align-items: center;
   margin: 0;
   padding: 1rem 4rem;
-  background: #262525;
-  background: linear-gradient(
-    90deg,
-    rgba(38, 37, 37, 1) 0%,
-    rgba(50, 49, 49, 1) 54%,
-    rgba(38, 37, 37, 1) 100%
-  );
+  background: #1a1a1a;
   color: white;
 }
 .nav__items {
@@ -31,6 +25,7 @@ body {
   flex-grow: 0.1;
 }
 .nav__item {
+  padding: .2rem .6rem;
   font-size: large;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(255, 255, 255, 0.8);
@@ -61,7 +56,7 @@ body {
 }
 
 main {
-  background-color: #262525;
+  background-color: #1a1a1a;
 }
 
 .main__header-head {
@@ -132,9 +127,8 @@ main {
 }
 .active-link{
   color: white;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: .2rem .6rem;
-  border-radius: 1rem;
+  background-color: #0d2e22;
+  border-radius: .4rem;
 }
 .main__map {
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -304,6 +298,7 @@ main {
 }
 
 .destinationDialog__main {
+  background-color: #1a1a1a !important;
   padding: 1rem;
 }
 
@@ -442,7 +437,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
 }
 .overview-localcuisine h2 {
   margin-top: 0;
@@ -459,6 +453,7 @@ main {
   padding: 0;
   margin: 0;
 }
+
 .overview-localcuisine-tag {
   padding: 0.2rem 0.4rem;
   border: 1px solid orange;
@@ -466,6 +461,14 @@ main {
   color: brown;
   border-radius: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.overview-localcuisine-rating {
+  width: 100%;
+}
+.overview-localcuisine-rating p {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.4rem;
 }
 .destinationDialogMonths {
   padding: 0.4rem;
@@ -505,7 +508,7 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  background-color: #262525;
+  background-color: #1a1a1a;
   border-top: 1px solid rgba(255, 255, 255, 0.8);
 }
 .destinationDialog__footer-price {
@@ -640,6 +643,34 @@ svg:hover {
   border-radius: 1rem;
 }
 
+/* Eco score leaves */
+.eco-score-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.eco-leaves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.leaf {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: #1d9e75;
+}
+.leaf.empty {
+  background: #3a3a3a;
+  border: #4a4a4a;
+}
+.eco-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 3px;
+}
+
+
 /********** TOP ATTRACTION *********/
 .topAttractionImage {
   background-repeat: no-repeat;
@@ -647,7 +678,11 @@ svg:hover {
   height: 100%;
   width: 100%;
 }
-
+.topAttractionName{
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgb(251, 250, 250);
+  font-weight: bold;
+}
 .tabOverview {
   display: none;
   margin: 0;
@@ -726,7 +761,7 @@ svg:hover {
   height: 4rem;
   width: 4rem;
   background-color: brown;
-  border: 1px solid black;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 1rem;
 }
 

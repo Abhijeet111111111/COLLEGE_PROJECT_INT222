@@ -207,7 +207,7 @@
                        (
                          el,
                        ) => `<li class="destinationDialog__main-tabs-topattraction">
-                     <div class="topAttractionImage" style="background-image:url(topAttractions/${el.split(" ")[0].toLowerCase()}.jpg)">
+                     <div class="topAttractionImage">
                        <p class="topAttractionName">${el}</p>
                      </li>`,
                      )
@@ -232,7 +232,16 @@
                      ${destination.localCuisine.map((el) => `<li class="overview-localcuisine-tag">${el}</li>`).join("")}
                    </ul>
                    <div class="overview-localcuisine-rating">
-                     rating - x/y moderate sustainablity
+                     <p>Eco Score</p>
+                    <div class="eco-score-row">
+                      <div class="eco-leaves">
+                        <div class="leaf ${parseInt(destination.ecoRating) < 1 ? "empty" : ""}"> </div>
+                         <div class="leaf ${parseInt(destination.ecoRating) < 2 ? "empty" : ""}"> </div>
+                          <div class="leaf ${parseInt(destination.ecoRating) < 3 ? "empty" : ""}"> </div>
+                           <div class="leaf ${parseInt(destination.ecoRating) < 4 ? "empty" : ""}"> </div>
+                            <div class="leaf ${parseInt(destination.ecoRating) < 5 ? "empty" : ""}"> </div>
+                             <div class="eco-label">${destination.ecoRating}/5 ${parseInt(destination.ecoRating) == 3 ? "moderate" : parseInt(destination.ecoRating) > 3 ? "high" : "low"} sustainability  </div>
+                      </div>
                    </div>
                  </div>
                </section>
@@ -327,6 +336,14 @@
         // function closeDialog() {
         //   document.body.style.overflow = "";
         // }
+        const topImgs = document.querySelectorAll('.topAttractionImage')
+          Array.from(topImgs).forEach( el =>{
+              fetch("https://api.unsplash.com/photos/random?query=travel&client_id=uEKuqX6Pyj60Sp7kG8ShXlLzsXBK7GXBTF20c4TjL_c")
+          .then(res => res.json())
+          .then(data => {
+            el.style.backgroundImage = `url(${data.urls.full})`;
+          });
+        })
         const goToHotels = document.querySelector(".goToHotels");
         goToHotels.addEventListener("click", (evt) => {
           window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
@@ -403,4 +420,5 @@
         .join("");
     }, 400);
   });
+  
 </script>

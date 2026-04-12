@@ -1,0 +1,110 @@
+/* ════════════════════════════════════════════════════════════════
+   dashboard-auth.css
+   Add to dashboard.html alongside your existing dashboard CSS.
+   Controls the logged-out "sign in to continue" prompt.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Login prompt (full-page centred) ────────────────────────── */
+.dash-login-prompt {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  text-align:      center;
+  min-height:      calc(100vh - 120px);
+  padding:         40px 20px;
+  gap:             0;
+}
+
+.dlp-icon {
+  width:           88px;
+  height:          88px;
+  border-radius:   50%;
+  background:      #0d2e22;
+  border:          1px solid #1a4d35;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  margin-bottom:   24px;
+}
+
+.dlp-title {
+  font-size:     26px;
+  font-weight:   500;
+  color:         #ffffff;
+  margin-bottom: 10px;
+  line-height:   1.3;
+}
+
+.dlp-sub {
+  font-size:     14px;
+  color:         #aaaaaa;
+  max-width:     340px;
+  line-height:   1.6;
+  margin-bottom: 32px;
+}
+
+.dlp-btns {
+  display:     flex;
+  gap:         12px;
+  flex-wrap:   wrap;
+  justify-content: center;
+}
+
+.dlp-btn-primary {
+  padding:         12px 32px;
+  border-radius:   22px;
+  background:      #1D9E75;
+  color:           #fff;
+  font-size:       14px;
+  font-weight:     500;
+  text-decoration: none;
+  transition:      opacity 0.18s;
+}
+.dlp-btn-primary:hover { opacity: 0.87; }
+
+.dlp-btn-ghost {
+  padding:         12px 28px;
+  border-radius:   22px;
+  border:          1px solid #555;
+  color:           #aaa;
+  font-size:       14px;
+  text-decoration: none;
+  transition:      all 0.18s;
+}
+.dlp-btn-ghost:hover { color: #fff; border-color: #888; }
+
+/* ── User greeting banner (shown when logged in) ──────────────── */
+.dash-greeting {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         20px 28px;
+  background:      #0d2e22;
+  border-bottom:   1px solid #1a4d35;
+  flex-wrap:       wrap;
+  gap:             12px;
+}
+.dash-greeting-text {
+  font-size:  18px;
+  font-weight: 500;
+  color:      #fff;
+}
+.dash-greeting-sub {
+  font-size: 13px;
+  color:     #5DCAA5;
+  margin-top: 3px;
+}
+.dash-greeting-avatar {
+  width:           48px;
+  height:          48px;
+  border-radius:   50%;
+  background:      #1D9E75;
+  color:           #fff;
+  font-size:       16px;
+  font-weight:     500;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+}

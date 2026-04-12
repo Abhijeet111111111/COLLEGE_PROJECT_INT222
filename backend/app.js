@@ -46,6 +46,9 @@ app.use('/guides', guidesRoutes)
 app.use('/users', userRouter)
 app.use('/login', loginRoutes);
 app.use('/user', userRoutes)
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
 
 app.use((req, res) => {
     res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });

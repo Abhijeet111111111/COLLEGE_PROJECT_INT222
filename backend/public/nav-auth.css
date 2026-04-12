@@ -1,0 +1,148 @@
+/* ════════════════════════════════════════════════════════════════
+   nav-auth.css
+   Add <link rel="stylesheet" href="nav-auth.css"/> to every page.
+   These styles control the auth slot injected by auth.js into
+   #nav-auth-slot — the avatar pill, dropdown, and login buttons.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Slot container ───────────────────────────────────────────── */
+#nav-auth-slot {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  position:    relative;
+}
+
+/* ── Logged-out: ghost + primary buttons ──────────────────────── */
+.nav-btn-ghost {
+  padding:       8px 16px;
+  border-radius: 20px;
+  border:        1px solid #555555;
+  color:         #aaaaaa;
+  font-size:     13px;
+  font-family:   inherit;
+  text-decoration: none;
+  transition:    all 0.18s;
+  white-space:   nowrap;
+}
+.nav-btn-ghost:hover { color: #fff; border-color: #888; }
+
+.nav-btn-primary {
+  padding:       8px 18px;
+  border-radius: 20px;
+  background:    #1D9E75;
+  color:         #fff;
+  font-size:     13px;
+  font-family:   inherit;
+  font-weight:   500;
+  text-decoration: none;
+  transition:    opacity 0.18s;
+  white-space:   nowrap;
+}
+.nav-btn-primary:hover { opacity: 0.87; }
+
+/* ── Logged-in: user pill ─────────────────────────────────────── */
+.nav-user-pill {
+  display:       flex;
+  align-items:   center;
+  gap:           8px;
+  padding:       5px 12px 5px 5px;
+  border-radius: 22px;
+  border:        1px solid #3d3d3d;
+  background:    #2a2a2a;
+  cursor:        pointer;
+  transition:    border-color 0.18s, background 0.18s;
+  user-select:   none;
+}
+.nav-user-pill:hover {
+  border-color: #555;
+  background:   #333;
+}
+
+.nav-avatar {
+  width:           32px;
+  height:          32px;
+  border-radius:   50%;
+  background:      #1D9E75;
+  color:           #fff;
+  font-size:       12px;
+  font-weight:     500;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+}
+
+.nav-user-name {
+  font-size:   13px;
+  font-weight: 500;
+  color:       #fff;
+  max-width:   80px;
+  overflow:    hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-chevron {
+  color:      #aaa;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.nav-dropdown.open ~ .nav-user-pill .nav-chevron,
+.nav-user-pill:has(+ .nav-dropdown.open) .nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown menu ────────────────────────────────────────────── */
+.nav-dropdown {
+  position:      absolute;
+  top:           calc(100% + 8px);
+  right:         0;
+  min-width:     210px;
+  background:    #242424;
+  border:        1px solid #444;
+  border-radius: 12px;
+  padding:       6px;
+  z-index:       200;
+  display:       none;
+  animation:     ddSlide 0.15s ease;
+}
+.nav-dropdown.open { display: block; }
+
+@keyframes ddSlide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-dd-user {
+  padding:       10px 12px 8px;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 4px;
+}
+.nav-dd-name  { font-size: 13px; font-weight: 500; color: #fff; margin-bottom: 1px; }
+.nav-dd-email { font-size: 11px; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.nav-dd-item {
+  display:       flex;
+  align-items:   center;
+  gap:           9px;
+  padding:       9px 12px;
+  border-radius: 7px;
+  font-size:     13px;
+  color:         #ccc;
+  text-decoration: none;
+  cursor:        pointer;
+  background:    none;
+  border:        none;
+  width:         100%;
+  font-family:   inherit;
+  text-align:    left;
+  transition:    background 0.15s, color 0.15s;
+}
+.nav-dd-item:hover { background: #333; color: #fff; }
+.nav-dd-item svg   { flex-shrink: 0; opacity: 0.7; }
+
+.nav-dd-divider { height: 1px; background: #3a3a3a; margin: 4px 0; }
+
+.nav-dd-logout { color: #F09595; }
+.nav-dd-logout:hover { background: #2e1010; color: #F09595; }

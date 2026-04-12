@@ -51,6 +51,14 @@ const userSchema = mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
+    },
+    hotelsBookId: {
+        type: [String],
+        default: []
+    },
+    toursBookId : {
+        type : [String],
+        default : []
     }
 })
 

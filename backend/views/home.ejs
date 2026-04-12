@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="/nav-auth.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   </head>
@@ -308,11 +309,11 @@
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
-          <li class="nav__item" id="dashboard">Dashboard</li>
+          <li class="nav__item" id="dashboard"></li>
         </ul>
-        <div class="nav__item-ctx">
-          <button class="nav__item__ctx-button">Plan a Trip</button>
-        </div>
+        <!-- <div class="nav__item-ctx"> -->
+          <div id="nav-auth-slot"></div>
+        <!-- </div> -->
       </div>
     </header>
     <main id="main">
@@ -441,12 +442,9 @@
 const dashboard = document.getElementById("dashboard");
 console.log(Auth.isLoggedIn())
 if (Auth.isLoggedIn()) {
-    dashboard.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/user/logout">Logout</a>`
-    dashboard.addEventListener('click',(evt)=>{
-      Auth.logout();
-    })
+    dashboard.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/plan a trip">plan a trip</a>`
 }
-else dashboard.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Signup/login</a>`
+else dashboard.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">plan a trip</a>`
 
 
 
@@ -545,7 +543,7 @@ destinationEles.forEach(destinationEle => {
                 <p class="destinationDialog__main-tabs-topattractions-head">Top Attraction</p>
                   <ul class="destinationDialog__main-tabs-topattractions-list">
                   ${destination.topAttractions.map(el => `<li class="destinationDialog__main-tabs-topattraction">
-                    <div class="topAttractionImage" style="background-image:url(topAttractions/${el.split(' ')[0].toLowerCase()}.jpg)">
+                    <div class="topAttractionImage">
                       <p class="topAttractionName">${el}</p>
                     </li>` ).join('')}
                       </div>
@@ -569,7 +567,18 @@ destinationEles.forEach(destinationEle => {
                     ${destination.localCuisine.map(el => `<li class="overview-localcuisine-tag">${el}</li>`).join('')}
                   </ul>
                   <div class="overview-localcuisine-rating">
-                    rating - x/y moderate sustainablity
+                    <p>Eco Score</p>
+                    <div class="eco-score-row">
+                      <div class="eco-leaves">
+                        <div class="leaf ${parseInt(destination.ecoRating) < 1 ? "empty" : ""}"> </div>
+                         <div class="leaf ${parseInt(destination.ecoRating) < 2 ? "empty" : ""}"> </div>
+                          <div class="leaf ${parseInt(destination.ecoRating) < 3 ? "empty" : ""}"> </div>
+                           <div class="leaf ${parseInt(destination.ecoRating) < 4 ? "empty" : ""}"> </div>
+                            <div class="leaf ${parseInt(destination.ecoRating) < 5 ? "empty" : ""}"> </div>
+                             <div class="eco-label">${destination.ecoRating}/5 ${parseInt(destination.ecoRating) == 3 ? "moderate" : parseInt(destination.ecoRating) > 3 ? "high" : "low"} sustainability  </div>
+                      </div>
+                       
+                    </div>
                   </div>
                 </div>
               </section>
@@ -616,7 +625,7 @@ destinationEles.forEach(destinationEle => {
       <ul class="howToReachItems">
         
         <li class="howToReachItem">
-          <div class="reachBy-"></div>
+          <div class="reachBy- reachBy-air"></div>
           <div class="reachByDesc">
             <p>BY AIR</p>
             <p>
@@ -625,7 +634,7 @@ destinationEles.forEach(destinationEle => {
           </div>
         </li>
         <li class="howToReachItem">
-          <div class="reachBy-"></div>
+          <div class="reachBy- reachBy-train"></div>
           <div class="reachByDesc">
             <p>BY TRAIN</p>
             <p>
@@ -634,7 +643,7 @@ destinationEles.forEach(destinationEle => {
           </div>
         </li>
         <li class="howToReachItem">
-          <div class="reachBy-"></div>
+          <div class="reachBy- reachBy-road"></div>
           <div class="reachByDesc">
             <p>BY ROAD</p>
             <p>
@@ -665,7 +674,14 @@ destinationEles.forEach(destinationEle => {
         goToHotels.addEventListener("click", (evt) => {
             window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
         });
-
+        const topImgs = document.querySelectorAll('.topAttractionImage')
+          Array.from(topImgs).forEach( el =>{
+              fetch("https://api.unsplash.com/photos/random?query=travel&client_id=uEKuqX6Pyj60Sp7kG8ShXlLzsXBK7GXBTF20c4TjL_c")
+          .then(res => res.json())
+          .then(data => {
+            el.style.backgroundImage = `url(${data.urls.full})`;
+          });
+        })
         const overViewBtn = document.querySelector('.destinationDialog__main-tabs-btn')
         overViewBtn.focus();
         document.querySelector('.tabOverview').classList.add('active')
@@ -1186,4 +1202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+if(!Auth.isLoggedIn()){
+        document.getElementById('hd-btn-book').innerText = "Login To Book"
+      }
 </script>

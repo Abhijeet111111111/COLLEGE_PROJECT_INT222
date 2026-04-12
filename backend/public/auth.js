@@ -62,7 +62,7 @@ const Auth = (() => {
     function logout() {
         _clear();
         updateNavbar();
-        window.location.href = 'login.html';
+        window.location.href = '/user/logout';
     }
 
     /* ── Auth guard ──────────────────────────────────────────── */
@@ -121,11 +121,11 @@ const Auth = (() => {
             <div class="nav-dd-name">${user.name}</div>
             <div class="nav-dd-email">${user.email}</div>
           </div>
-          <a class="nav-dd-item" href="dashboard.html">
+          <a class="nav-dd-item" href="/dashboard">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
             My Dashboard
           </a>
-          <a class="nav-dd-item" href="dashboard.html#bookings">
+          <a class="nav-dd-item" href="/dashboard#bookings">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h12" stroke="currentColor" stroke-width="1.2"/><path d="M4 1v2M10 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             My Bookings
           </a>
@@ -149,8 +149,8 @@ const Auth = (() => {
 
         } else {
             avatarSlot.innerHTML = `
-        <a class="nav-btn-ghost" href="login.html">Log in</a>
-        <a class="nav-btn-primary" href="login.html?mode=signup">Sign up</a>
+        <a class="nav-btn-ghost" href="/login">Log in</a>
+        <a class="nav-btn-primary" href="/login?mode=signup">Sign up</a>
       `;
         }
 

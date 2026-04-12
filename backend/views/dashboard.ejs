@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Dashboard — WanderSmart</title>
+  <link rel="stylesheet" href="/dashboard.css"/>
+  <link rel="stylesheet" href="/nav-auth.css"/>
+  <link rel="stylesheet" href="/dashboard-auth.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <a class="nav-logo" href="/">Wander<span>Smart</span></a>
+  <div class="nav-links">
+    <a href="/explore">Explore</a>
+    <a href="/hotels">Hotels</a>
+    <a href="/tours">Tours</a>
+    <a href="/dashboard" class="active" id="nav-dashboard-link">Dashboard</a>
+  </div>
+  <div id="nav-auth-slot"></div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════
+     NOT LOGGED IN — show gate
+════════════════════════════════════════════════════════════ -->
+<div id="dashboard-gate" style="display:none" class="dash-login-prompt">
+  <div class="dlp-icon">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+      <rect x="6" y="18" width="32" height="22" rx="4" stroke="#1D9E75" stroke-width="2.2"/>
+      <path d="M14 18v-5a8 8 0 0116 0v5" stroke="#1D9E75" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="22" cy="29" r="3" fill="#1D9E75"/>
+    </svg>
+  </div>
+  <h2 class="dlp-title">Sign in to view your dashboard</h2>
+  <p class="dlp-sub">Your bookings, trips, and travel history are waiting.</p>
+  <div class="dlp-btns">
+    <a class="dlp-btn-primary" href="/login">Log in</a>
+    <a class="dlp-btn-ghost" href="/login">Create account</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     LOGGED IN — dashboard content
+════════════════════════════════════════════════════════════ -->
+<div id="dashboard-content" style="display:none">
+
+  <!-- ── Profile hero banner ───────────────────────────────── -->
+  <div class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="ph-avatar">?</div>
+        <label class="avatar-upload-btn" title="Upload photo">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="file" id="avatar-file-input" accept="image/*" style="display:none"/>
+        </label>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name" id="ph-name">Loading...</div>
+        <div class="profile-email" id="ph-email"></div>
+        <div class="profile-meta" id="ph-meta"></div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-edit-profile" id="btn-edit-profile">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9.5 1.5l3 3L4 13H1v-3L9.5 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          Edit profile
+        </button>
+        <button class="btn-change-pw" id="btn-change-pw">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="6" width="12" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 6V4a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Change password
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Stats strip ────────────────────────────────────────── -->
+  <div class="dash-stats" id="dash-stats">
+    <div class="dstat">
+      <div class="dstat-num" id="stat-hotels">—</div>
+      <div class="dstat-lbl">Hotel bookings</div>
+    </div>
+    <div class="dstat-divider"></div>
+    <div class="dstat">
+      <div class="dstat-num" id="stat-tours">—</div>
+      <div class="dstat-lbl">Tour bookings</div>
+    </div>
+    <div class="dstat-divider"></div>
+    <div class="dstat">
+      <div class="dstat-num" id="stat-spent">—</div>
+      <div class="dstat-lbl">Total spent</div>
+    </div>
+    <div class="dstat-divider"></div>
+    <div class="dstat">
+      <div class="dstat-num" id="stat-upcoming">—</div>
+      <div class="dstat-lbl">Upcoming trips</div>
+    </div>
+  </div>
+
+  <!-- ── Main content area ──────────────────────────────────── -->
+  <div class="dash-body">
+
+    <!-- ── Sidebar tabs ────────────────────────────────────── -->
+    <div class="dash-sidebar">
+      <button class="dash-tab active" data-tab="hotels">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 14V6l6-4 6 4v8" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <rect x="5" y="9" width="2.5" height="5" rx="0.5" fill="currentColor"/>
+          <rect x="8.5" y="9" width="2.5" height="5" rx="0.5" fill="currentColor"/>
+          <path d="M1 14h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        Hotel bookings
+        <span class="tab-badge" id="tab-badge-hotels">0</span>
+      </button>
+      <button class="dash-tab" data-tab="tours">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="8" cy="6" r="1.8" stroke="currentColor" stroke-width="1.1"/>
+        </svg>
+        Tour bookings
+        <span class="tab-badge" id="tab-badge-tours">0</span>
+      </button>
+      <button class="dash-tab" data-tab="profile">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M2 13c0-2.76 2.69-5 6-5s6 2.24 6 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        Profile settings
+      </button>
+    </div>
+
+    <!-- ── Tab panels ──────────────────────────────────────── -->
+    <div class="dash-panel">
+
+      <!-- HOTEL BOOKINGS ─────────────────────────────────────────── -->
+      <div id="panel-hotels" class="tab-panel">
+        <div class="panel-header">
+          <div class="panel-title">Hotel bookings</div>
+          <a href="/hotels" class="panel-action">Browse hotels →</a>
+        </div>
+        <div id="hotel-bookings-loading" class="panel-loading">Loading your hotel bookings...</div>
+        <div id="hotel-bookings-empty"   class="panel-empty" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M6 42V18L24 6l18 12v24" stroke="#555" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="15" y="27" width="7" height="15" rx="1" fill="#333" stroke="#555" stroke-width="1.5"/>
+            <rect x="26" y="27" width="7" height="15" rx="1" fill="#333" stroke="#555" stroke-width="1.5"/>
+          </svg>
+          <p>No hotel bookings yet</p>
+          <a href="/hotels" class="empty-cta">Find a hotel</a>
+        </div>
+        <div id="hotel-bookings-list" class="bookings-list" style="display:none"></div>
+      </div>
+
+      <!-- TOUR BOOKINGS ──────────────────────────────────────────── -->
+      <div id="panel-tours" class="tab-panel" style="display:none">
+        <div class="panel-header">
+          <div class="panel-title">Tour bookings</div>
+          <a href="tours.html" class="panel-action">Browse tours →</a>
+        </div>
+        <div id="tour-bookings-loading" class="panel-loading">Loading your tour bookings...</div>
+        <div id="tour-bookings-empty"   class="panel-empty" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4C15.16 4 8 11.16 8 20c0 12.44 16 28 16 28s16-15.56 16-28c0-8.84-7.16-16-16-16z" stroke="#555" stroke-width="2"/>
+            <circle cx="24" cy="20" r="5" stroke="#555" stroke-width="2"/>
+          </svg>
+          <p>No tour bookings yet</p>
+          <a href="tours.html" class="empty-cta">Explore tours</a>
+        </div>
+        <div id="tour-bookings-list" class="bookings-list" style="display:none"></div>
+      </div>
+
+      <!-- PROFILE SETTINGS ───────────────────────────────────────── -->
+      <div id="panel-profile" class="tab-panel" style="display:none">
+        <div class="panel-header">
+          <div class="panel-title">Profile settings</div>
+        </div>
+
+        <!-- Update details form -->
+        <div class="settings-section">
+          <div class="settings-section-title">Personal information</div>
+          <div class="settings-section-sub">Update your name, email address, and phone number.</div>
+
+          <div class="settings-form" id="profile-update-form">
+            <div class="sf-row">
+              <div class="sf-field">
+                <label class="sf-label">Full name</label>
+                <input id="upd-name"  class="sf-input" type="text"  placeholder="Your full name"/>
+              </div>
+              <div class="sf-field">
+                <label class="sf-label">Phone number</label>
+                <input id="upd-phone" class="sf-input" type="tel"   placeholder="+91 98765 43210"/>
+              </div>
+            </div>
+            <div class="sf-field">
+              <label class="sf-label">Email address</label>
+              <input id="upd-email" class="sf-input" type="email" placeholder="you@example.com"/>
+            </div>
+            <div class="sf-error" id="upd-error" style="display:none"></div>
+            <div class="sf-success" id="upd-success" style="display:none"></div>
+            <div class="sf-footer">
+              <button class="btn-save" id="btn-save-profile">
+                <span id="save-txt">Save changes</span>
+                <div class="mini-spinner" id="save-spin" style="display:none"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change password form -->
+        <div class="settings-section">
+          <div class="settings-section-title">Change password</div>
+          <div class="settings-section-sub">Use a strong password of at least 8 characters.</div>
+
+          <div class="settings-form">
+            <div class="sf-field">
+              <label class="sf-label">Current password</label>
+              <div class="sf-input-wrap">
+                <input id="pw-current" class="sf-input" type="password" placeholder="Your current password"/>
+                <button class="sf-eye" type="button" onclick="toggleSfPw('pw-current')">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="sf-row">
+              <div class="sf-field">
+                <label class="sf-label">New password</label>
+                <div class="sf-input-wrap">
+                  <input id="pw-new"     class="sf-input" type="password" placeholder="Min 8 characters"/>
+                  <button class="sf-eye" type="button" onclick="toggleSfPw('pw-new')">
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="sf-field">
+                <label class="sf-label">Confirm new password</label>
+                <div class="sf-input-wrap">
+                  <input id="pw-confirm" class="sf-input" type="password" placeholder="Repeat new password"/>
+                </div>
+              </div>
+            </div>
+            <!-- Password strength bar -->
+            <div class="pw-strength-wrap" id="pw-strength-wrap" style="display:none">
+              <div class="pw-strength-bar" id="pw-strength-bar"></div>
+              <span id="pw-strength-lbl"></span>
+            </div>
+            <div class="sf-error"   id="pw-error"   style="display:none"></div>
+            <div class="sf-success" id="pw-success" style="display:none"></div>
+            <div class="sf-footer">
+              <button class="btn-save btn-pw" id="btn-change-pw-submit">
+                <span id="pw-txt">Update password</span>
+                <div class="mini-spinner" id="pw-spin" style="display:none"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger zone -->
+        <div class="settings-section danger-zone">
+          <div class="settings-section-title danger-title">Danger zone</div>
+          <div class="settings-section-sub">Once you delete your account, there is no going back.</div>
+          <button class="btn-danger" onclick="confirmDelete()">Delete my account</button>
+        </div>
+      </div>
+
+    </div><!-- /dash-panel -->
+  </div><!-- /dash-body -->
+</div><!-- /dashboard-content -->
+
+<!-- ════════════════════════════════════════════════════════════
+     EDIT PROFILE MODAL
+════════════════════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="edit-modal-backdrop" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Edit profile</div>
+      <button class="modal-close" onclick="closeEditModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <div class="sf-row">
+        <div class="sf-field">
+          <label class="sf-label">Full name</label>
+          <input id="m-name"  class="sf-input" type="text"  placeholder="Your full name"/>
+        </div>
+        <div class="sf-field">
+          <label class="sf-label">Phone number</label>
+          <input id="m-phone" class="sf-input" type="tel"   placeholder="+91 98765 43210"/>
+        </div>
+      </div>
+      <div class="sf-field">
+        <label class="sf-label">Email address</label>
+        <input id="m-email" class="sf-input" type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="sf-error"   id="m-error"   style="display:none"></div>
+      <div class="sf-success" id="m-success" style="display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeEditModal()">Cancel</button>
+      <button class="btn-save" id="btn-modal-save">
+        <span id="m-save-txt">Save changes</span>
+        <div class="mini-spinner" id="m-spin" style="display:none"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     CHANGE PASSWORD MODAL
+════════════════════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="pw-modal-backdrop" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Change password</div>
+      <button class="modal-close" onclick="closePwModal()">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <div class="sf-field">
+        <label class="sf-label">Current password <span class="req">*</span></label>
+        <div class="sf-input-wrap">
+          <input id="mp-current" class="sf-input" type="password" placeholder="Your current password"/>
+          <button class="sf-eye" type="button" onclick="toggleSfPw('mp-current')">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="sf-field">
+        <label class="sf-label">New password <span class="req">*</span></label>
+        <div class="sf-input-wrap">
+          <input id="mp-new" class="sf-input" type="password" placeholder="At least 8 characters" oninput="checkMpStrength(this.value)"/>
+          <button class="sf-eye" type="button" onclick="toggleSfPw('mp-new')">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+          </button>
+        </div>
+        <div class="pw-strength-wrap" id="mp-strength-wrap" style="display:none">
+          <div class="pw-strength-bar" id="mp-strength-bar"></div>
+          <span id="mp-strength-lbl"></span>
+        </div>
+      </div>
+      <div class="sf-field">
+        <label class="sf-label">Confirm new password <span class="req">*</span></label>
+        <input id="mp-confirm" class="sf-input" type="password" placeholder="Repeat new password"/>
+      </div>
+      <div class="sf-error"   id="mp-error"   style="display:none"></div>
+      <div class="sf-success" id="mp-success" style="display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closePwModal()">Cancel</button>
+      <button class="btn-save btn-pw" id="btn-mp-save">
+        <span id="mp-txt">Update password</span>
+        <div class="mini-spinner" id="mp-spin" style="display:none"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast notification ────────────────────────────────────── -->
+<div class="toast" id="toast" style="display:none"></div>
+
+<script src="auth.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
