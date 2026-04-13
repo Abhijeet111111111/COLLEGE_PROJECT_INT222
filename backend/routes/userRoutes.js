@@ -4,7 +4,7 @@ import userController from '../controllers/userControllers.js';
 
 const router = express.Router();
 
-console.log(userController);
+
 
 router.route('/signup').post(authController.signup)
 router.route('/login').post(authController.login);
@@ -19,7 +19,7 @@ router.use(authController.protect);
 
 router.patch('/updatePassword', authController.updatePassword);
 router.get('/me', userController.getMe, userController.getUser);
-router.patch('/updateMe', userController.updateMe);
+router.put('/updateMe', userController.updateMe);
 router.delete('/deleteMe', userController.deleteMe)
 
 // Access only by admin :-
@@ -28,6 +28,7 @@ router
     .route('/')
     .get(userController.getUsers)
     .post(userController.makeUser)
+
 
 router
     .route('/:id')

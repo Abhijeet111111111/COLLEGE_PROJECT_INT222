@@ -399,7 +399,7 @@
         </section>
         <section class="main__featured-hotels__hotels">
           <% for(let i=0;i<4;i++){ %>
-            <article class="main__featured-hotel" onclick="openHotelDialog('<%=hotel[i].id%>')">
+            <article class="main__featured-hotel" onclick="openHotelDialog('<%=hotel[i]._id%>')">
             <section class="main__featured-hotel__about">
               <div class="main__featured-hotel__about-img" style="background-image: url('hotels/<%= hotel[i].images[0] %>')"></div>
               <div class="main__featured-hotel__about-details">

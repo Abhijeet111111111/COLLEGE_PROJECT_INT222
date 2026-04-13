@@ -15,7 +15,8 @@ const API = Auth.API;
    SVG THUMBS — inline illustrations per hotel/tour
 ══════════════════════════════════════════════════════════════ */
 const HOTEL_SVG = {
-  H001: { bg:'#f4a843', svg:`<rect width="140" height="140" fill="#f4a843"/>
+  H001: {
+    bg: '#f4a843', svg: `<rect width="140" height="140" fill="#f4a843"/>
     <rect y="95" width="140" height="45" fill="#c8a96e"/>
     <circle cx="115" cy="24" r="20" fill="#f97316" opacity=".8"/>
     <rect x="10" y="46" width="120" height="68" fill="#e8c98a"/>
@@ -29,7 +30,8 @@ const HOTEL_SVG = {
     <rect x="55" y="22" width="30" height="26" fill="#e8c98a"/>
     <polygon points="70,4 46,26 94,26" fill="#d4a855"/>
     <circle cx="70" cy="0" r="6" fill="#f97316"/>` },
-  H002: { bg:'#c8952a', svg:`<rect width="140" height="140" fill="#c8952a"/>
+  H002: {
+    bg: '#c8952a', svg: `<rect width="140" height="140" fill="#c8952a"/>
     <rect y="100" width="140" height="40" fill="#9e6e1a"/>
     <circle cx="118" cy="22" r="16" fill="#e8b040" opacity=".9"/>
     <rect x="20" y="54" width="100" height="64" fill="#d4a030"/>
@@ -37,7 +39,8 @@ const HOTEL_SVG = {
     <circle cx="70" cy="10" r="8" fill="#f4c050"/>
     <rect x="40" y="76" width="26" height="42" fill="#9e6e1a"/>
     <rect x="74" y="76" width="26" height="42" fill="#9e6e1a"/>` },
-  H003: { bg:'#B5D4F4', svg:`<rect width="140" height="140" fill="#B5D4F4"/>
+  H003: {
+    bg: '#B5D4F4', svg: `<rect width="140" height="140" fill="#B5D4F4"/>
     <rect y="104" width="140" height="36" fill="#5DCAA5"/>
     <rect x="20" y="48" width="100" height="72" fill="#378ADD"/>
     <rect x="20" y="42" width="100" height="8" fill="#185FA5"/>
@@ -49,7 +52,8 @@ const HOTEL_SVG = {
     <ellipse cx="7" cy="56" rx="18" ry="24" fill="#639922"/>
     <rect x="126" y="68" width="14" height="52" fill="#3B6D11" rx="2"/>
     <ellipse cx="133" cy="60" rx="16" ry="22" fill="#639922"/>` },
-  H004: { bg:'#9FE1CB', svg:`<rect width="140" height="140" fill="#9FE1CB"/>
+  H004: {
+    bg: '#9FE1CB', svg: `<rect width="140" height="140" fill="#9FE1CB"/>
     <rect y="105" width="140" height="35" fill="#5DCAA5"/>
     <rect x="22" y="50" width="96" height="72" fill="#0F6E56"/>
     <rect x="22" y="44" width="96" height="8" fill="#085041"/>
@@ -63,7 +67,8 @@ const HOTEL_SVG = {
     <ellipse cx="11" cy="64" rx="18" ry="22" fill="#639922"/>
     <rect x="122" y="76" width="14" height="44" fill="#27500A" rx="2"/>
     <ellipse cx="129" cy="68" rx="16" ry="20" fill="#639922"/>` },
-  H009: { bg:'#CECBF6', svg:`<rect width="140" height="140" fill="#CECBF6"/>
+  H009: {
+    bg: '#CECBF6', svg: `<rect width="140" height="140" fill="#CECBF6"/>
     <rect y="104" width="140" height="36" fill="#AFA9EC"/>
     <rect x="14" y="46" width="112" height="72" fill="#534AB7"/>
     <rect x="14" y="40" width="112" height="8" fill="#3C3489"/>
@@ -77,9 +82,9 @@ const HOTEL_SVG = {
 };
 
 const TOUR_COLORS = {
-  Adventure:'#B5D4F4', Culture:'#9FE1CB', Wildlife:'#FAC775',
-  Spiritual:'#CECBF6', Beach:'#9FE1CB',   Budget:'#C0DD97',
-  Luxury:'#FAC775',    Family:'#B5D4F4',
+  Adventure: '#B5D4F4', Culture: '#9FE1CB', Wildlife: '#FAC775',
+  Spiritual: '#CECBF6', Beach: '#9FE1CB', Budget: '#C0DD97',
+  Luxury: '#FAC775', Family: '#B5D4F4',
 };
 
 function hotelThumb(hotel) {
@@ -98,7 +103,7 @@ function hotelThumb(hotel) {
 function tourThumb(booking) {
   const color = TOUR_COLORS[booking.tourCategory] || '#B5D4F4';
   // pick letter(s) from tour title
-  const initials = (booking.tourTitle || 'T').split(' ').map(w => w[0]).join('').substring(0,2);
+  const initials = (booking.tourTitle || 'T').split(' ').map(w => w[0]).join('').substring(0, 2);
   return `<div class="bc-thumb-fallback" style="background:${color};min-height:140px;">
     <span style="font-size:28px;font-weight:600;color:rgba(0,0,0,0.25);">${initials}</span>
   </div>`;
@@ -109,12 +114,12 @@ function tourThumb(booking) {
 ══════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   if (!Auth.isLoggedIn()) {
-    document.getElementById('dashboard-gate').style.display    = 'flex';
+    document.getElementById('dashboard-gate').style.display = 'flex';
     document.getElementById('dashboard-content').style.display = 'none';
     return;
   }
 
-  document.getElementById('dashboard-gate').style.display    = 'none';
+  document.getElementById('dashboard-gate').style.display = 'none';
   document.getElementById('dashboard-content').style.display = 'block';
 
   populateProfile();
@@ -146,18 +151,18 @@ function populateProfile() {
     avatarEl.textContent = initials;
   }
 
-  document.getElementById('ph-name').textContent  = user.name  || 'User';
+  document.getElementById('ph-name').textContent = user.name || 'User';
   document.getElementById('ph-email').textContent = user.email || '';
-  document.getElementById('ph-meta').textContent  = user.phone ? `📞 ${user.phone}` : '';
+  document.getElementById('ph-meta').textContent = user.phone ? `📞 ${user.phone}` : '';
 
   // Pre-fill both profile forms
-  ['upd-name','m-name'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = user.name  || '';
+  ['upd-name', 'm-name'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = user.name || '';
   });
-  ['upd-email','m-email'].forEach(id => {
+  ['upd-email', 'm-email'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = user.email || '';
   });
-  ['upd-phone','m-phone'].forEach(id => {
+  ['upd-phone', 'm-phone'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = user.phone || '';
   });
 }
@@ -214,18 +219,20 @@ function setupTabs() {
 ══════════════════════════════════════════════════════════════ */
 async function loadHotelBookings() {
   try {
-    const res  = await Auth.authFetch(`${API}/api/user/bookings/hotels`);
+    const curruser = Auth.getUser();
+    const res = await Auth.authFetch(`${API}/bookings/hotel/${curruser.email}`);
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
-    renderHotelBookings(data.bookings || []);
+    console.log(data)
+    renderHotelBookings(data || []);
   } catch (err) {
     console.warn('Hotel bookings fetch failed, using fallback:', err);
     // Fallback: load all bookings and filter by user email
     try {
-      const res2  = await Auth.authFetch(`${API}/api/bookings`);
+      const res2 = await Auth.authFetch(`${API}/bookings`);
       const data2 = await res2.json();
-      const user  = Auth.getUser();
-      const mine  = (data2.bookings || []).filter(b =>
+      const user = Auth.getUser();
+      const mine = (data2.bookings || []).filter(b =>
         b.guest && b.guest.email && user && b.guest.email.toLowerCase() === user.email.toLowerCase()
       );
       renderHotelBookings(mine);
@@ -237,9 +244,9 @@ async function loadHotelBookings() {
 
 function renderHotelBookings(bookings) {
   const loading = document.getElementById('hotel-bookings-loading');
-  const empty   = document.getElementById('hotel-bookings-empty');
-  const list    = document.getElementById('hotel-bookings-list');
-  const badge   = document.getElementById('tab-badge-hotels');
+  const empty = document.getElementById('hotel-bookings-empty');
+  const list = document.getElementById('hotel-bookings-list');
+  const badge = document.getElementById('tab-badge-hotels');
 
   loading.style.display = 'none';
   badge.textContent = bookings.length;
@@ -251,15 +258,15 @@ function renderHotelBookings(bookings) {
 
   if (!bookings.length) {
     empty.style.display = 'flex';
-    list.style.display  = 'none';
+    list.style.display = 'none';
     return;
   }
 
   empty.style.display = 'none';
-  list.style.display  = 'flex';
+  list.style.display = 'flex';
 
   // Sort newest first
-  bookings.sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
+  bookings.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
 
   bookings.forEach(b => {
     const card = document.createElement('div');
@@ -268,13 +275,16 @@ function renderHotelBookings(bookings) {
     // Determine status
     const isUpcoming = b.guest && new Date(b.guest.checkOut) >= new Date();
     const statusClass = b.status === 'confirmed' ? 'status-confirmed' : 'status-pending';
-    const statusText  = isUpcoming ? 'Upcoming' : (b.status || 'Confirmed');
+    const statusText = isUpcoming ? 'Upcoming' : (b.status || 'Confirmed');
 
     // Tags to show
     const tags = [
       { text: statusText, cls: statusClass },
       ...(b.paymentMethod ? [{ text: b.paymentMethod, cls: '' }] : []),
     ];
+
+    b.guest.checkIn = new Date(b.guest.checkIn).toDateString()
+    b.guest.checkOut = new Date(b.guest.checkOut).toDateString()
 
     card.innerHTML = `
       <div class="bc-thumb">${hotelThumb(b)}</div>
@@ -294,7 +304,7 @@ function renderHotelBookings(bookings) {
         </div>
         <div class="bc-footer">
           <div>
-            <div class="bc-amount">₹${Number(b.totalAmount||0).toLocaleString('en-IN')}</div>
+            <div class="bc-amount">₹${Number(b.totalAmount || 0).toLocaleString('en-IN')}</div>
             <div class="bc-ref">Ref: ${b.bookingRef || '—'}</div>
           </div>
           <button class="bc-btn-view" onclick="alert('Booking ref: ${b.bookingRef}\\nHotel: ${b.hotelName}\\nStatus: ${b.status}')">View details</button>
@@ -305,7 +315,7 @@ function renderHotelBookings(bookings) {
   });
 
   // Total spent
-  const totalHotel = bookings.reduce((s,b) => s + Number(b.totalAmount||0), 0);
+  const totalHotel = bookings.reduce((s, b) => s + Number(b.totalAmount || 0), 0);
   window._totalHotel = totalHotel;
   updateSpentStat();
 }
@@ -315,17 +325,19 @@ function renderHotelBookings(bookings) {
 ══════════════════════════════════════════════════════════════ */
 async function loadTourBookings() {
   try {
-    const res  = await Auth.authFetch(`${API}/api/user/bookings/tours`);
+    const user = Auth.getUser();
+    const res = await Auth.authFetch(`${API}/bookings/tours/${user.email}`);
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
-    renderTourBookings(data.bookings || []);
+    console.log(data);
+    renderTourBookings(data || []);
   } catch (err) {
     console.warn('Tour bookings fetch failed, using fallback:', err);
     try {
-      const res2  = await Auth.authFetch(`${API}/api/tours/bookings`);
+      const res2 = await Auth.authFetch(`${API}/bookings`);
       const data2 = await res2.json();
-      const user  = Auth.getUser();
-      const mine  = (data2.bookings || []).filter(b =>
+      const user = Auth.getUser();
+      const mine = (data2.bookings || []).filter(b =>
         b.traveller && b.traveller.email && user &&
         b.traveller.email.toLowerCase() === user.email.toLowerCase()
       );
@@ -338,9 +350,9 @@ async function loadTourBookings() {
 
 function renderTourBookings(bookings) {
   const loading = document.getElementById('tour-bookings-loading');
-  const empty   = document.getElementById('tour-bookings-empty');
-  const list    = document.getElementById('tour-bookings-list');
-  const badge   = document.getElementById('tab-badge-tours');
+  const empty = document.getElementById('tour-bookings-empty');
+  const list = document.getElementById('tour-bookings-list');
+  const badge = document.getElementById('tab-badge-tours');
 
   loading.style.display = 'none';
   badge.textContent = bookings.length;
@@ -351,52 +363,52 @@ function renderTourBookings(bookings) {
 
   if (!bookings.length) {
     empty.style.display = 'flex';
-    list.style.display  = 'none';
+    list.style.display = 'none';
     return;
   }
   empty.style.display = 'none';
-  list.style.display  = 'flex';
+  list.style.display = 'flex';
 
-  bookings.sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
+  bookings.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
 
   bookings.forEach(b => {
     const card = document.createElement('div');
     card.className = 'booking-card';
 
-    const isUpcoming  = b.travelDate && new Date(b.travelDate) >= new Date();
+    const isUpcoming = b.travelDate && new Date(b.travelDate) >= new Date();
     const statusClass = b.status === 'confirmed' ? 'status-confirmed' : 'status-pending';
-    const itinStr     = (b.itinerary || []).map(i => i.place).join(' → ') || '';
+    const itinStr = (b.itinerary || []).map(i => i.place).join(' → ') || '';
 
     card.innerHTML = `
       <div class="bc-thumb">${tourThumb(b)}</div>
       <div class="bc-body">
         <div class="bc-top">
           <div class="bc-name">${b.tourTitle || '—'}</div>
-          <div class="bc-sub">${b.tourCategory || ''} · ${b.days||'?'} days, ${b.nights||'?'} nights${itinStr ? ' · '+itinStr : ''}</div>
+          <div class="bc-sub">${b.tourCategory || ''} · ${b.days || '?'} days, ${b.nights || '?'} nights${itinStr ? ' · ' + itinStr : ''}</div>
           <div class="bc-tags">
-            <span class="bc-tag ${statusClass}">${isUpcoming ? 'Upcoming' : (b.status||'Confirmed')}</span>
-            <span class="bc-tag">${b.tourCategory||''}</span>
+            <span class="bc-tag ${statusClass}">${isUpcoming ? 'Upcoming' : (b.status || 'Confirmed')}</span>
+            <span class="bc-tag">${b.tourCategory || ''}</span>
             ${b.paymentMethod ? `<span class="bc-tag">${b.paymentMethod}</span>` : ''}
           </div>
           <div class="bc-details">
-            <div class="bc-detail"><strong>Travel date</strong>${b.travelDate || '—'}</div>
+            <div class="bc-detail"><strong>Travel date</strong>${new Date(b.travelDate).toDateString() || '—'}</div>
             <div class="bc-detail"><strong>Travellers</strong>${b.travellers || '—'}</div>
-            <div class="bc-detail"><strong>Per person</strong>₹${Number(b.pricePerPerson||0).toLocaleString('en-IN')}</div>
+            <div class="bc-detail"><strong>Per person</strong>₹${Number(b.pricePerPerson || 0).toLocaleString('en-IN')}</div>
           </div>
         </div>
         <div class="bc-footer">
           <div>
-            <div class="bc-amount">₹${Number(b.totalAmount||0).toLocaleString('en-IN')}</div>
+            <div class="bc-amount">₹${Number(b.totalAmount || 0).toLocaleString('en-IN')}</div>
             <div class="bc-ref">Ref: ${b.bookingRef || '—'}</div>
           </div>
-          <button class="bc-btn-view" onclick="alert('Booking ref: ${b.bookingRef}\\nTour: ${b.tourTitle}\\nDate: ${b.travelDate}\\nStatus: ${b.status}')">View details</button>
+          <button class="bc-btn-view" onclick="alert('Booking ref: ${b.bookingRef}\\nTour: ${b.tourTitle}\\nDate: ${new Date(b.travelDate).toDateString()}\\nStatus: ${b.status}')">View details</button>
         </div>
       </div>
     `;
     list.appendChild(card);
   });
 
-  const totalTour = bookings.reduce((s,b) => s + Number(b.totalAmount||0), 0);
+  const totalTour = bookings.reduce((s, b) => s + Number(b.totalAmount || 0), 0);
   window._totalTour = totalTour;
   updateSpentStat();
 }
@@ -405,7 +417,7 @@ function renderTourBookings(bookings) {
 let _upcomingHotel = 0, _upcomingTour = 0;
 function updateUpcomingStat(n, type) {
   if (type === 'hotel') _upcomingHotel = n;
-  if (type === 'tour')  _upcomingTour  = n;
+  if (type === 'tour') _upcomingTour = n;
   document.getElementById('stat-upcoming').textContent = _upcomingHotel + _upcomingTour;
 }
 function updateSpentStat() {
@@ -420,7 +432,7 @@ function updateSpentStat() {
 function openEditModal() {
   const user = Auth.getUser();
   if (user) {
-    document.getElementById('m-name').value  = user.name  || '';
+    document.getElementById('m-name').value = user.name || '';
     document.getElementById('m-email').value = user.email || '';
     document.getElementById('m-phone').value = user.phone || '';
   }
@@ -451,20 +463,20 @@ function setupProfileForm() {
 }
 
 async function saveProfile(nameId, emailId, phoneId, errId, succId, txtId, spinId, isModal = false) {
-  const name  = document.getElementById(nameId).value.trim();
+  const name = document.getElementById(nameId).value.trim();
   const email = document.getElementById(emailId).value.trim();
   const phone = document.getElementById(phoneId).value.trim();
 
   hideMsg(errId); hideMsg(succId);
 
-  if (!name)  { showMsg(errId, 'Full name is required.');     markErr(nameId);  return; }
+  if (!name) { showMsg(errId, 'Full name is required.'); markErr(nameId); return; }
   if (!email) { showMsg(errId, 'Email address is required.'); markErr(emailId); return; }
 
   setLoading(txtId, spinId, true);
   try {
-    const res  = await Auth.authFetch(`${API}/api/user/profile`, {
+    const res = await Auth.authFetch(`${API}/users/updateMe`, {
       method: 'PUT',
-      body:   JSON.stringify({ name, email, phone }),
+      body: JSON.stringify({ name, email, phone }),
     });
     const data = await res.json();
 
@@ -491,7 +503,7 @@ async function saveProfile(nameId, emailId, phoneId, errId, succId, txtId, spinI
    PASSWORD MODAL
 ══════════════════════════════════════════════════════════════ */
 function openPwModal() {
-  ['mp-current','mp-new','mp-confirm'].forEach(id => {
+  ['mp-current', 'mp-new', 'mp-confirm'].forEach(id => {
     document.getElementById(id).value = '';
   });
   hideMsg('mp-error'); hideMsg('mp-success');
@@ -504,26 +516,26 @@ function closePwModal() {
 }
 
 function checkMpStrength(v) {
-  const wrap  = document.getElementById('mp-strength-wrap');
-  const bar   = document.getElementById('mp-strength-bar');
-  const lbl   = document.getElementById('mp-strength-lbl');
+  const wrap = document.getElementById('mp-strength-wrap');
+  const bar = document.getElementById('mp-strength-bar');
+  const lbl = document.getElementById('mp-strength-lbl');
   if (!v) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'flex';
   let score = 0;
-  if (v.length >= 8)          score++;
-  if (/[A-Z]/.test(v))        score++;
-  if (/[0-9]/.test(v))        score++;
+  if (v.length >= 8) score++;
+  if (/[A-Z]/.test(v)) score++;
+  if (/[0-9]/.test(v)) score++;
   if (/[^A-Za-z0-9]/.test(v)) score++;
   const map = [
-    { w:'25%',  bg:'#E24B4A', lbl:'Weak'   },
-    { w:'50%',  bg:'#EF9F27', lbl:'Fair'   },
-    { w:'75%',  bg:'#1D9E75', lbl:'Good'   },
-    { w:'100%', bg:'#085041', lbl:'Strong' },
+    { w: '25%', bg: '#E24B4A', lbl: 'Weak' },
+    { w: '50%', bg: '#EF9F27', lbl: 'Fair' },
+    { w: '75%', bg: '#1D9E75', lbl: 'Good' },
+    { w: '100%', bg: '#085041', lbl: 'Strong' },
   ];
-  const s       = map[score - 1] || map[0];
-  bar.style.cssText     = `width:${s.w};background:${s.bg};height:3px;border-radius:3px;`;
-  lbl.textContent       = s.lbl;
-  lbl.style.color       = s.bg;
+  const s = map[score - 1] || map[0];
+  bar.style.cssText = `width:${s.w};background:${s.bg};height:3px;border-radius:3px;`;
+  lbl.textContent = s.lbl;
+  lbl.style.color = s.bg;
 }
 
 function setupPasswordModal() {
@@ -543,7 +555,7 @@ function setupPasswordModal() {
 
 async function changePassword() {
   const current = document.getElementById('mp-current').value;
-  const newPw   = document.getElementById('mp-new').value;
+  const newPw = document.getElementById('mp-new').value;
   const confirm = document.getElementById('mp-confirm').value;
 
   hideMsg('mp-error'); hideMsg('mp-success');
@@ -554,9 +566,9 @@ async function changePassword() {
 
   setLoading('mp-txt', 'mp-spin', true);
   try {
-    const res  = await Auth.authFetch(`${API}/api/user/password`, {
+    const res = await Auth.authFetch(`${API}/users/updateMe`, {
       method: 'PUT',
-      body:   JSON.stringify({ currentPassword: current, newPassword: newPw }),
+      body: JSON.stringify({ currentPassword: current, newPassword: newPw }),
     });
     const data = await res.json();
 
@@ -564,7 +576,7 @@ async function changePassword() {
 
     showMsg('mp-success', 'Password updated successfully!');
     showToast('Password changed', 'success');
-    ['mp-current','mp-new','mp-confirm'].forEach(id => document.getElementById(id).value = '');
+    ['mp-current', 'mp-new', 'mp-confirm'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('mp-strength-wrap').style.display = 'none';
     setTimeout(closePwModal, 1600);
 
@@ -577,7 +589,7 @@ async function changePassword() {
 
 async function changePasswordInline() {
   const current = document.getElementById('pw-current').value;
-  const newPw   = document.getElementById('pw-new').value;
+  const newPw = document.getElementById('pw-new').value;
   const confirm = document.getElementById('pw-confirm').value;
 
   hideMsg('pw-error'); hideMsg('pw-success');
@@ -588,15 +600,15 @@ async function changePasswordInline() {
 
   setLoading('pw-txt', 'pw-spin', true);
   try {
-    const res  = await Auth.authFetch(`${API}/api/user/password`, {
+    const res = await Auth.authFetch(`${API}/users/updateMe`, {
       method: 'PUT',
-      body:   JSON.stringify({ currentPassword: current, newPassword: newPw }),
+      body: JSON.stringify({ currentPassword: current, newPassword: newPw }),
     });
     const data = await res.json();
     if (!res.ok) { showMsg('pw-error', data.message || 'Password change failed.'); return; }
     showMsg('pw-success', 'Password updated!');
     showToast('Password changed', 'success');
-    ['pw-current','pw-new','pw-confirm'].forEach(id => document.getElementById(id).value = '');
+    ['pw-current', 'pw-new', 'pw-confirm'].forEach(id => document.getElementById(id).value = '');
   } catch {
     showMsg('pw-error', 'Cannot connect to server.');
   } finally {
@@ -606,8 +618,8 @@ async function changePasswordInline() {
 
 function checkPwStrength(v, wrapId, barId, lblId) {
   const wrap = document.getElementById(wrapId);
-  const bar  = document.getElementById(barId);
-  const lbl  = document.getElementById(lblId);
+  const bar = document.getElementById(barId);
+  const lbl = document.getElementById(lblId);
   if (!wrap || !bar || !lbl) return;
   if (!v) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'flex';
@@ -617,15 +629,15 @@ function checkPwStrength(v, wrapId, barId, lblId) {
   if (/[0-9]/.test(v)) score++;
   if (/[^A-Za-z0-9]/.test(v)) score++;
   const map = [
-    { w:'25%',  bg:'#E24B4A', lbl:'Weak'   },
-    { w:'50%',  bg:'#EF9F27', lbl:'Fair'   },
-    { w:'75%',  bg:'#1D9E75', lbl:'Good'   },
-    { w:'100%', bg:'#085041', lbl:'Strong' },
+    { w: '25%', bg: '#E24B4A', lbl: 'Weak' },
+    { w: '50%', bg: '#EF9F27', lbl: 'Fair' },
+    { w: '75%', bg: '#1D9E75', lbl: 'Good' },
+    { w: '100%', bg: '#085041', lbl: 'Strong' },
   ];
-  const s           = map[score - 1] || map[0];
+  const s = map[score - 1] || map[0];
   bar.style.cssText = `width:${s.w};background:${s.bg};height:3px;border-radius:3px;transition:width .3s,background .3s;`;
-  lbl.textContent   = s.lbl;
-  lbl.style.color   = s.bg;
+  lbl.textContent = s.lbl;
+  lbl.style.color = s.bg;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -636,7 +648,7 @@ function confirmDelete() {
     'Are you sure you want to delete your account?\n\nThis cannot be undone. All your bookings and data will be permanently removed.'
   );
   if (!yes) return;
-  Auth.authFetch(`${API}/api/user/account`, { method: 'DELETE' })
+  Auth.authFetch(`${API}/users/deleteMe`, { method: 'DELETE' })
     .then(() => Auth.logout())
     .catch(() => Auth.logout());
 }
@@ -647,7 +659,7 @@ function confirmDelete() {
 function showMsg(id, msg) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.textContent   = msg;
+  el.textContent = msg;
   el.style.display = 'block';
 }
 function hideMsg(id) {
@@ -661,7 +673,7 @@ function markErr(id) {
   el.addEventListener('input', () => el.classList.remove('err'), { once: true });
 }
 function setLoading(txtId, spinId, on) {
-  document.getElementById(txtId).style.display = on ? 'none'  : 'inline';
+  document.getElementById(txtId).style.display = on ? 'none' : 'inline';
   document.getElementById(spinId).style.display = on ? 'block' : 'none';
 }
 function toggleSfPw(id) {
@@ -672,18 +684,18 @@ function toggleSfPw(id) {
 let _toastTimer;
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
-  t.textContent    = msg;
-  t.className      = `toast${type ? ' ' + type : ''}`;
-  t.style.display  = 'block';
+  t.textContent = msg;
+  t.className = `toast${type ? ' ' + type : ''}`;
+  t.style.display = 'block';
   clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => { t.style.display = 'none'; }, 3000);
 }
 
 // Expose toggleSfPw globally (called from inline onclick in HTML)
-window.toggleSfPw   = toggleSfPw;
+window.toggleSfPw = toggleSfPw;
 window.openEditModal = openEditModal;
 window.closeEditModal = closeEditModal;
-window.openPwModal   = openPwModal;
-window.closePwModal  = closePwModal;
+window.openPwModal = openPwModal;
+window.closePwModal = closePwModal;
 window.checkMpStrength = checkMpStrength;
 window.confirmDelete = confirmDelete;

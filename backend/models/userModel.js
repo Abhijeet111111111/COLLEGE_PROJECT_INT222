@@ -52,14 +52,16 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
-    hotelsBookId: {
-        type: [String],
-        default: []
+    hotelId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hotel"
     },
-    toursBookId : {
-        type : [String],
-        default : []
-    }
+    checkIn: Date,
+    checkOut: Date,
+    tourId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tour"
+    },
 })
 
 userSchema.pre(/^find/, function (next) {

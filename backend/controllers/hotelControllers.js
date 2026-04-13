@@ -1,15 +1,16 @@
 import fs from 'fs'
 import sortHotels from '../utils/sortHotels.js';
+import userModel from '../models/userModel.js'
+import hotelModel from '../models/hotelModel.js'
+import bookingModel from '../models/bookingModel.js'
 
 export function renderHotelPage(req, res) {
     res.render('hotelsPage');
 }
 
 
-export function hotelBook(req, res) {
-    const readf = fs.readFileSync("./hotels.json");
-    const hotels = JSON.parse(readf);
-    const hotel = hotels.find(h => h.id === req.params.id);
+export async function hotelBook(req, res) {
+    const hotel = await hotelModel.findById(req.params.id);
     if (!hotel) return res.status(404).json({ error: true, message: 'Hotel not found' });
 
     const { bookingRef, nights, totalAmount, guest, paymentMethod, bookedAt } = req.body;
@@ -45,10 +46,7 @@ export function hotelBook(req, res) {
     };
 
     try {
-        const readf = fs.readFileSync('./hotelGuests.json', 'utf-8');
-        const guests = JSON.parse(readf);
-        guests.push(booking);
-        const writef = fs.writeFileSync('./hotelGuests.json', JSON.stringify(guests));
+        await bookingModel.create(booking)
         console.log(`[BOOKING] ${bookingRef} — ${hotel.name} — ${guest.name} — Rs${totalAmount}`);
     } catch (err) {
         console.error('Save failed:', err);
@@ -71,15 +69,13 @@ export function getCityHotel(req, res) {
     })
 }
 
-export function getHotelById(req, res) {
-    const readf = fs.readFileSync("./hotels.json");
-    const hotels = JSON.parse(readf);
-    const hotel = hotels.find(h => h.id === req.params.id);
+export async function getHotelById(req, res) {
+    const hotel = await hotelModel.findById(req.params.id);
     if (!hotel) return res.status(404).json({ error: true, message: 'Hotel not found' });
     res.json(hotel);
 }
 
-export function searchHotel(req, res) {
+export async function searchHotel(req, res) {
     try {
         const {
             destination,
@@ -95,7 +91,6 @@ export function searchHotel(req, res) {
             sortBy = 'best_value',
         } = req.body;
 
-        console.log(req.body)
 
         // ── Validate ────────────────────────────────────────────────
         if (maxPrice !== undefined && (isNaN(maxPrice) || maxPrice < 0)) {
@@ -111,8 +106,7 @@ export function searchHotel(req, res) {
             return res.status(400).json({ error: true, message: 'amenities must be an array' });
         }
 
-        const readF = fs.readFileSync('hotels.json', 'utf-8');
-        const hotels = JSON.parse(readF)
+        const hotels = await hotelModel.find({});
 
         // ── Filter ──────────────────────────────────────────────────
         let results = hotels.filter(hotel => {

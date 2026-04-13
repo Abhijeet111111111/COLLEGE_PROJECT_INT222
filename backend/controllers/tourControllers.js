@@ -1,22 +1,26 @@
 import fs from 'fs';
 import path from 'path';
+import bookedTours from './../models/bookedTours.js'
+import tourModel from './../models/tourModel.js'
 
 export function renderTours(req, res) {
     res.render('tours');
 }
 
 
-function readTourBookings() {
-    try { return JSON.parse(fs.readFileSync('./ToursBooked.json', 'utf8')); }
+async function readTourBookings() {
+    try {
+        const bookedTours = await bookedTours.find({});
+        return bookedTours;
+    }
     catch { return []; }
 }
-function writeTourBookings(data) {
-    fs.writeFileSync("./ToursBooked.json", JSON.stringify(data, null, 2), 'utf8');
+async function writeTourBookings(data) {
+    await bookedTours.create(data);
 }
 
-export function getAllTours(req, res) {
-    const readTours = fs.readFileSync('./tours.json', 'utf-8');
-    const tours = JSON.parse(readTours);
+export async function getAllTours(req, res) {
+    const tours = await tourModel.find({});
     const { category } = req.query;
     let results = tours.filter(t => t.available);
     if (category && category !== 'all') {
@@ -25,25 +29,25 @@ export function getAllTours(req, res) {
     res.json({ tours: results, total: results.length });
 }
 
-export function getTourById(req, res) {
-    const readTours = fs.readFileSync('./tours.json', 'utf-8');
-    const tours = JSON.parse(readTours);
-    const tour = tours.find(t => t.id === req.params.id);
+export async function getTourById(req, res) {
+    const tour = await tourModel.findById(req.params.id);
     if (!tour) return res.status(404).json({ error: true, message: 'Tour not found' });
     res.json(tour);
 }
 
-export function handleTourBooking(req, res) {
+export async function handleTourBooking(req, res) {
 
-    const readF = fs.readFileSync('./tours.json','utf-8');
-    const tours = JSON.parse(readF);
+    // const readF = fs.readFileSync('./tours.json', 'utf-8');
+    // const tours = JSON.parse(readF);
 
-    console.log(tours);
+    // console.log(tours);
 
-    const tour = tours.find(t => t.id === req.params.id);
-    if (!tour) {
-        return res.status(404).json({ error: true, message: `Tour ${req.params.id} not found` });
-    }
+    // const tour = tours.find(t => t.id === req.params.id);
+    // if (!tour) {
+    //     return res.status(404).json({ error: true, message: `Tour ${req.params.id} not found` });
+    // }
+
+    const tour = await tourModel.findById(req.params.id);
 
     const {
         bookingRef, tourId, tourTitle, tourCategory,
@@ -91,9 +95,7 @@ export function handleTourBooking(req, res) {
 
     /* ── Save to ToursBooked.json ─────────────────────────────── */
     try {
-        const all = readTourBookings();
-        all.push(booking);
-        writeTourBookings(all);
+        await writeTourBookings(booking);
         console.log(`[TOUR BOOKING] ${bookingRef} — ${tour.title} — ${traveller.name} — ₹${totalAmount}`);
     } catch (err) {
         console.error('Failed to save tour booking:', err);

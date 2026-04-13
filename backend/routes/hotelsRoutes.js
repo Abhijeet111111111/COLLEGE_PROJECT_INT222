@@ -6,10 +6,9 @@ const router = express.Router();
 
 
 router.get('/', renderHotelPage)
-
-router.get('/:city', getCityHotel)
 router.get('/hotel/:id', getHotelById)
 router.post('/:id/book', hotelBook)
+router.get('/:city', getCityHotel)
 
 // fetch a single hotel by id
 

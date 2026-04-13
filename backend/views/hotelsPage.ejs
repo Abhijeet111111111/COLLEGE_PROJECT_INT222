@@ -492,7 +492,11 @@
               >Tours</a
             >
           </li>
-          <li class="nav__item">Dashboard</li>
+          <li class="nav__item">
+            <a style="text-decoration: none; color: inherit" href="/dashboard"
+              >dashboard</a
+            >
+          </li>
         </ul>
         <div class="nav__item-ctx">
           <button class="nav__item__ctx-button">Plan a Trip</button>
@@ -917,7 +921,7 @@
       // Book button
       card.querySelector(".btn-book").addEventListener("click", (e) => {
         e.stopPropagation();
-        openHotelDialog(hotel.id);
+        openHotelDialog(hotel._id);
       });
 
       // Card click → detail view
@@ -1397,7 +1401,7 @@
     document.body.style.overflow = "hidden";
 
     try {
-      const res = await fetch(`${HD_API}/hotels/${_hotel.id}/book`, {
+      const res = await fetch(`${HD_API}/hotels/${_hotel._id}/book`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -1493,8 +1497,8 @@
     document.getElementById("hd-btn-book").addEventListener("click", () => {
       const map = {
         "hg-name": "name",
-        "hg-email" : "email",
-        "hg-phone" : "phone"
+        "hg-email": "email",
+        "hg-phone": "phone",
       };
       Auth.requireAuth(() => {});
       _resetForm();
@@ -1583,7 +1587,7 @@
       }
     });
   });
-  if(!Auth.isLoggedIn()){
-        document.getElementById('hd-btn-book').innerText = "Login To Book"
-      }
+  if (!Auth.isLoggedIn()) {
+    document.getElementById("hd-btn-book").innerText = "Login To Book";
+  }
 </script>

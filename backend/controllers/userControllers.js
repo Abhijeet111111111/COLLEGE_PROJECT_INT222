@@ -28,9 +28,9 @@ const deleteMe = catchAsync(async (req, res, next) => {
 
 
 const updateMe = catchAsync(async (req, res, next) => {
-    if (req.body.password || req.body.confirmPassword) {
-        return next(new AppError('this is not the route the change password , visit /updatePassword', 400))
-    }
+    // if (req.body.password || req.body.confirmPassword) {
+    //     return next(new AppError('this is not the route the change password , visit /updatePassword', 400))
+    // }
 
     const filteredBody = filterObj(req.body, 'name', 'email');
     const updateUser = await userModel.findByIdAndUpdate(req.user._id, filteredBody, { new: true, runValidators: true })
@@ -42,6 +42,7 @@ const updateMe = catchAsync(async (req, res, next) => {
 
 })
 
+
 const getUsers = factory.getAll(userModel);
 
 const makeUser = factory.createOne(userModel);
@@ -51,12 +52,12 @@ const updateUser = factory.updateOne(userModel)
 const deleteUser = factory.deleteOne(userModel)
 
 export default {
-  getUser,
-  getMe,
-  updateMe,
-  deleteMe,
-  getUsers,
-  makeUser,
-  deleteUser,
-  updateUser
+    getUser,
+    getMe,
+    updateMe,
+    deleteMe,
+    getUsers,
+    makeUser,
+    deleteUser,
+    updateUser,
 };

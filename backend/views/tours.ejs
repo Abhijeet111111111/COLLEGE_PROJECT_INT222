@@ -44,7 +44,9 @@
               >Tours</a
             >
           </li>
-          <li class="nav__item">Dashboard</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit" href="/dashboard"
+              >Dashboard</a
+            ></li>
         </ul>
         <div class="nav__item-ctx">
           <button class="nav__item__ctx-button">Plan a Trip</button>
@@ -887,7 +889,7 @@
     /* Close dialog → show loading spinner */
 
     try {
-      const res = await fetch(`${API}/tours/${selectedTour.id}/book`, {
+      const res = await fetch(`${API}/tours/${selectedTour._id}/book`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

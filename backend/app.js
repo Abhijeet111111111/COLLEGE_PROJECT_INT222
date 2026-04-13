@@ -13,6 +13,7 @@ import mongoose from 'mongoose';
 import userRouter from './routes/userRoutes.js'
 import loginRoutes from './routes/loginRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import bookingRoutes from './routes/bookingRoutes.js'
 dotenv.config({ path: './config.env' })
 
 const app = express();
@@ -49,6 +50,8 @@ app.use('/user', userRoutes)
 app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
+
+app.use('/bookings',bookingRoutes)
 
 app.use((req, res) => {
     res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });
