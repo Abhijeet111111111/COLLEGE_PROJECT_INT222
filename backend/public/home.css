@@ -496,33 +496,148 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-footer {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #10855c;
-  color: white;
-  align-items: center;
-  padding: 2rem;
-}
-.footer__details {
-  width: 32rem;
-  font-size: large;
-  letter-spacing: 0.1rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.footer__button {
-  padding: 0.5rem 2rem;
-  border: 1px solid white;
-  border-radius: 0.5rem;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-  color: white;
-  font-size: large;
+.footer {
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 3rem 2rem 1rem;
+  border-top: 2px solid rgba(46, 204, 113, 0.2);
 }
 
-.footer__button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.footer__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer__title {
+  color: #2ecc71;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  font-family: "Playfair Display", serif;
+}
+
+.footer__text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.footer__text:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer__link {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 0;
+}
+
+.footer__link::before {
+  content: '→';
+  position: absolute;
+  left: -15px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.footer__link:hover {
+  color: #2ecc71;
+  padding-left: 15px;
+}
+
+.footer__link:hover::before {
+  opacity: 1;
+  left: 0;
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.footer__contact p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.footer__contact p:hover {
+  color: #2ecc71;
+  transform: translateX(5px);
+}
+
+.footer__bottom {
+  max-width: 1400px;
+  margin: 2rem auto 0;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer__bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(26, 188, 156, 0.2));
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  border-radius: 50%;
+  color: #2ecc71;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.footer__socials a:hover {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.4), rgba(26, 188, 156, 0.4));
+  border-color: rgba(46, 204, 113, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
 }
 
 #destinationDialog {
@@ -1962,4 +2077,25 @@ h2,
 .page-title,
 .dest-name {
   font-family: "Playfair Display", serif !important;
+}
+.main__featured-hotel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(46, 204, 113, 0.2);
+  border-color: rgba(46, 204, 113, 0.4);
+}
+.main__featured-hotel:hover::before {
+  opacity: 1;
+}
+
+.main__top-destination {
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.main__top-destination:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(46, 204, 113, 0.3);
+  border-color: rgba(46, 204, 113, 0.5);
 }

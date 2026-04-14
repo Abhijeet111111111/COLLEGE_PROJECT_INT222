@@ -15,7 +15,7 @@ import loginRoutes from './routes/loginRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import bookingRoutes from './routes/bookingRoutes.js'
 import aiPlanRoutes from './routes/aiPlanRoutes.js'
-dotenv.config()
+dotenv.config({ path: './config.env' })
 
 const app = express();
 
@@ -53,7 +53,7 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
 
-app.use('/bookings',bookingRoutes)
+app.use('/bookings', bookingRoutes)
 
 app.use((req, res) => {
     res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });
