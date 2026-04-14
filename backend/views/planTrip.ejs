@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderSmart - AI Trip Planner</title>
+    
+    <!-- Markdown Parser for AI Output -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #1D9E75;
+            --primary-light: #2ec76e;
+            --surface-color: #1a1a1a;
+            --surface-border: rgba(255, 255, 255, 0.4);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.8);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background: #1a1a1a;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Subtle animated background shapes to keep it modern but matched */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: float 20s infinite alternate;
+        }
+        .shape-1 {
+            width: 50vw; height: 50vw;
+            background: rgba(29, 158, 117, 0.15);
+            top: -20%; left: -10%;
+        }
+        .shape-2 {
+            width: 40vw; height: 40vw;
+            background: rgba(46, 199, 110, 0.1);
+            bottom: -10%; right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        /* Nav */
+        .top-nav {
+            padding: 1.5rem 4rem;
+            display: flex;
+            align-items: center;
+            background-color: #1a1a1a;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .back-link {
+            color: greenyellow;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: large;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: rgb(132, 207, 20); }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+            align-items: flex-start;
+            padding: 4rem 4rem 6rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease-out 0.2s;
+        }
+        
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Area */
+        .planner-form {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--surface-border);
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            margin: 0 0 1rem;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .header h1 span {
+            color: var(--primary);
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            padding-left: 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 1.05rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            appearance: none;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: rgba(255, 255, 255, 1);
+            border-color: var(--primary);
+        }
+
+        /* Beautiful interactive select arrow */
+        .select-arrow {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px; height: 10px;
+            border-bottom: 2px solid var(--primary);
+            border-right: 2px solid var(--primary);
+            pointer-events: none;
+            transform-origin: center;
+            transform: translateY(-70%) rotate(45deg);
+        }
+
+        .btn-submit {
+            margin-top: 1.5rem;
+            width: 100%;
+            background: linear-gradient(135deg, #0d2e22 0%, #0F6E56 60%, #1D9E75 100%);
+            border: 1px solid white;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1.1rem;
+            font-family: inherit;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #103829 0%, #148f70 60%, #22bb8a 100%);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active { transform: translateY(0); }
+
+        .loader {
+            display: none;
+            width: 20px; height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Output Area */
+        .output-area {
+            flex: 1;
+            height: 100%;
+            min-height: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: #262525;
+            border-radius: 1rem;
+            padding: 3rem;
+            border: 1px solid var(--surface-border);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .output-area::-webkit-scrollbar {
+            width: 8px;
+        }
+        .output-area::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+
+        .output-placeholder {
+            margin: auto;
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-weight: normal;
+            font-size: 1.1rem;
+        }
+        .output-placeholder svg {
+            width: 64px; height: 64px; opacity: 0.2; margin-bottom: 1rem;
+        }
+
+        /* Markdown Styles */
+        .ai-result { color: var(--text-muted); line-height: 1.8; animation: fadeIn 0.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .ai-result h1, .ai-result h2, .ai-result h3 {
+            color: greenyellow;
+            margin-top: 2rem;
+            font-weight: normal;
+        }
+        .ai-result h1 { font-size: 2.2rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.5rem;}
+        .ai-result h2 { font-size: 1.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
+        .ai-result strong { color: #fff; }
+        .ai-result ul, .ai-result ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .ai-result li { margin-bottom: 0.5rem; }
+        .ai-result p { margin-bottom: 1.5rem; }
+
+        @media (max-width: 1024px) {
+            .container { flex-direction: column; padding: 2rem; }
+            .planner-form, .output-area { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <nav class="top-nav">
+        <a href="/" class="back-link">
+            ← Back to WanderSmart
+        </a>
+    </nav>
+
+    <div class="container">
+        <!-- Form Side -->
+        <main class="planner-form">
+            <header class="header">
+                <h1>Plan a <span>Trip</span></h1>
+                <p>AI powered travel planning that boosts local economies & creates unforgettable experiences.</p>
+            </header>
+
+            <form id="ai-planner-form">
+                <div class="input-group">
+                    <label>Destination (Optional)</label>
+                    <input type="text" id="p-destination" placeholder="Where do you want to go?">
+                </div>
+
+                <div class="input-group">
+                    <label>Weather Vibe</label>
+                    <div class="input-wrap">
+                        <select id="p-weather" required>
+                            <option value="Sunny & Warm">Sunny & Warm ☀️</option>
+                            <option value="Cool & Breezy">Cool & Breezy 🍃</option>
+                            <option value="Snowy & Cold">Snowy & Cold ❄️</option>
+                            <option value="Tropical & Humid">Tropical & Humid 🌴</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Atmosphere & Crowds</label>
+                    <div class="input-wrap">
+                        <select id="p-rush" required>
+                            <option value="Quiet & Secluded">Quiet & Secluded 🧘‍♂️</option>
+                            <option value="Balanced & Relaxed">Balanced & Relaxed ☕</option>
+                            <option value="Bustling City Energy">Bustling City Energy 🏙️</option>
+                            <option value="Party & Nightlife">Party & Nightlife 🪩</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Cuisine & Food Preference</label>
+                    <div class="input-wrap">
+                        <select id="p-cuisine" required>
+                            <option value="Local Street Food">Local Street Food 🌮</option>
+                            <option value="Fine Dining">Fine Dining 🍷</option>
+                            <option value="Comfort Food">Comfort Food 🍔</option>
+                            <option value="Healthy & Vegan-friendly">Healthy & Vegan-friendly 🥗</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <span id="btn-text">Generate Trip</span>
+                    <div class="loader" id="btn-loader"></div>
+                </button>
+            </form>
+        </main>
+
+        <!-- Result Side -->
+        <aside class="output-area" id="output-area">
+            <div class="output-placeholder" id="output-placeholder">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+                <div id="status-text">Your generated itinerary will appear here</div>
+            </div>
+            <div class="ai-result" id="ai-result" style="display: none;"></div>
+        </aside>
+    </div>
+
+    <script>
+        document.getElementById('ai-planner-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI States
+            const btn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const loader = document.getElementById('btn-loader');
+            const resultDiv = document.getElementById('ai-result');
+            const placeholder = document.getElementById('output-placeholder');
+            const statusText = document.getElementById('status-text');
+            
+            btn.disabled = true;
+            btnText.textContent = "AI is thinking...";
+            loader.style.display = "block";
+            
+            placeholder.style.display = "block";
+            statusText.textContent = "Generating your perfect trip... This might take a few seconds ✈️";
+            resultDiv.style.display = "none";
+            resultDiv.innerHTML = "";
+
+            // Gather Data
+            const data = {
+                destination: document.getElementById('p-destination').value,
+                weather: document.getElementById('p-weather').value,
+                rush: document.getElementById('p-rush').value,
+                cuisine: document.getElementById('p-cuisine').value
+            };
+
+            try {
+                const response = await fetch('/plan-trip/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    placeholder.style.display = "none";
+                    resultDiv.style.display = "block";
+                    resultDiv.innerHTML = marked.parse(result.data);
+                } else {
+                    placeholder.style.display = "block";
+                    statusText.textContent = "Oops! " + (result.message || 'Something went wrong.');
+                }
+            } catch (err) {
+                console.error(err);
+                placeholder.style.display = "block";
+                statusText.textContent = "Network error. Please try again later.";
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = "Generate Trip";
+                loader.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

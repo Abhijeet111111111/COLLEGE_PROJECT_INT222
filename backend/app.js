@@ -14,7 +14,8 @@ import userRouter from './routes/userRoutes.js'
 import loginRoutes from './routes/loginRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import bookingRoutes from './routes/bookingRoutes.js'
-dotenv.config({ path: './config.env' })
+import aiPlanRoutes from './routes/aiPlanRoutes.js'
+dotenv.config()
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(cors({
 
 
 app.use('/', home)
+app.use('/plan-trip', aiPlanRoutes);
 app.use('/explore', exploreRoutes);
 app.use('/destinations', destinationRoutes)
 app.use('/hotels', hotelRoutes)
