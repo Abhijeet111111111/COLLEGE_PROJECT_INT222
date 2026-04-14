@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="explorePage.css" />
+    <link
+      href="https://api.maptiler.com/maps/streets/style.css?key=P2YnxuVUfPXTTg1SJKHA"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.0/maptiler-sdk.umd.min.js"></script>
   </head>
   <body>
     <header>
@@ -26,9 +31,11 @@
               >Hotels</a
             >
           </li>
-          <li class="nav__item"><a style="text-decoration: none; color: inherit" href="/tours"
+          <li class="nav__item">
+            <a style="text-decoration: none; color: inherit" href="/tours"
               >Tours</a
-            ></li>
+            >
+          </li>
           <li class="nav__item">Dashboard</li>
         </ul>
         <div class="nav__item-ctx">
@@ -79,12 +86,36 @@
       </section>
       <section class="main__map">
         <p class="main__map-head">Destination Map</p>
-        <div class="main__map-map"></div>
+        <div class="main__map-map">
+          <div id="map" style="height: 100%; width: 100%"></div>
+        </div>
       </section>
       <section class="main__destinations"></section>
     </main>
   </body>
 </html>
+
+<script>
+  const map = new maptilersdk.Map({
+    container: "map",
+    style: `https://api.maptiler.com/maps/streets/style.json?key=P2YnxuVUfPXTTg1SJKHA`,
+    center: [78.9629, 20.5937],
+    zoom: 5,
+  });
+  async function loadDestinations() {
+    const res = await fetch("http://localhost:3000/explore/filter/a");
+    const data = await res.json();
+    const destinations = JSON.parse(data.destinations);
+    destinations.forEach((dest) => {
+      // Add marker
+      new maptilersdk.Marker()
+        .setLngLat([dest.lng, dest.lat]) // IMPORTANT: [lng, lat]
+        .addTo(map);
+    });
+
+  }
+  loadDestinations();
+</script>
 
 <script>
   async function getDestinations(id) {
@@ -336,14 +367,16 @@
         // function closeDialog() {
         //   document.body.style.overflow = "";
         // }
-        const topImgs = document.querySelectorAll('.topAttractionImage')
-          Array.from(topImgs).forEach( el =>{
-              fetch("https://api.unsplash.com/photos/random?query=travel&client_id=uEKuqX6Pyj60Sp7kG8ShXlLzsXBK7GXBTF20c4TjL_c")
-          .then(res => res.json())
-          .then(data => {
-            el.style.backgroundImage = `url(${data.urls.full})`;
-          });
-        })
+        const topImgs = document.querySelectorAll(".topAttractionImage");
+        Array.from(topImgs).forEach((el) => {
+          fetch(
+            "https://api.unsplash.com/photos/random?query=travel&client_id=uEKuqX6Pyj60Sp7kG8ShXlLzsXBK7GXBTF20c4TjL_c",
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              el.style.backgroundImage = `url(${data.urls.full})`;
+            });
+        });
         const goToHotels = document.querySelector(".goToHotels");
         goToHotels.addEventListener("click", (evt) => {
           window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
@@ -363,7 +396,7 @@
 
   Array.from(allBtns).forEach((el) => {
     el.addEventListener("click", (evt) => {
-      allBtns.forEach(el2 => el2.classList.remove("btn-active"))
+      allBtns.forEach((el2) => el2.classList.remove("btn-active"));
       // const all_dest_btn = document.getElementById("all-destinations__filter");
       evt.target.classList.add("btn-active");
     });
@@ -391,7 +424,9 @@
         return;
       }
       main_destinations.innerHTML = "Loading...";
-      const res = await fetch(`http://localhost:3000/explore/search?q=${query}`);
+      const res = await fetch(
+        `http://localhost:3000/explore/search?q=${query}`,
+      );
       const data = await res.json();
       console.log(data);
       if (data.length === 0) {
@@ -420,5 +455,4 @@
         .join("");
     }, 400);
   });
-  
 </script>

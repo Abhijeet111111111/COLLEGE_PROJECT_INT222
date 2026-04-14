@@ -25,7 +25,7 @@ body {
   flex-grow: 0.1;
 }
 .nav__item {
-  padding: .2rem .6rem;
+  padding: 0.2rem 0.6rem;
   font-size: large;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(255, 255, 255, 0.8);
@@ -125,10 +125,10 @@ main {
 .main__filter-btn:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
-.active-link{
+.active-link {
   color: white;
   background-color: #0d2e22;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
 }
 .main__map {
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -146,6 +146,8 @@ main {
 }
 
 .main__map-map {
+  overflow: hidden;
+  position: relative;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 0.4rem;
   height: 70%;
@@ -670,7 +672,6 @@ svg:hover {
   margin-left: 3px;
 }
 
-
 /********** TOP ATTRACTION *********/
 .topAttractionImage {
   background-repeat: no-repeat;
@@ -678,7 +679,7 @@ svg:hover {
   height: 100%;
   width: 100%;
 }
-.topAttractionName{
+.topAttractionName {
   background-color: rgba(0, 0, 0, 0.4);
   color: rgb(251, 250, 250);
   font-weight: bold;
@@ -765,8 +766,11 @@ svg:hover {
   border-radius: 1rem;
 }
 
-
-body, li, button, p, div {
+body,
+li,
+button,
+p,
+div {
   font-family: "DM Sans", sans-serif !important;
 }
 

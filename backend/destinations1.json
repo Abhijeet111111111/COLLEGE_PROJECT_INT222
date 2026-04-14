@@ -2,8 +2,6 @@
   {
     "id": "D001",
     "name": "Jaipur",
-    "lat": 26.9124,
-    "lng": 75.7873,
     "state": "Rajasthan",
     "region": "North India",
     "tagline": "The Pink City — a living museum of Rajput culture",
@@ -47,8 +45,6 @@
   {
     "id": "D002",
     "name": "Alleppey",
-    "lat": 9.4981,
-    "lng": 76.3388,
     "nickname": "Venice of the East",
     "state": "Kerala",
     "region": "South India",
@@ -92,8 +88,6 @@
   {
     "id": "D003",
     "name": "Manali",
-    "lat": 32.2432,
-    "lng": 77.1892,
     "state": "Himachal Pradesh",
     "region": "North India",
     "tagline": "High-altitude adventure in the heart of the Himalayas",
@@ -139,8 +133,6 @@
   {
     "id": "D004",
     "name": "Goa",
-    "lat": 15.2993,
-    "lng": 74.124,
     "state": "Goa",
     "region": "West India",
     "tagline": "Sun, sand, and a Portuguese soul — India's beach capital",
@@ -184,8 +176,6 @@
   {
     "id": "D005",
     "name": "Varanasi",
-    "lat": 25.3176,
-    "lng": 82.9739,
     "state": "Uttar Pradesh",
     "region": "North India",
     "tagline": "The spiritual capital of India — where eternity meets the Ganges",
@@ -236,8 +226,6 @@
   {
     "id": "D006",
     "name": "Coorg",
-    "lat": 12.3375,
-    "lng": 75.8069,
     "nickname": "Scotland of India",
     "state": "Karnataka",
     "region": "South India",
@@ -289,8 +277,6 @@
   {
     "id": "D007",
     "name": "Jaisalmer",
-    "lat": 26.9157,
-    "lng": 70.9083,
     "nickname": "The Golden City",
     "state": "Rajasthan",
     "region": "North India",
@@ -340,8 +326,6 @@
   {
     "id": "D008",
     "name": "Ranthambore",
-    "lat": 26.0173,
-    "lng": 76.5026,
     "state": "Rajasthan",
     "region": "North India",
     "tagline": "India's most famous tiger reserve — raw wilderness meets ancient ruins",
@@ -388,8 +372,6 @@
   {
     "id": "D009",
     "name": "Udaipur",
-    "lat": 24.5854,
-    "lng": 73.7125,
     "nickname": "City of Lakes",
     "state": "Rajasthan",
     "region": "North India",
@@ -441,8 +423,6 @@
   {
     "id": "D010",
     "name": "Andaman Islands",
-    "lat": 11.7401,
-    "lng": 92.6586,
     "state": "Andaman & Nicobar Islands",
     "region": "Island India",
     "tagline": "Crystal waters, coral reefs, and the last true tropical escape in India",
@@ -493,8 +473,6 @@
   {
     "id": "D011",
     "name": "Leh-Ladakh",
-    "lat": 34.1526,
-    "lng": 77.577,
     "state": "Ladakh (UT)",
     "region": "North India",
     "tagline": "The roof of India — where mountains touch the sky and time stands still",
@@ -538,8 +516,6 @@
   {
     "id": "D012",
     "name": "Pushkar",
-    "lat": 26.4898,
-    "lng": 74.5511,
     "state": "Rajasthan",
     "region": "North India",
     "tagline": "A sacred lake town famous for its camel fair and Brahma temple",
