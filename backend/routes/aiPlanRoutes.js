@@ -1,7 +1,7 @@
+
 import express from 'express';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import dotenv from 'dotenv';
-dotenv.config();
+import { GoogleGenAI } from '@google/genai';
+import 'dotenv/config';
 
 const router = express.Router();
 
@@ -17,12 +17,12 @@ router.post('/generate', async (req, res) => {
             return res.status(500).json({ success: false, message: "Gemini API key is missing from environment variables." });
         }
 
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+        const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        // const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
-        let destStr = destination && destination.trim().length > 0 
-                      ? `My preferred destination is ${destination}.`
-                      : "Suggest a destination anywhere in the world that fits the profile below.";
+        let destStr = destination && destination.trim().length > 0
+            ? `My preferred destination is ${destination}.`
+            : "Suggest a destination anywhere in the world that fits the profile below.";
 
         const prompt = `You are a world-class travel expert and AI trip planner.
                         
@@ -43,8 +43,11 @@ Requirements for the output:
 Make sure the output is well-formatted Markdown with headers (##).`;
 
         try {
-            const result = await model.generateContent(prompt);
-            const responseText = result.response.text();
+            const result = await genAI.models.generateContent({
+                model: "gemini-3-flash-preview",
+                contents: prompt,
+            });
+            const responseText = result.text;
             return res.status(200).json({ success: true, data: responseText });
         } catch (apiErr) {
             console.error("Actual Gemini API Error: ", apiErr.message);
