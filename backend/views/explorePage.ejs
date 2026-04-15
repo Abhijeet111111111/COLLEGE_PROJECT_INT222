@@ -102,8 +102,11 @@
     center: [78.9629, 20.5937],
     zoom: 5,
   });
+    const API = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://college-project-int222.onrender.com";
   async function loadDestinations() {
-    const res = await fetch("http://localhost:3000/explore/filter/a");
+    const res = await fetch(`${API}/explore/filter/a`);
     const data = await res.json();
     const destinations = JSON.parse(data.destinations);
     destinations.forEach((dest) => {
@@ -120,7 +123,7 @@
 <script>
   async function getDestinations(id) {
     const fetchedData = await fetch(
-      `http://localhost:3000/explore/filter/${id}`,
+      `${API}/explore/filter/${id}`,
     );
     const body = await fetchedData.json();
     let destinationsArray = JSON.parse(body.destinations);
@@ -168,7 +171,7 @@
         // destinationEle.addEventListener("click", async function (evt) {
         //console.log(evt.currentTarget.id);
         const fetchedData = await fetch(
-          `http://localhost:3000/destinations/${e.target.parentElement.id}`,
+          `${API}/destinations/${e.target.parentElement.id}`,
         );
         const body = await fetchedData.json();
         const destination = JSON.parse(body.destination)[0];
@@ -379,7 +382,7 @@
         });
         const goToHotels = document.querySelector(".goToHotels");
         goToHotels.addEventListener("click", (evt) => {
-          window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
+          window.location.href = `${API}/destinations/hotels?city=${destination.name}`;
         });
       }
       const overViewBtn = document.querySelector(
@@ -425,7 +428,7 @@
       }
       main_destinations.innerHTML = "Loading...";
       const res = await fetch(
-        `http://localhost:3000/explore/search?q=${query}`,
+        `${API}/explore/search?q=${query}`,
       );
       const data = await res.json();
       console.log(data);

@@ -500,6 +500,10 @@
 
 <script>
 
+    const API = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://college-project-int222.onrender.com";
+
 const dashboard = document.getElementById("dashboard");
 console.log(Auth.isLoggedIn())
 if (Auth.isLoggedIn()) {
@@ -544,7 +548,7 @@ const destinationEles = document.querySelectorAll('.main__top-destination')
 destinationEles.forEach(destinationEle => {
     destinationEle.addEventListener('click', async function (evt) {
         //console.log(evt.currentTarget.id);
-        const fetchedData = await fetch(`http://localhost:3000/destinations/${evt.currentTarget.id}`)
+        const fetchedData = await fetch(`${API}/destinations/${evt.currentTarget.id}`)
         const body = await fetchedData.json();
         const destination = JSON.parse(body.destination)[0];
         console.log(destination)
@@ -626,7 +630,7 @@ destinationEles.forEach(destinationEle => {
                   <p><span>Summer</span> <span>${destination.weather.summer}</span> </p>
                   <p><span>Winter</span> <span>${destination.weather.winter.slice(0, 27)}</span> </p>
                   <p><span>Packages</span> <span>${destination.totalPackages}</span> </p>
-                  <p><span>Starting from</span> <span style="color:#42f54e;font-size:large">${getFormattedAmout(destination.startingPrice)}<span style="font-size:medium">/person</span></span>  </p>
+                  <p><span>Starting from</span> <span style="color:#42f54e;font-size:large">${getFormattedAmout(destination.startingPrice)}<span style="font-size:medium;color:rgba(255,255,255,.8)">/person</span></span>  </p>
 
                 </div>
                 <div class="overview-localcuisine">
@@ -737,7 +741,7 @@ destinationEles.forEach(destinationEle => {
         dialog.showModal();
         const goToHotels = document.querySelector(".goToHotels");
         goToHotels.addEventListener("click", (evt) => {
-            window.location.href = `http://localhost:3000/destinations/hotels?city=${destination.name}`;
+            window.location.href = `${API}/destinations/hotels?city=${destination.name}`;
         });
         const topImgs = document.querySelectorAll('.topAttractionImage')
           Array.from(topImgs).forEach( el =>{
@@ -777,7 +781,9 @@ function closeDialog() {
 * ─────────────────────────────────────────────────────────────────
 */
 
-const HD_API = 'http://localhost:3000';   // ← change for production
+  const HD_API = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://college-project-int222.onrender.com";
 
 /* Default fallback thumb */
 // function getThumb(hotel) {

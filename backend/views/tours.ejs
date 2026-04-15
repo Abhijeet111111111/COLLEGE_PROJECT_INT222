@@ -422,7 +422,11 @@
    * - Booking dialog → client details → payment → loading → success/error
    */
 
-  const API = "http://localhost:3000";
+
+  const API = window.location.hostname === "localhost"
+  ? "http://localhost:3000"
+  : "https://college-project-int222.onrender.com";
+
 
   /* ─── State ──────────────────────────────────────────────────── */
   let allTours = [];

@@ -265,7 +265,10 @@
 
     <script src="/auth.js"></script>
     <script>
-      const API = "http://localhost:3000";
+      const API =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000"
+          : "https://college-project-int222.onrender.com";
 
       /* ── Read return URL from query string ─────────────────── */
       const params = new URLSearchParams(window.location.search);

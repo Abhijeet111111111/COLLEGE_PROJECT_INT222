@@ -991,6 +991,9 @@ body {
   background-color: #1a1a1a;
   border-top: 1px solid rgba(255, 255, 255, 0.8);
 }
+.destinationDialog__footer p{
+  color: white;
+}
 .destinationDialog__footer-price {
   display: flex;
   flex-direction: column;

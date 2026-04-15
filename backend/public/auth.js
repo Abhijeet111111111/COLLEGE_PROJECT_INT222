@@ -18,7 +18,9 @@
 const Auth = (() => {
     const TOKEN_KEY = 'ws_token';
     const USER_KEY = 'ws_user';
-    const API = 'http://localhost:3000';
+    const API = window.location.hostname === "localhost"
+        ? "http://localhost:3000"
+        : "https://college-project-int222.onrender.com";
 
     /* ── Storage ─────────────────────────────────────────────── */
     function getToken() {
@@ -32,7 +34,7 @@ const Auth = (() => {
         } catch { return null; }
     }
 
-     function isLoggedIn() {
+    function isLoggedIn() {
         const token = getToken();
         const user = getUser();
         if (!token || !user) return false;
