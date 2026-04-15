@@ -32,7 +32,7 @@
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
           <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
-          <li class="nav__item" id="nav-logout"><a style="text-decoration: none; color: inherit;" href="users/logout">Logout</a></li>
+          <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</a></li>
           <div id="nav-auth-slot"></div>
         </ul>
         <!-- <div class="nav__item-ctx"> -->
@@ -384,6 +384,11 @@
 <script src="auth.js"></script>
 <script src="dashboard.js"></script>
 <script>
+
+  const navLogout = document.getElementById('nav-logout');
+  navLogout.addEventListener('click',(evt)=>{
+    Auth.logout();
+  })
     
 const navToggle = document.getElementById('navbar-toggle');
 const navItems = document.getElementById('nav-items');
