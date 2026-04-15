@@ -12,16 +12,34 @@
 <body>
 
 <!-- ── Navbar ──────────────────────────────────────────────────── -->
-<nav class="navbar">
-  <a class="nav-logo" href="/">Wander<span>Smart</span></a>
-  <div class="nav-links">
-    <a href="/explore">Explore</a>
-    <a href="/hotels">Hotels</a>
-    <a href="/tours">Tours</a>
-    <a href="/dashboard" class="active" id="nav-dashboard-link">Dashboard</a>
-  </div>
-  <div id="nav-auth-slot"></div>
-</nav>
+
+      <div id="navbar">
+        <h1 class="navbar-logo">
+          <a style="text-decoration: none" href="/"
+            ><span style="color: white">Wander</span
+            ><span style="color: rgb(6, 187, 6)">Smart</span></a
+          >
+        </h1>
+        <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+        <ul class="nav__items" id="nav-items">
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+          <li class="nav__item" id="nav-logout"><a style="text-decoration: none; color: inherit;" href="/logout">Logout</a></li>
+          <div id="nav-auth-slot"></div>
+        </ul>
+        <!-- <div class="nav__item-ctx"> -->
+          
+        <!-- </div> -->
+      </div>
+    
 
 <!-- ════════════════════════════════════════════════════════════
      NOT LOGGED IN — show gate
@@ -365,5 +383,38 @@
 
 <script src="auth.js"></script>
 <script src="dashboard.js"></script>
+<script>
+    
+const navToggle = document.getElementById('navbar-toggle');
+const navItems = document.getElementById('nav-items');
+
+navToggle.addEventListener('click', () => {
+  navItems.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav__item').forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#navbar')) {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
+const dasboardli = document.getElementById('nav-dashboard');
+const logoutli = document.getElementById('nav-logout');
+
+if(!Auth.isLoggedIn()){
+  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
+  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
+}
+</script>
 </body>
 </html>

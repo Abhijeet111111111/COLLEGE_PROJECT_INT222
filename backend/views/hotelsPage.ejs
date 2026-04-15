@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WanderSmart — Hotels</title>
     <link rel="stylesheet" href="hotels.css" />
+    <link rel="stylesheet" href="/nav-auth.css">
   </head>
   <body>
     <!-- ── Navbar ───────────────────────────────────────────────── -->
-    <header>
       <!-- ════════════════════════════════════════════════════════════
      HOTEL DETAIL DIALOG — drop this anywhere inside <body>
      Requires: hotel-dialog.css  +  hotel-dialog.js
@@ -469,6 +469,7 @@
         </div>
       </div>
       <!-- ***********************HOTEL DIALOG ***********************************-->
+
       <div id="navbar">
         <h1 class="navbar-logo">
           <a style="text-decoration: none" href="/"
@@ -476,34 +477,25 @@
             ><span style="color: rgb(6, 187, 6)">Smart</span></a
           >
         </h1>
-        <ul class="nav__items">
-          <li class="nav__item">
-            <a style="text-decoration: none; color: inherit" href="/explore"
-              >Explore</a
-            >
-          </li>
-          <li class="nav__item" id="hotelsLink">
-            <a style="text-decoration: none; color: inherit" href="/hotels"
-              >Hotels</a
-            >
-          </li>
-          <li class="nav__item">
-            <a style="text-decoration: none; color: inherit" href="/tours"
-              >Tours</a
-            >
-          </li>
-          <li class="nav__item">
-            <a style="text-decoration: none; color: inherit" href="/dashboard"
-              >dashboard</a
-            >
-          </li>
+        <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+        <ul class="nav__items" id="nav-items">
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+          <li class="nav__item" id="nav-logout"><a style="text-decoration: none; color: inherit;" href="/logout">Logout</a></li>
+          <div id="nav-auth-slot"></div>
         </ul>
-        <div class="nav__item-ctx">
-          <button class="nav__item__ctx-button">Plan a Trip</button>
-        </div>
+        <!-- <div class="nav__item-ctx"> -->
+          
+        <!-- </div> -->
       </div>
-    </header>
-
     <!-- ── Search band ──────────────────────────────────────────── -->
     <div class="search-band">
       <input
@@ -979,8 +971,8 @@
     fetchHotels(collectFilters());
   });
 
-  const hotelLink = document.getElementById("hotelsLink");
-  hotelLink.classList.add("active-link");
+  // const hotelLink = document.getElementById("hotelsLink");
+  // hotelLink.classList.add("active-link");
 
   // ── Auto-fetch on page load ───────────────────────────────────────
   window.addEventListener("DOMContentLoaded", async () => {
@@ -1587,6 +1579,38 @@
       }
     });
   });
+  
+const navToggle = document.getElementById('navbar-toggle');
+const navItems = document.getElementById('nav-items');
+
+navToggle.addEventListener('click', () => {
+  navItems.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav__item').forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#navbar')) {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
+const dasboardli = document.getElementById('nav-dashboard');
+const logoutli = document.getElementById('nav-logout');
+
+if(!Auth.isLoggedIn()){
+  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
+  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
+}
+console.log(Auth.isLoggedIn())
   if (!Auth.isLoggedIn()) {
     document.getElementById("hd-btn-book").innerText = "Login To Book";
   }

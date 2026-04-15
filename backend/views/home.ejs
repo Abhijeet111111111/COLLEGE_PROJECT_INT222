@@ -297,7 +297,7 @@
   </div>
 </div>
 <!--****************************HOTEL DETAIL DIALOG***************************************************-->
-    <header>
+  
       <div id="navbar">
         <h1 class="navbar-logo">
           <a style="text-decoration: none" href="/"
@@ -305,17 +305,27 @@
             ><span style="color: rgb(6, 187, 6)">Smart</span></a
           >
         </h1>
-        <ul class="nav__items">
+        <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+        <ul class="nav__items" id="nav-items">
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
           <li class="nav__item" id="dashboard"></li>
+          <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+          <li class="nav__item" id="nav-logout"><a style="text-decoration: none; color: inherit;" href="/logout">Logout</a></li>
+          <div id="nav-auth-slot"></div>
         </ul>
         <!-- <div class="nav__item-ctx"> -->
-          <div id="nav-auth-slot"></div>
+          
         <!-- </div> -->
       </div>
-    </header>
+    
     <main id="main">
       <dialog id="destinationDialog">
         
@@ -401,6 +411,7 @@
           <% for(let i=0;i<4;i++){ %>
             <article class="main__featured-hotel" onclick="openHotelDialog('<%=hotel[i]._id%>')">
             <section class="main__featured-hotel__about">
+              
               <div class="main__featured-hotel__about-img" style="background-image: url('hotels/<%= hotel[i].images[0] %>')"></div>
               <div class="main__featured-hotel__about-details">
                 <p class="main__featured-hotel__about-details-name">
@@ -496,6 +507,13 @@ if (Auth.isLoggedIn()) {
 }
 else dashboard.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">plan a trip</a>`
 
+const dasboardli = document.getElementById('nav-dashboard');
+const logoutli = document.getElementById('nav-logout');
+
+if(!Auth.isLoggedIn()){
+  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
+  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
+}
 
 
   function getFormattedAmout(amt) {
@@ -712,10 +730,7 @@ destinationEles.forEach(destinationEle => {
               <p><span style="font-size:x-large;color: #42f54e;">${getFormattedAmout(destination.startingPrice)}</span><span>/person</span></p>
               <p style="font-size: medium;" >${destination.totalPackages} packages available</p>
             </div>
-            <menu class="destinationDialog__footer-menu">
               <button class="goToHotels">View Hotels</button>
-              <button>Browse Packages</button>
-            </menu>
           </footer>
     `
         document.body.style.overflow = "hidden";
@@ -1255,4 +1270,31 @@ document.addEventListener('DOMContentLoaded', () => {
 if(!Auth.isLoggedIn()){
         document.getElementById('hd-btn-book').innerText = "Login To Book"
       }
+
+      
+
+      
+const navToggle = document.getElementById('navbar-toggle');
+const navItems = document.getElementById('nav-items');
+
+navToggle.addEventListener('click', () => {
+  navItems.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav__item').forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#navbar')) {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
 </script>

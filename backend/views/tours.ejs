@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tours — WanderSmart</title>
     <link rel="stylesheet" href="tours.css" />
+    <link rel="stylesheet" href="/nav-auth.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -20,7 +21,7 @@
   </head>
   <body>
     <!-- ── Navbar ──────────────────────────────────────────────────── -->
-    <header>
+     <header>
       <div id="navbar">
         <h1 class="navbar-logo">
           <a style="text-decoration: none" href="/"
@@ -28,29 +29,24 @@
             ><span style="color: rgb(6, 187, 6)">Smart</span></a
           >
         </h1>
-        <ul class="nav__items">
-          <li class="nav__item">
-            <a style="text-decoration: none; color: inherit" href="/explore"
-              >Explore</a
-            >
-          </li>
-          <li class="nav__item">
-            <a style="text-decoration: none; color: inherit" href="/hotels"
-              >Hotels</a
-            >
-          </li>
-          <li class="nav__item" id="tours-link">
-            <a style="text-decoration: none; color: inherit" href="/tours"
-              >Tours</a
-            >
-          </li>
-          <li class="nav__item"><a style="text-decoration: none; color: inherit" href="/dashboard"
-              >Dashboard</a
-            ></li>
+        <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+    <span class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+        <ul class="nav__items" id="nav-items">
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+          <li class="nav__item" id="nav-logout"><a style="text-decoration: none; color: inherit;" href="/logout">Logout</a></li>
+          <div id="nav-auth-slot"></div>
         </ul>
-        <div class="nav__item-ctx">
-          <button class="nav__item__ctx-button">Plan a Trip</button>
-        </div>
+        <!-- <div class="nav__item-ctx"> -->
+          
+        <!-- </div> -->
       </div>
     </header>
 
@@ -991,11 +987,42 @@
   /* ══════════════════════════════════════════════════════════════
    12.  INIT — fetch on page load
 ══════════════════════════════════════════════════════════════ */
-  const toursLink = document.getElementById("tours-link");
-  toursLink.classList.add("active-link");
+  // const toursLink = document.getElementById("tours-link");
+  // toursLink.classList.add("active-link");
 
   window.addEventListener("DOMContentLoaded", () => {
     fetchTours("all");
     fetchGuides();
   });
+   
+const navToggle = document.getElementById('navbar-toggle');
+const navItems = document.getElementById('nav-items');
+
+navToggle.addEventListener('click', () => {
+  navItems.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav__item').forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#navbar')) {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
+const dasboardli = document.getElementById('nav-dashboard');
+const logoutli = document.getElementById('nav-logout');
+
+if(!Auth.isLoggedIn()){
+  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
+  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
+}
 </script>
