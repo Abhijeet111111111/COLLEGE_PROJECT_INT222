@@ -43,14 +43,14 @@ const signup = catchAsync(async (req, res, next) => {
 
 const login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(email, password);
+    // console.log(email, password);
     // email and password exits
     if (!email || !password) {
         return next(new AppError('please enter email and password', 400))
     }
     // verify email and password
     const user = await userModel.findOne({ email }).select('+password');
-    console.log(user);
+    // console.log(user);
     if (!user || !(await user.verifyPassword(password, user.password))) {
         return next(new AppError('invalid email or password', 401))
     }
