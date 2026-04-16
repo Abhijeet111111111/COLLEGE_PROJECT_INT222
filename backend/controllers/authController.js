@@ -5,6 +5,7 @@ import catchAsync from '../utils/catchAsync.js';
 import { promisify } from 'util';
 import crypto, { sign } from 'crypto';
 import jwt from 'jsonwebtoken'
+import { sendMail } from '../utils/sendMail.js'
 
 const getJWTToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -153,11 +154,14 @@ const forgotPassword = catchAsync(async (req, res, next) => {
 
         await user.save({ validateBeforeSave: false });
 
-        const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${passwordResetToken}`
+        const resetUrl = `${req.protocol}://${req.get('host')}/users/resetPassword/${passwordResetToken}`
         const options = {
             email: user.email,
             message: `reset password using link: ${resetUrl}`,
-            subjec: 'you have 10 min to reset your password!'
+            subjec: 'you have 10 min to reset your password!',
+            html: `
+            <a href="${req.protocol}://${req.get('host')}/users/resetPassword/${passwordResetToken}"> click here to reset password </a>
+            `
         }
         await sendMail(options);
 
@@ -213,3 +217,16 @@ export default {
     updatePassword,
     restrictTo
 };
+
+/*
+
+enter your email cilck on get reset link
+        -> mail has been send to your email address
+user clicks on the link in his mail :-
+        -> directed to /resetpassword/:token
+user enter his new password and confirm password 
+        -> patch request is send to /resetpassword/:token
+if password is successfully reset 
+        -> user redirected to login page
+
+*/
