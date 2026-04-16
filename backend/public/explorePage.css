@@ -428,6 +428,7 @@ main {
 }
 .destinationDialog__main-tabs-btns {
   display: flex;
+
   align-items: end;
   list-style: none;
   margin: 0;
@@ -574,6 +575,7 @@ main {
 .destinationDialogMonths ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
   margin: 0.8rem 0;
   padding: 0;
@@ -609,12 +611,8 @@ main {
   margin: 0;
 }
 
-.destinationDialog__footer-menu {
-  flex-grow: 2;
-  text-align: right;
-}
 
-.destinationDialog__footer-menu button {
+.goToHotels {
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: #262525;
@@ -841,13 +839,30 @@ svg:hover {
   gap: 0.5rem;
 }
 .reachBy- {
-  height: 4rem;
-  width: 4rem;
+  min-height: 4rem;
+  min-width: 4rem;
   background-color: brown;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 1rem;
 }
+.reachBy-air {
+  background: url("https://cdn-icons-png.flaticon.com/512/7893/7893979.png");
+  background-size: cover;
+}
+.reachBy-train {
+  background: url("https://cdn-icons-png.flaticon.com/512/8137/8137696.png");
+  background-size: cover;
+  /* border-radius: 50%; */
+}
 
+.reachBy-road {
+  background: url("https://cdn-icons-png.flaticon.com/512/2554/2554881.png");
+  background-size: cover;
+}
+
+.activeli{
+  border-bottom: 1px solid green;
+}
 body,
 li,
 button,
@@ -1027,7 +1042,9 @@ h2,
   .destinationDialog__main-tabs-topattractions-list{
     justify-content: center;
   }
-
+  .destinationDialog__main-tabs-btns{
+    align-items: center;
+  }
   /* Footer responsive */
   .footer__container {
     grid-template-columns: 1fr;

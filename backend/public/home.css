@@ -33,12 +33,10 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(255, 255, 255, 0.8);
   position: relative;
-
 }
 
-
 .nav__item:not(.nav__item__ctx-button):hover::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -62,11 +60,10 @@ body {
   cursor: pointer;
 }
 
-
 .main__first {
   padding: 5rem 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #0d2e22 0%, #0F6E56 60%, #1D9E75 100%);
+  background: linear-gradient(135deg, #0d2e22 0%, #0f6e56 60%, #1d9e75 100%);
   color: white;
   min-height: 80vh;
   display: flex;
@@ -151,7 +148,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 #main__first__search-text {
   flex-grow: 5;
@@ -785,7 +781,7 @@ body {
   color: rgba(255, 255, 255, 0.8);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.destinationDialog__main-desc :first-child{
+.destinationDialog__main-desc :first-child {
   margin: 0;
 }
 
@@ -823,7 +819,6 @@ body {
 }
 .destinationDialog__main-tabs-btns {
   display: flex;
-
   align-items: center;
   list-style: none;
   margin: 0;
@@ -833,16 +828,24 @@ body {
 }
 
 .destinationDialog__main-tabs-item {
+  cursor: pointer;
   margin: 0;
+  padding: 0;
 }
 
-.destinationDialog__main-tabs-btn {
+.destinationDialog__main-tabs-item:hover{
+  border-bottom: 2px solid green;
+}
+
+.destinationDialog__main-tabs-item{
   background-color: transparent;
-  outline: none;
   color: rgba(255, 255, 255, 0.8);
   padding: 0.4rem;
   border: none;
   font-size: large;
+}
+.destinationDialog__main-tabs-item:hover{
+  color: #15ba5a;
 }
 
 .destinationDialog__main-tabs-btn:focus {
@@ -991,7 +994,7 @@ body {
   background-color: #1a1a1a;
   border-top: 1px solid rgba(255, 255, 255, 0.8);
 }
-.destinationDialog__footer p{
+.destinationDialog__footer p {
   color: white;
 }
 .destinationDialog__footer-price {
@@ -1006,8 +1009,6 @@ body {
 .destinationDialog__footer-price p {
   margin: 0;
 }
-
-
 
 .goToHotels {
   outline: none;
@@ -1210,8 +1211,8 @@ svg:hover {
   gap: 0.5rem;
 }
 .reachBy- {
-  height: 4rem;
-  width: 4rem;
+  min-height: 4rem;
+  min-width: 4rem;
   background-color: brown;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 1rem;
@@ -1229,6 +1230,13 @@ svg:hover {
 .reachBy-road {
   background: url("https://cdn-icons-png.flaticon.com/512/2554/2554881.png");
   background-size: cover;
+}
+
+.activeli {
+  border-bottom: 2px solid green;
+}
+.activeSpan {
+  color: #15ba5a;
 }
 /* ******************************************************************************/
 
@@ -2208,13 +2216,12 @@ h2,
   transform: rotate(-45deg) translate(8px, -8px);
 }
 
-#nav-dashboard{
+#nav-dashboard {
   display: none;
 }
-#nav-logout{
+#nav-logout {
   display: none;
 }
-
 
 .main__about__features {
   display: flex;
@@ -2225,7 +2232,7 @@ h2,
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   flex-wrap: wrap;
   gap: 1rem;
-  padding-bottom: .8rem;
+  padding-bottom: 0.8rem;
 }
 
 .main__about__feature {
@@ -2254,7 +2261,6 @@ h2,
   margin-top: 0.3rem;
   font-size: 0.9rem;
 }
-
 
 @media (max-width: 768px) {
   .navbar__toggle {
@@ -2293,23 +2299,23 @@ h2,
     text-align: center;
   }
 
-  #nav-user-pill{
+  #nav-user-pill {
     display: none;
   }
-  #nav-auth-slot{
+  #nav-auth-slot {
     display: none !important;
   }
-  #nav-dashboard{
+  #nav-dashboard {
     display: block;
   }
-  #nav-logout{
+  #nav-logout {
     display: block;
   }
 
   #navbar {
     padding: 1rem;
   }
-  .navbar-logo{
+  .navbar-logo {
     margin: 0;
   }
 
@@ -2346,7 +2352,6 @@ h2,
     border-radius: 0.5rem;
   }
 
-
   .main__destinations {
     padding: 1rem;
   }
@@ -2355,10 +2360,10 @@ h2,
     flex-direction: column;
     align-items: flex-start;
   }
-  .main__destinations-header__a{
+  .main__destinations-header__a {
     display: none;
   }
-  .main__featured-hotels__header a{
+  .main__featured-hotels__header a {
     display: none;
   }
 
@@ -2419,28 +2424,32 @@ h2,
     flex-direction: column;
   }
 
-  .main__featured-hotel__about-details__types{
+  .main__featured-hotel__about-details__types {
     justify-content: center;
   }
 
-  .dialog-overviewinfo{
+  .dialog-overviewinfo {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 1rem;
   }
-  .overview-localcuisine{
+  .overview-localcuisine {
     justify-content: center;
   }
-  .overview-localcuisine-rating{
+  .overview-localcuisine-rating {
     text-align: center;
   }
-  .eco-score-row{
+  .destinationDialog__main-tabs-btns{
+    align-items: end;
+    gap: 0;
+  }
+  .eco-score-row {
     justify-content: center;
   }
-  .overview-localcuisine-tags{
+  .overview-localcuisine-tags {
     justify-content: center;
   }
-  .destinationDialog__main-tabs-topattractions-list{
+  .destinationDialog__main-tabs-topattractions-list {
     justify-content: center;
   }
 

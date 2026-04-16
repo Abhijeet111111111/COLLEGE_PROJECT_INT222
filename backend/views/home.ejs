@@ -610,14 +610,14 @@ destinationEles.forEach(destinationEle => {
             </ul>
             <section class="destinationDialog__main-tabs">
               <ul class="destinationDialog__main-tabs-btns">
-                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.tabOverview').classList.add('active');document.querySelector('.tabItinerary').classList.remove('active');document.querySelector('.howToReach').classList.remove('active');})()">Overview</button></li>
-                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.tabItinerary').classList.add('active');document.querySelector('.tabOverview').classList.remove('active');document.querySelector('.howToReach').classList.remove('active');})()">Itineray Ideas</button></li>
-                <li class="destinationDialog__main-tabs-item"><button class="destinationDialog__main-tabs-btn" onclick="(() => {document.querySelector('.howToReach').classList.add('active');document.querySelector('.tabOverview').classList.remove('active');document.querySelector('.tabItinerary').classList.remove('active');})()">How to reac</button></li>
+                <li class="destinationDialog__main-tabs-item"><span class="destinationDialog__main-tabs-btn" id="overview">Destination Overview</span></li>
+                <li class="destinationDialog__main-tabs-item"><span class="destinationDialog__main-tabs-btn" id="itinerary">Itineray Ideas</span></li>
+                <li class="destinationDialog__main-tabs-item"><span class="destinationDialog__main-tabs-btn" id="reach">How to reach</span></li>
               </ul>
 
 
 
-              <div class="tabOverview">
+              <div id="overview" class="tabOverview tabcontent">
               <div class="destinationDialog__main-tabs-topattractions">
                 <p class="destinationDialog__main-tabs-topattractions-head">Top Attraction</p>
                   <ul class="destinationDialog__main-tabs-topattractions-list">
@@ -680,7 +680,7 @@ destinationEles.forEach(destinationEle => {
             </div>
 
 
-             <section class="tabItinerary">
+             <section id="itinerary" class="tabItinerary tabcontent">
         <ul class="ItineraryItems">
             <li class="ItineraryItem">
                 <p>Day 1 — Arrival & Old City</p>
@@ -700,7 +700,7 @@ destinationEles.forEach(destinationEle => {
         </ul>
     </section>
 
-    <section class="howToReach">
+    <section id="reach" class="howToReach tabcontent">
       <ul class="howToReachItems">
         
         <li class="howToReachItem">
@@ -744,6 +744,8 @@ destinationEles.forEach(destinationEle => {
               <button class="goToHotels">View Hotels</button>
           </footer>
     `
+
+
         document.body.style.overflow = "hidden";
         dialog.showModal();
         const goToHotels = document.querySelector(".goToHotels");
@@ -759,8 +761,30 @@ destinationEles.forEach(destinationEle => {
           });
         })
         const overViewBtn = document.querySelector('.destinationDialog__main-tabs-btn')
-        overViewBtn.focus();
         document.querySelector('.tabOverview').classList.add('active')
+
+        const allbtns = document.querySelectorAll('.destinationDialog__main-tabs-item');
+        const allSpanBtn = document.querySelectorAll('.destinationDialog__main-tabs-btn');
+        const allTabContent = document.querySelectorAll('.tabcontent');
+
+        Array.from(allSpanBtn)[0].classList.add('activeSpan');
+        Array.from(allbtns)[0].classList.add('activeli');
+
+        Array.from(allbtns).forEach(el => {
+          el.addEventListener('click',(evt)=>{
+            Array.from(allbtns).forEach(el => el.classList.remove('activeli'));
+            Array.from(allSpanBtn).forEach(el => el.classList.remove('activeSpan'));
+            Array.from(allTabContent).forEach(el =>{
+              if(el.id === evt.target.id){
+                el.classList.add('active');
+              }
+              else el.classList.remove('active');
+            });
+            evt.target.parentElement.classList.add('activeli');
+            evt.target.classList.add('activeSpan')
+          })
+          
+        })
     })
 })
 
