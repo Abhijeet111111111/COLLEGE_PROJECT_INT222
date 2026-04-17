@@ -760,31 +760,29 @@ destinationEles.forEach(destinationEle => {
             el.style.backgroundImage = `url(${data.urls.full})`;
           });
         })
-        const overViewBtn = document.querySelector('.destinationDialog__main-tabs-btn')
-        document.querySelector('.tabOverview').classList.add('active')
+       const alltabitems = document.querySelectorAll('.destinationDialog__main-tabs-item');
+const allSpanBtn = document.querySelectorAll('.destinationDialog__main-tabs-btn');
+const allTabContent = document.querySelectorAll('.tabcontent');
 
-        const allbtns = document.querySelectorAll('.destinationDialog__main-tabs-item');
-        const allSpanBtn = document.querySelectorAll('.destinationDialog__main-tabs-btn');
-        const allTabContent = document.querySelectorAll('.tabcontent');
+// default active
+allSpanBtn[0].classList.add('activeSpan');
+alltabitems[0].classList.add('activeli');
+allTabContent[0].classList.add('active');
 
-        Array.from(allSpanBtn)[0].classList.add('activeSpan');
-        Array.from(allbtns)[0].classList.add('activeli');
+alltabitems.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
 
-        Array.from(allbtns).forEach(el => {
-          el.addEventListener('click',(evt)=>{
-            Array.from(allbtns).forEach(el => el.classList.remove('activeli'));
-            Array.from(allSpanBtn).forEach(el => el.classList.remove('activeSpan'));
-            Array.from(allTabContent).forEach(el =>{
-              if(el.id === evt.target.id){
-                el.classList.add('active');
-              }
-              else el.classList.remove('active');
-            });
-            evt.target.parentElement.classList.add('activeli');
-            evt.target.classList.add('activeSpan')
-          })
-          
-        })
+    // remove all active classes
+    alltabitems.forEach(el => el.classList.remove('activeli'));
+    allSpanBtn.forEach(el => el.classList.remove('activeSpan'));
+    allTabContent.forEach(el => el.classList.remove('active'));
+
+    // add active to current
+    tab.classList.add('activeli');
+    allSpanBtn[index].classList.add('activeSpan');
+    allTabContent[index].classList.add('active');
+  });
+});
     })
 })
 
