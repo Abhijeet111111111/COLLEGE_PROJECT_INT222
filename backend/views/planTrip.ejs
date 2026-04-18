@@ -7,6 +7,8 @@
     
     <!-- Markdown Parser for AI Output -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="/theme.css">
+    <script src="/theme.js"></script>
 
     <style>
         :root {
@@ -27,6 +29,7 @@
             background: #1a1a1a;
             color: var(--text-main);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Subtle animated background shapes to keep it modern but matched */
@@ -276,6 +279,7 @@
         <a href="/" class="back-link">
             ← Back to WanderSmart
         </a>
+        <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme" style="margin-left:auto;">☀️</button>
     </nav>
 
     <div class="container">

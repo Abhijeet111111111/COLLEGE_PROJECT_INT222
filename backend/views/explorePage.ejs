@@ -6,10 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="explorePage.css" />
     <link rel="stylesheet" href="/nav-auth.css">
+    <link rel="stylesheet" href="/theme.css">
     <link
       href="https://api.maptiler.com/maps/streets/style.css?key=P2YnxuVUfPXTTg1SJKHA"
       rel="stylesheet"
     />
+    <script src="/theme.js"></script>
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.0/maptiler-sdk.umd.min.js"></script>
   </head>
   <body>
@@ -31,9 +33,12 @@
         <ul class="nav__items" id="nav-items">
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
-          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></li>
           <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
           <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</span></li>
+          <li class="theme-toggle-item">
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+          </li>
           <div id="nav-auth-slot"></div>
         </ul>
         <!-- <div class="nav__item-ctx"> -->
