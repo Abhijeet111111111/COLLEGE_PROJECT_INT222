@@ -833,18 +833,18 @@ body {
   padding: 0;
 }
 
-.destinationDialog__main-tabs-item:hover{
+.destinationDialog__main-tabs-item:hover {
   border-bottom: 2px solid green;
 }
 
-.destinationDialog__main-tabs-item{
+.destinationDialog__main-tabs-item {
   background-color: transparent;
   color: rgba(255, 255, 255, 0.8);
   padding: 0.4rem;
   border: none;
   font-size: large;
 }
-.destinationDialog__main-tabs-item:hover{
+.destinationDialog__main-tabs-item:hover {
   color: #15ba5a;
 }
 
@@ -2112,6 +2112,9 @@ svg:hover {
 
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 560px) {
+  h1 {
+    font-size: 1.5rem;
+  }
   .hd-dialog {
     border-radius: 16px;
   }
@@ -2439,7 +2442,7 @@ h2,
   .overview-localcuisine-rating {
     text-align: center;
   }
-  .destinationDialog__main-tabs-btns{
+  .destinationDialog__main-tabs-btns {
     align-items: end;
     gap: 0;
   }
