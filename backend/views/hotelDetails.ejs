@@ -696,8 +696,11 @@
       }
       async function loadHotels() {
         try {
-          const res = await fetch(`${API}/${getCityFromURL()}`);
+          const res = await fetch(
+            `${API}/destinations/api/hotels?city=${getCityFromURL()}`,
+          );
           const data = await res.json();
+          console.log(data);
           const hotels = JSON.parse(data.hotels);
           const list = document.getElementById("hotel-list");
           list.innerHTML = "";
