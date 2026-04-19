@@ -56,6 +56,9 @@ app.get('/dashboard', (req, res) => {
 
 app.use('/bookings', bookingRoutes)
 app.use('/contact', contactRoutes)
+app.get('/about', (req, res) => {
+    res.render('about')
+})
 
 app.use((req, res) => {
     res.status(404).json({ error: true, message: `Route ${req.method} ${req.path} not found` });

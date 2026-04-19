@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — WanderSmart</title>
+    <meta name="description" content="Learn more about WanderSmart, our mission, vision, and the team making travel smarter." />
+    <link rel="stylesheet" href="/about.css" />
+    <link rel="stylesheet" href="/nav-auth.css" />
+    <link rel="stylesheet" href="/theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <!-- ── Navbar (full, matches all other pages) ──────────────── -->
+    <div id="navbar">
+      <h1 class="navbar-logo">
+        <a style="text-decoration: none" href="/"
+          ><span style="color: white">Wander</span
+          ><span style="color: rgb(6, 187, 6)">Smart</span></a
+        >
+      </h1>
+      <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      <ul class="nav__items" id="nav-items">
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></li>
+        <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+        <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</span></li>
+        <li class="theme-toggle-item">
+          <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+        </li>
+        <div id="nav-auth-slot"></div>
+      </ul>
+    </div>
+
+    <!-- ── Page layout ────────────────────────────────────────────── -->
+    <div class="auth-page">
+      <!-- Left decorative panel -->
+      <div class="auth-panel">
+        <div class="panel-content">
+          <div class="panel-tagline">Making travel <br />smarter & better.</div>
+          <div class="panel-sub">
+            We are redefining how people explore the world with AI-powered itineraries, seamless bookings, and a focus on sustainability.
+          </div>
+          
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-icon">🌍</div>
+              <div>
+                <div class="about-stat-num">12,400+</div>
+                <div class="about-stat-lbl">Hotels Listed</div>
+              </div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-icon">🎒</div>
+              <div>
+                <div class="about-stat-num">840+</div>
+                <div class="about-stat-lbl">Tour Packages</div>
+              </div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-icon">😊</div>
+              <div>
+                <div class="about-stat-num">2.1M</div>
+                <div class="about-stat-lbl">Happy Travelers</div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Right form panel -->
+      <div class="auth-form-panel">
+        <div class="auth-card">
+          <div class="auth-welcome">About WanderSmart</div>
+          <div class="auth-sub">Your trusted platform for discovering amazing destinations and booking the perfect accommodations.</div>
+
+          <!-- Mission / Vision -->
+          <div class="section-label">Our Purpose</div>
+          <div class="mission-grid">
+            <div class="mission-card">
+              <div class="mission-card-icon">🚀</div>
+              <div class="mission-card-title">Our Mission</div>
+              <div class="mission-card-text">
+                To simplify travel planning through technology, providing personalized and sustainable options that benefit both travelers and local communities.
+              </div>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">👁️</div>
+              <div class="mission-card-title">Our Vision</div>
+              <div class="mission-card-text">
+                To become the world's most intelligent holistic travel companion, empowering everyone to explore responsibly with seamless digital experiences.
+              </div>
+            </div>
+          </div>
+
+          <!-- Values section -->
+          <div class="section-label">Core Values</div>
+          <div class="values-list">
+            <div class="value-item">
+              <div class="value-icon">🌱</div>
+              <div>
+                <div class="value-title">Sustainability First</div>
+                <div class="value-desc">We highlight eco-friendly hotels and emphasize responsible tourism practices to preserve the beauty of our planet.</div>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🤖</div>
+              <div>
+                <div class="value-title">Smart Technology</div>
+                <div class="value-desc">Our AI-driven trip planner and recommendation engines ensure you get the absolute best out of every journey.</div>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon">🤝</div>
+              <div>
+                <div class="value-title">Community Driven</div>
+                <div class="value-desc">We believe in empowering local guides and businesses to share authentic experiences with travelers worldwide.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team section -->
+          <div class="section-label">Meet the Team</div>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar">AS</div>
+              <div class="team-name">Arjun Sharma</div>
+              <div class="team-role">Founder & CEO</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">MP</div>
+              <div class="team-name">Meera Patel</div>
+              <div class="team-role">Head of Product</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">RK</div>
+              <div class="team-name">Rohan Kumar</div>
+              <div class="team-role">Lead Developer</div>
+            </div>
+          </div>
+
+          <!-- CTA row -->
+          <div class="about-cta-row">
+            <a href="/explore" class="btn-primary">Start Exploring</a>
+            <a href="/contact" class="btn-ghost-outline">Contact Us</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="/auth.js"></script>
+    <script>
+      // ── Hamburger menu toggle ───────────────────────────────────
+      const navToggle = document.getElementById('navbar-toggle');
+      const navItems  = document.getElementById('nav-items');
+      navToggle.addEventListener('click', () => {
+        navItems.classList.toggle('active');
+        navToggle.classList.toggle('active');
+      });
+      document.querySelectorAll('.nav__item').forEach(item => {
+        item.addEventListener('click', () => {
+          navItems.classList.remove('active');
+          navToggle.classList.remove('active');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#navbar')) {
+          navItems.classList.remove('active');
+          navToggle.classList.remove('active');
+        }
+      });
+
+      // ── Nav logout / dashboard swap ─────
+      const navLogout = document.getElementById('nav-logout');
+      navLogout.addEventListener('click', () => Auth.logout());
+
+      const dasboardli = document.getElementById('nav-dashboard');
+      const logoutli   = document.getElementById('nav-logout');
+      if (!Auth.isLoggedIn()) {
+        dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`;
+        logoutli.innerHTML   = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`;
+      }
+    </script>
+  </body>
+</html>

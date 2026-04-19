@@ -189,6 +189,31 @@
         dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`;
         logoutli.innerHTML   = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`;
       }
+
+      // ── Auto-fill form with logged-in user's data ──────────────
+      if (Auth.isLoggedIn()) {
+        const user = Auth.getUser();
+        if (user) {
+          // Fill name and email directly
+          const nameEl  = document.getElementById('c-name');
+          const emailEl = document.getElementById('c-email');
+          const phoneEl = document.getElementById('c-phone');
+
+          if (nameEl  && user.name  && !nameEl.value)  nameEl.value  = user.name;
+          if (emailEl && user.email && !emailEl.value) emailEl.value = user.email;
+
+          // Format phone as +91 XXXXX XXXXX
+          if (phoneEl && user.phone && !phoneEl.value) {
+            const digits = String(user.phone).replace(/\D/g, ''); // strip non-digits
+            const local  = digits.slice(-10); // take last 10 digits
+            if (local.length === 10) {
+              phoneEl.value = `+91 ${local.slice(0, 5)} ${local.slice(5)}`;
+            } else {
+              phoneEl.value = user.phone; // fallback if unusual format
+            }
+          }
+        }
+      }
     </script>
     <script>
       const API =
