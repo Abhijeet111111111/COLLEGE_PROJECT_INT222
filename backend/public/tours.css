@@ -81,7 +81,10 @@ body {
   background: linear-gradient(90deg, #2ecc71, #1abc9c);
   border-radius: 1px;
 }
-
+.currNavItem{
+  border-bottom: 2px solid #2ecc71;
+  border-radius: 1px;
+}
 .nav__item__ctx-button {
   font-size: large;
   padding: 0.8rem 1.5rem;

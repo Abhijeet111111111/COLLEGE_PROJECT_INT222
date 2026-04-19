@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1865/1865269.png">
     <title>Tours — WanderSmart</title>
     <link rel="stylesheet" href="tours.css" />
     <link rel="stylesheet" href="/nav-auth.css">
@@ -1032,4 +1033,7 @@ if(!Auth.isLoggedIn()){
   dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
   logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
 }
+const el = document.querySelectorAll('.nav__item')[2];
+el.classList.add('currNavItem')
+
 </script>

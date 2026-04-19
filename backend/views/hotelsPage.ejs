@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link  rel="icon" type="image/png" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/18408/18408210.png">
     <title>WanderSmart — Hotels</title>
     <link rel="stylesheet" href="hotels.css" />
     <link rel="stylesheet" href="/nav-auth.css">
@@ -1622,4 +1623,7 @@ console.log(Auth.isLoggedIn())
   if (!Auth.isLoggedIn()) {
     document.getElementById("hd-btn-book").innerText = "Login To Book";
   }
+  const el = document.querySelectorAll('.nav__item')[1];
+el.classList.add('currNavItem')
+
 </script>

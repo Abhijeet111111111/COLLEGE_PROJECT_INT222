@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="icon" type="image/png" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/5776/5776740.png">
+    <title>Explore Destinations</title>
     <link rel="stylesheet" href="explorePage.css" />
     <link rel="stylesheet" href="/nav-auth.css">
     <link
@@ -490,4 +491,7 @@ if(!Auth.isLoggedIn()){
   dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
   logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
 }
+const el = document.querySelector('.nav__item');
+el.classList.add('currNavItem')
+
 </script>
