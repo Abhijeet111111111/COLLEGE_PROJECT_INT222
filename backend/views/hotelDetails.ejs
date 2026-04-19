@@ -606,7 +606,7 @@
         if (hotel.freeCancellation) tags.push("Free cancellation");
 
         return `
-    <div id=${hotel.id} class="hotel-card"
+    <div id=${hotel._id} class="hotel-card"
       data-tags="${tags.join(",")}"
       data-price="${hotel.pricePerNight}"
       data-rating="${hotel.rating}"
@@ -659,7 +659,7 @@
             <span class="eco-label">Eco ${hotel.ecoScore}/5</span>
           </div>
 
-          <div class="price-action" id=${hotel.id}>
+          <div class="price-action" id=${hotel._id}>
             <div class="price-block">
               <div class="price-amt">₹${hotel.pricePerNight}</div>
               <div class="price-sub">
@@ -667,7 +667,7 @@
               </div>
             </div>
             <button class="btn-book" data-hotel="${hotel.name}">
-              Book now
+              view details
             </button>
           </div>
         </div>
@@ -1101,7 +1101,7 @@
 
         const payload = {
           bookingRef: ref,
-          hotelId: _hotel.id,
+          hotelId: _hotel._id,
           hotelName: _hotel.name,
           city: _hotel.location.city,
           state: _hotel.location.state,
@@ -1128,7 +1128,7 @@
         document.body.style.overflow = "hidden";
 
         try {
-          const res = await fetch(`${HD_API}/hotels/${_hotel.id}/book`, {
+          const res = await fetch(`${HD_API}/hotels/${_hotel._id}/book`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
