@@ -1,0 +1,898 @@
+/* ═══════════════════════════════════════════════════════════════
+   WanderSmart — Theme System
+   Default: dark  (no class needed)
+   Light:   html.light-mode  (class toggled on <html> element)
+   Add <link rel="stylesheet" href="/theme.css"> to every page.
+   Add <script src="/theme.js"></script> in <head> of every page.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Light-mode colour tokens ─────────────────────────────────
+   bg-base   : page background
+   bg-surface: card / panel background
+   bg-nav    : navbar background
+   txt-main  : primary text
+   txt-sub   : secondary / muted text
+   border    : subtle divider colour
+   accent    : brand green (same in both modes)
+──────────────────────────────────────────────────────────────── */
+html.light-mode {
+  --bg-base:    #f2f6f3;
+  --bg-surface: #ffffff;
+  --bg-nav:     #ffffff;
+  --txt-main:   #1a1a1a;
+  --txt-sub:    #555555;
+  --txt-muted:  #888888;
+  --border:     rgba(0, 0, 0, 0.10);
+  --accent:     #1D9E75;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON  (shared across all pages)
+══════════════════════════════════════════════════════════════ */
+.theme-toggle-btn {
+  background:    none;
+  border:        1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  width:         36px;
+  height:        36px;
+  min-width:     36px;
+  cursor:        pointer;
+  font-size:     1.1rem;
+  line-height:   1;
+  display:       inline-flex;
+  align-items:   center;
+  justify-content: center;
+  transition:    background 0.25s, border-color 0.25s;
+  padding:       0;
+  color:         white;
+}
+.theme-toggle-btn:hover {
+  background:   rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+html.light-mode .theme-toggle-btn {
+  border-color: rgba(0, 0, 0, 0.20);
+  color:        #333;
+}
+html.light-mode .theme-toggle-btn:hover {
+  background:   rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.40);
+}
+
+/* ── Wrapper <li> so the button sits neatly in the nav list ── */
+.theme-toggle-item {
+  display: flex;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SMOOTH TRANSITIONS on key elements
+══════════════════════════════════════════════════════════════ */
+html, body {
+  transition: background-color 0.30s ease, color 0.30s ease;
+}
+#navbar,
+.navbar,
+.top-nav,
+.main__about__features,
+.main__destinations,
+.main__featured-hotels,
+.main__featured-hotel,
+.top-destination__about,
+.footer,
+.tour-card,
+.hotel-card,
+.sidebar,
+.auth-card,
+.nav-dropdown,
+.nav-user-pill,
+.hd-dialog,
+.dialog,
+#destinationDialog {
+  transition: background-color 0.30s ease,
+              box-shadow      0.30s ease,
+              border-color    0.30s ease,
+              color           0.30s ease;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — GLOBAL BASE
+══════════════════════════════════════════════════════════════ */
+html.light-mode body {
+  background-color: #f2f6f3 !important;
+  color:            var(--txt-main);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — SHARED NAVBAR  (#navbar on all pages)
+══════════════════════════════════════════════════════════════ */
+html.light-mode #navbar {
+  background-color: #f2f6f3 !important;
+  border-bottom:    1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:       none !important;
+}
+html.light-mode .navbar-logo a span:first-child {
+  color: #1a1a1a !important;
+}
+html.light-mode .nav__item {
+  color: #333;
+}
+html.light-mode .nav__item a {
+  color: #333 !important;
+}
+html.light-mode .nav__items.active {
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+}
+/* hamburger bars */
+html.light-mode .hamburger > span {
+  background-color: #333;
+}
+
+/* ── nav-auth.css overrides (pill, dropdown) ────────────────── */
+html.light-mode .nav-user-pill {
+  background:   #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .nav-user-pill:hover {
+  background:   #e4e4e4;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+html.light-mode .nav-user-name {
+  color: #1a1a1a;
+}
+html.light-mode .nav-chevron {
+  color: #666;
+}
+html.light-mode .nav-dropdown {
+  background:   #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow:   0 8px 24px rgba(0, 0, 0, 0.10);
+}
+html.light-mode .nav-dd-name  { color: #1a1a1a; }
+html.light-mode .nav-dd-email { color: #888; }
+html.light-mode .nav-dd-user  { border-bottom-color: rgba(0, 0, 0, 0.08); }
+html.light-mode .nav-dd-item  { color: #444; }
+html.light-mode .nav-dd-item:hover { background: #f0f0f0; color: #1a1a1a; }
+html.light-mode .nav-dd-divider { background: rgba(0, 0, 0, 0.08); }
+html.light-mode .nav-btn-ghost {
+  border-color: rgba(0, 0, 0, 0.20);
+  color:        #555;
+}
+html.light-mode .nav-btn-ghost:hover {
+  border-color: rgba(0, 0, 0, 0.45);
+  color:        #1a1a1a;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — HOME PAGE (home.css)
+══════════════════════════════════════════════════════════════ */
+/* Hero stays dark-green gradient — looks great in both modes */
+
+html.light-mode .main__about__features {
+  background:    #ffffff;
+  border-bottom: 1px solid var(--border);
+}
+html.light-mode .main__about__feature-text {
+  color: var(--txt-sub);
+}
+
+html.light-mode .main__destinations {
+  background: var(--bg-base);
+}
+html.light-mode .main__destinations-header__head {
+  color: var(--txt-main);
+}
+html.light-mode .main__top-destination {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow:   0 4px 14px rgba(0, 0, 0, 0.06);
+}
+html.light-mode .top-destination__about {
+  background-color: #ffffff;
+  color:            var(--txt-main);
+}
+
+html.light-mode .main__featured-hotels {
+  background: var(--bg-base);
+}
+html.light-mode .main__featured-hotels__header h2 {
+  color: var(--txt-main);
+}
+html.light-mode .main__featured-hotel {
+  background: var(--bg-surface);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+}
+html.light-mode .main__featured-hotel:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+}
+html.light-mode .main__featured-hotel__about-details-name {
+  color: var(--txt-main);
+}
+html.light-mode .main__featured-hotel__about-details-location {
+  color: var(--txt-sub);
+}
+html.light-mode .main__featured-hotel__about-details__types p {
+  background-color: #f0f0f0;
+  border-color:     rgba(0, 0, 0, 0.10);
+  color:            #555;
+}
+html.light-mode .main__featured-hotel__price-pernight {
+  color: var(--txt-muted);
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+html.light-mode .footer {
+  background:  linear-gradient(180deg, #e9f0eb 0%, #dce6de 100%);
+  color:       #333;
+  border-top:  2px solid rgba(29, 158, 117, 0.20);
+}
+html.light-mode .footer__title  { color: var(--accent); }
+html.light-mode .footer__text   { color: var(--txt-sub); }
+html.light-mode .footer__link   { color: var(--txt-sub); }
+html.light-mode .footer__link:hover { color: var(--accent); }
+html.light-mode .footer__contact p  { color: var(--txt-sub); }
+html.light-mode .footer__bottom p   { color: var(--txt-muted); }
+html.light-mode .footer__bottom     { border-top-color: var(--border); }
+html.light-mode .footer__socials a  {
+  background:   rgba(29, 158, 117, 0.10);
+  border-color: rgba(29, 158, 117, 0.25);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — EXPLORE PAGE (explorePage.css)
+   Covers every hardcoded dark colour in that file.
+══════════════════════════════════════════════════════════════ */
+
+/* ── Page-level backgrounds ───────────────────────────────── */
+html.light-mode body {
+  background-color: var(--bg-base) !important;
+}
+html.light-mode main {
+  background-color: #f2f6f3 !important;
+}
+
+/* ── Page header: "Explore Destinations" ─────────────────── */
+html.light-mode .main__header {
+  background-color: var(--bg-base);
+}
+html.light-mode .main__header-head {
+  color: var(--txt-main);
+}
+html.light-mode .main__header-desc {
+  color: var(--txt-sub);
+}
+
+/* ── Filter / search bar ──────────────────────────────────── */
+html.light-mode .main__filter {
+  /* No white card — blend into the page background */
+  background:    transparent;
+  /* Keep same padding as dark mode so layout doesn't shift between modes */
+  padding:       0 2rem;
+  margin:        0;
+  box-shadow:    none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+html.light-mode .main__filter-search {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .main__filter-search::placeholder { color: #999; }
+html.light-mode .main__filter-btn {
+  color:        #333;
+  border-color: rgba(0, 0, 0, 0.18);
+  background:   #f5f5f5;
+}
+html.light-mode .main__filter-btn:hover {
+  background:   #e8f5ef;
+  border-color: var(--accent);
+  color:        var(--accent);
+}
+html.light-mode .main__filter-btn.btn-active,
+html.light-mode .main__filter-btn.active-link {
+  background:   var(--accent) !important;
+  border-color: var(--accent);
+  color:        #fff;
+}
+
+/* ── Map section ──────────────────────────────────────────── */
+html.light-mode .main__map {
+  border-color: rgba(0, 0, 0, 0.15);
+  background:   #ffffff;
+}
+html.light-mode .main__map-head {
+  color: var(--txt-sub);
+}
+html.light-mode .main__map-map {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ── Destination cards ────────────────────────────────────── */
+html.light-mode .main__top-destination {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow:   0 4px 14px rgba(0, 0, 0, 0.07);
+}
+html.light-mode .top-destination__about {
+  background-color: #ffffff !important;
+  color:            var(--txt-main);
+}
+html.light-mode .top-destination__about p {
+  color: var(--txt-main);
+}
+
+/* ── Destination detail dialog ────────────────────────────── */
+html.light-mode #destinationDialog {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .destinationDialog__main {
+  background-color: var(--bg-base) !important;
+}
+html.light-mode .destinationDialog__main-tagslist-item {
+  border-color: rgba(0, 0, 0, 0.18);
+  color:        var(--txt-sub);
+}
+html.light-mode .destinationDialog__main-tabs-btns {
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .destinationDialog__main-tabs-btn {
+  color: var(--txt-sub);
+  background-color: transparent;
+}
+html.light-mode .destinationDialog__main-tabs-btn:focus,
+html.light-mode .destinationDialog__main-tabs-btn.activeSpan {
+  color:        var(--accent);
+  border-bottom-color: var(--accent);
+}
+html.light-mode .destinationDialog__main-tabs-topattractions-head {
+  color: var(--txt-main);
+}
+html.light-mode .destinationDialog__main-tabs-topattractions-list {
+  border-bottom-color: rgba(0, 0, 0, 0.10);
+}
+html.light-mode .destinationDialog__main-tabs-topattraction {
+  background-color: #f5f5f5;
+  border-color:     rgba(0, 0, 0, 0.12);
+  color:            var(--txt-main);
+}
+html.light-mode .destinationDialog__main-desc {
+  color: var(--txt-sub);
+}
+html.light-mode .dialog-overviewinfo {
+  border-bottom-color: rgba(0, 0, 0, 0.10);
+}
+html.light-mode .overview-quickinfo p {
+  color:             var(--txt-sub);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+html.light-mode .overview-quickinfo-head {
+  color: var(--txt-main);
+}
+html.light-mode .overview-localcuisine h2 {
+  color: var(--txt-main);
+}
+html.light-mode .destinationDialogMonths {
+  border-bottom-color: rgba(0, 0, 0, 0.10);
+}
+html.light-mode .destinationDialogMonths p {
+  color: var(--txt-main);
+}
+html.light-mode .destinationDialogMonths li {
+  background-color: #f0f0f0;
+  color:            var(--txt-sub);
+}
+html.light-mode .destinationDialog__footer {
+  background-color: #ffffff;
+  border-top-color: rgba(0, 0, 0, 0.10);
+}
+html.light-mode .destinationDialog__footer-price p {
+  color: var(--txt-main);
+}
+html.light-mode .goToHotels {
+  background-color: #f5f5f5;
+  border-color:     rgba(0, 0, 0, 0.18);
+  color:            var(--txt-main);
+}
+html.light-mode .goToHotels:hover {
+  background-color: #e8f5ef;
+}
+html.light-mode .ItineraryItems {
+  color: var(--txt-main);
+}
+html.light-mode .ItineraryItem {
+  border-color: rgba(0, 0, 0, 0.12);
+  color:        var(--txt-sub);
+}
+html.light-mode .ItineraryItem p:first-child {
+  color: var(--txt-main);
+}
+html.light-mode .howToReach li p {
+  color: var(--txt-sub);
+}
+html.light-mode .eco-label {
+  color: var(--txt-muted);
+}
+html.light-mode .leaf.empty {
+  background: #d0d0d0;
+}
+html.light-mode .overview-localcuisine-rating p {
+  color: var(--txt-muted);
+}
+
+/* ── Mobile nav overlay in light mode ────────────────────── */
+html.light-mode .nav__items {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — HOTELS PAGE (hotels.css)
+══════════════════════════════════════════════════════════════ */
+html.light-mode .search-band {
+  background: #ffffff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+}
+html.light-mode .search-field {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .search-field::placeholder { color: #999; }
+
+html.light-mode .layout {
+  background: var(--bg-base);
+}
+html.light-mode .sidebar {
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+html.light-mode .sf-title   { color: var(--txt-main); }
+html.light-mode .sf-check   { color: var(--txt-sub); }
+html.light-mode .price-row  { color: var(--txt-sub); }
+html.light-mode #price-range { accent-color: var(--accent); }
+
+html.light-mode .result-bar     { color: var(--txt-main); }
+html.light-mode .result-count   { color: var(--txt-sub); }
+html.light-mode .sort-sel {
+  background:   #ffffff;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+html.light-mode .hotel-card {
+  background: var(--bg-surface);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+}
+html.light-mode .hotel-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+html.light-mode .hotel-name      { color: var(--txt-main); }
+html.light-mode .hotel-loc       { color: var(--txt-sub); }
+html.light-mode .hotel-desc      { color: var(--txt-sub); }
+html.light-mode .hotel-price-sub { color: var(--txt-muted); }
+
+html.light-mode .main {
+  background: var(--bg-base);
+}
+html.light-mode .loading-state { color: var(--txt-sub); }
+html.light-mode .no-results    { color: var(--txt-sub); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — TOURS PAGE (tours.css)
+══════════════════════════════════════════════════════════════ */
+/* Hero/header stays dark gradient */
+html.light-mode .tour-grid {
+  background: var(--bg-base);
+}
+html.light-mode .tour-card {
+  background: var(--bg-surface);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+}
+html.light-mode .tour-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+html.light-mode .tour-title  { color: var(--txt-main); }
+html.light-mode .tour-desc   { color: var(--txt-sub); }
+html.light-mode .price-sub   { color: var(--txt-muted); }
+html.light-mode .tour-day    {
+  background: #f0f0f0;
+  color:      #333;
+}
+html.light-mode .day-label   { color: var(--txt-muted); }
+
+html.light-mode .guides-section { background: var(--bg-base); }
+html.light-mode .guides-label   { color: var(--txt-main); }
+html.light-mode .guide-card {
+  background: var(--bg-surface);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+html.light-mode .guide-name   { color: var(--txt-main); }
+html.light-mode .guide-lang,
+html.light-mode .guide-rating { color: var(--txt-sub); }
+html.light-mode .state-box    { color: var(--txt-sub); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — LOGIN PAGE (login.css)
+══════════════════════════════════════════════════════════════ */
+/* Minimal login navbar */
+html.light-mode .navbar.navbar {         /* login page nav */
+  background:    #f2f6f3 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:    none !important;
+}
+html.light-mode .nav-logo {
+  color: var(--txt-main);
+}
+html.light-mode .nav-logo span {
+  color: var(--accent);
+}
+
+html.light-mode .auth-page {
+  background: var(--bg-base);
+}
+/* Form panel is transparent — page bg shows through, auth-card IS the visible box */
+html.light-mode .auth-form-panel {
+  background: transparent;
+}
+html.light-mode .auth-card {
+  background:    var(--bg-surface);
+  box-shadow:    0 8px 40px rgba(0, 0, 0, 0.10);
+  border:        1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding:       32px 28px;
+}
+html.light-mode .auth-welcome { color: var(--txt-main); }
+html.light-mode .auth-sub     { color: var(--txt-sub); }
+
+html.light-mode .auth-tabs    { border-bottom-color: var(--border); }
+html.light-mode .auth-tab     { color: var(--txt-muted); }
+html.light-mode .auth-tab.active {
+  color:             var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+html.light-mode .form-label  { color: #333; }
+html.light-mode .form-input  {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .form-input::placeholder { color: #aaa; }
+html.light-mode .form-input:focus {
+  background:   #edf9f4;
+  border-color: var(--accent);
+}
+
+html.light-mode .forgot-link  { color: var(--accent); }
+html.light-mode .auth-switch  { color: var(--txt-sub); }
+html.light-mode .auth-switch a { color: var(--accent); }
+html.light-mode .terms-row    { color: var(--txt-sub); }
+html.light-mode .toggle-pw    { color: #888; }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — DASHBOARD PAGE (dashboard.css)
+══════════════════════════════════════════════════════════════ */
+html.light-mode .profile-hero {
+  background: linear-gradient(135deg, #0d2e22, #1D9E75);
+  /* keep the dark gradient for hero – it looks intentional */
+}
+html.light-mode .dash-stats {
+  background:    #ffffff;
+  border-bottom: 1px solid var(--border);
+}
+html.light-mode .dstat-lbl     { color: var(--txt-sub); }
+html.light-mode .dstat-divider { background: var(--border); }
+
+html.light-mode .dash-body     { background: var(--bg-base); }
+html.light-mode .dash-sidebar  {
+  background:    #ffffff;
+  border-right:  1px solid var(--border);
+}
+html.light-mode .dash-tab         { color: var(--txt-sub); }
+html.light-mode .dash-tab:hover   { background: #f0f0f0; color: var(--txt-main); }
+html.light-mode .dash-tab.active  { background: #edf9f4; color: var(--accent); }
+
+html.light-mode .dash-panel    { background: var(--bg-base); }
+html.light-mode .panel-title   { color: var(--txt-main); }
+html.light-mode .panel-loading,
+html.light-mode .panel-empty p { color: var(--txt-sub); }
+
+html.light-mode .booking-card {
+  background:   #ffffff;
+  box-shadow:   0 2px 10px rgba(0, 0, 0, 0.06);
+  border-color: var(--border);
+}
+html.light-mode .bk-name     { color: var(--txt-main); }
+html.light-mode .bk-meta,
+html.light-mode .bk-date     { color: var(--txt-sub); }
+
+html.light-mode .settings-section {
+  background:   #ffffff;
+  box-shadow:   0 2px 10px rgba(0, 0, 0, 0.05);
+  border-color: var(--border);
+}
+html.light-mode .settings-section-title { color: var(--txt-main); }
+html.light-mode .settings-section-sub   { color: var(--txt-sub); }
+
+html.light-mode .sf-label { color: #333; }
+html.light-mode .sf-input {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+html.light-mode .sf-input:focus  {
+  border-color: var(--accent);
+  background:   #edf9f4;
+}
+
+html.light-mode .modal {
+  background:   #ffffff;
+  box-shadow:   0 16px 48px rgba(0, 0, 0, 0.14);
+  border-color: var(--border);
+}
+html.light-mode .modal-title { color: var(--txt-main); }
+
+html.light-mode .dlp-title { color: var(--txt-main); }
+html.light-mode .dlp-sub   { color: var(--txt-sub); }
+html.light-mode .dash-login-prompt { background: var(--bg-base); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — PLAN TRIP PAGE (inline styles in planTrip.ejs)
+══════════════════════════════════════════════════════════════ */
+html.light-mode .top-nav {
+  background-color: #f2f6f3 !important;
+  border-bottom:    1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:       none !important;
+}
+html.light-mode .planner-form {
+  background: #ffffff;
+  border-color: var(--border);
+  box-shadow:   0 6px 24px rgba(0, 0, 0, 0.07);
+}
+html.light-mode .header h1 { color: var(--txt-main); }
+html.light-mode .header p  { color: var(--txt-sub); }
+html.light-mode .input-group label { color: #333; }
+
+html.light-mode .planner-form select,
+html.light-mode .planner-form input[type="text"] {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .planner-form select option {
+  background: #ffffff;
+  color:      var(--txt-main);
+}
+html.light-mode .planner-form select:focus,
+html.light-mode .planner-form input[type="text"]:focus {
+  background:   #edf9f4;
+  border-color: var(--accent);
+  color:        var(--txt-main);
+}
+
+html.light-mode .output-area {
+  background:   #ffffff;
+  border-color: var(--border);
+  box-shadow:   0 6px 24px rgba(0, 0, 0, 0.06);
+}
+html.light-mode .output-placeholder { color: rgba(0, 0, 0, 0.35); }
+html.light-mode .ai-result          { color: var(--txt-sub); }
+html.light-mode .ai-result h1,
+html.light-mode .ai-result h2,
+html.light-mode .ai-result h3  { color: var(--accent); }
+html.light-mode .ai-result strong{ color: var(--txt-main); }
+html.light-mode .ai-result h1   { border-bottom-color: var(--border); }
+html.light-mode .ai-result h2   { border-bottom-color: var(--border); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — DESTINATION DETAIL DIALOG
+══════════════════════════════════════════════════════════════ */
+html.light-mode #destinationDialog {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+html.light-mode .destinationDialog__main {
+  background-color: var(--bg-base) !important;
+}
+html.light-mode .destinationDialog__main-desc {
+  color: var(--txt-sub);
+}
+html.light-mode .destinationDialog__main-tagslist-item {
+  background:   #e8f5ef;
+  color:        #1a5c43;
+  border-color: rgba(29, 158, 117, 0.25);
+}
+html.light-mode .destinationDialog__main-tabs-btn {
+  color: var(--txt-sub);
+}
+html.light-mode .destinationDialog__main-tabs-btn:hover,
+html.light-mode .destinationDialog__main-tabs-btn.activeSpan {
+  color: var(--accent);
+}
+html.light-mode .overview-quickinfo {
+  background:   #ffffff;
+  border-color: var(--border);
+}
+html.light-mode .overview-quickinfo-head span { color: var(--txt-main); }
+html.light-mode .overview-quickinfo p > span:first-child { color: var(--txt-muted); }
+html.light-mode .overview-quickinfo p > span:last-child  { color: var(--txt-main); }
+html.light-mode .overview-localcuisine h2 { color: var(--txt-main); }
+html.light-mode .overview-localcuisine-tag {
+  background:   #e8f5ef;
+  color:        #1a5c43;
+  border-color: rgba(29, 158, 117, 0.25);
+}
+html.light-mode .destinationDialog__footer {
+  background:    #ffffff;
+  border-top:    1px solid var(--border);
+}
+html.light-mode .destinationDialog__footer p { color: var(--txt-sub); }
+html.light-mode .destinationDialogMonths p   { color: var(--txt-main); }
+html.light-mode .destinationDialogMonths li  { color: var(--txt-sub); }
+html.light-mode .ItineraryItem {
+  border-color: var(--border);
+  color:        var(--txt-sub);
+}
+html.light-mode .ItineraryItem p:first-child { color: var(--txt-main); }
+html.light-mode .howToReachItem  { color: var(--txt-sub); }
+html.light-mode .reachByDesc p:first-child { color: var(--txt-main); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — HOTEL BOOKING DIALOG
+══════════════════════════════════════════════════════════════ */
+html.light-mode .hd-dialog {
+  background:   #ffffff;
+  border-color: var(--border);
+  box-shadow:   0 16px 48px rgba(0, 0, 0, 0.12);
+}
+html.light-mode .hd-body        { background: var(--bg-base); }
+html.light-mode .hd-name        { color: var(--txt-main); }
+html.light-mode .hd-loc         { color: var(--txt-sub); }
+html.light-mode .hd-desc        { color: var(--txt-sub); }
+html.light-mode .hd-section-label { color: var(--txt-muted); }
+html.light-mode .hd-stat        { color: var(--txt-sub); }
+html.light-mode .hd-stat-val    { color: var(--txt-main); }
+html.light-mode .hd-tag         {
+  background:   #e8f5ef;
+  color:        #1a5c43;
+  border-color: rgba(29, 158, 117, 0.25);
+}
+html.light-mode .hd-amenity     {
+  background:   #f0f0f0;
+  color:        var(--txt-sub);
+}
+html.light-mode .hd-footer      {
+  background:    #ffffff;
+  border-top:    1px solid var(--border);
+}
+html.light-mode .hd-price-sub   { color: var(--txt-muted); }
+html.light-mode .hd-form-header { border-bottom-color: var(--border); }
+html.light-mode .hd-form-title  { color: var(--txt-main); }
+html.light-mode .hd-form-sub    { color: var(--txt-sub); }
+html.light-mode .hd-label       { color: #333; }
+html.light-mode .hd-input {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+html.light-mode .hd-input::placeholder { color: #aaa; }
+html.light-mode .hd-input:focus {
+  border-color: var(--accent);
+  background:   #edf9f4;
+}
+html.light-mode .hd-form-footer { border-top-color: var(--border); }
+html.light-mode .hd-pay-tab {
+  color:        var(--txt-sub);
+  border-color: var(--border);
+  background:   #f5f5f5;
+}
+html.light-mode .hd-pay-tab.active {
+  color:        var(--accent);
+  border-color: var(--accent);
+  background:   #edf9f4;
+}
+html.light-mode .hd-steps       { border-bottom-color: var(--border); }
+html.light-mode .hd-step-bar    { background: var(--border); }
+html.light-mode .hd-step-num    { border-color: var(--border); color: var(--txt-muted); }
+html.light-mode .hd-step.active .hd-step-num { border-color: var(--accent); color: var(--accent); background: #edf9f4; }
+html.light-mode .hd-step-lbl   { color: var(--txt-muted); }
+html.light-mode .hd-step.active .hd-step-lbl { color: var(--accent); }
+html.light-mode .hd-secure      { color: var(--txt-muted); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — TOUR BOOKING DIALOG
+══════════════════════════════════════════════════════════════ */
+html.light-mode .dialog {
+  background:   #ffffff;
+  box-shadow:   0 16px 48px rgba(0, 0, 0, 0.12);
+}
+html.light-mode .dialog-header  { border-bottom-color: var(--border); }
+html.light-mode .dialog-title   { color: var(--txt-main); }
+html.light-mode .dialog-sub     { color: var(--txt-sub); }
+html.light-mode .dialog-steps   { border-bottom-color: var(--border); }
+html.light-mode .step-line      { background: var(--border); }
+html.light-mode .step-num       { border-color: var(--border); color: var(--txt-muted); }
+html.light-mode .step.active .step-num { border-color: var(--accent); color: var(--accent); background: #edf9f4; }
+html.light-mode .step-lbl       { color: var(--txt-muted); }
+html.light-mode .step.active .step-lbl { color: var(--accent); }
+
+html.light-mode .form-group .form-label { color: #333; }
+html.light-mode .form-group .form-input {
+  background:   #f5f5f5;
+  color:        var(--txt-main);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+html.light-mode .form-group .form-input::placeholder { color: #aaa; }
+html.light-mode .form-group .form-input:focus {
+  border-color: var(--accent);
+  background:   #edf9f4;
+}
+html.light-mode .form-optional  { color: var(--txt-muted); }
+html.light-mode .dialog-footer  { border-top-color: var(--border); }
+html.light-mode .total-preview  { color: var(--txt-sub); }
+html.light-mode .pay-method {
+  color:        var(--txt-sub);
+  border-color: var(--border);
+  background:   #f5f5f5;
+}
+html.light-mode .pay-method.active {
+  color:        var(--accent);
+  border-color: var(--accent);
+  background:   #edf9f4;
+}
+html.light-mode .secure-note    { color: var(--txt-muted); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — FORGOT / RESET PASSWORD PAGES
+══════════════════════════════════════════════════════════════ */
+html.light-mode .auth-page,
+html.light-mode .forgot-page,
+html.light-mode .reset-page {
+  background: var(--bg-base);
+}
+html.light-mode .fp-card,
+html.light-mode .rp-card {
+  background:   #ffffff;
+  box-shadow:   0 8px 36px rgba(0, 0, 0, 0.09);
+  border-color: var(--border);
+}
+html.light-mode .fp-title,
+html.light-mode .rp-title  { color: var(--txt-main); }
+html.light-mode .fp-sub,
+html.light-mode .rp-sub    { color: var(--txt-sub); }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — forgotPassword / resetPassword inline-themed
+   These pages use their own --bg / --bg-card variables which we
+   need to override at the :root level when light mode is active.
+══════════════════════════════════════════════════════════════ */
+html.light-mode {
+  --bg:       #f2f6f3;
+  --bg-card:  #ffffff;
+  --bg-input: #efefef;
+  --bg-hover: #e4e4e4;
+  --border:   rgba(0,0,0,0.12);
+  --border-hi: rgba(0,0,0,0.25);
+  --text:     #1a1a1a;
+  --text-sec: #555555;
+  --text-hint:#888888;
+}
+
+/* Navbar on forgot/reset uses var(--bg) for background */
+html.light-mode .navbar {
+  background:    var(--bg);   /* var(--bg) is overridden to #f2f6f3 in light mode */
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  box-shadow:    none;
+}
+/* Auth form panel: transparent so page bg shows, card is the visual element */
+html.light-mode .auth-form-panel {
+  background: transparent;
+}
+/* The auth-card within forgot/reset (uses same class as login, so already styled above) */
+/* Email hint badge on forgot password */
+html.light-mode .email-hint {
+  background:   #ffffff;
+  border-color: rgba(0,0,0,0.12);
+  color:        var(--txt-muted);
+}

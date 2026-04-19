@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — WanderSmart</title>
+    <meta name="description" content="Get in touch with the WanderSmart team. We're here to help with bookings, tours, hotels and anything else." />
+    <link rel="stylesheet" href="/contact.css" />
+    <link rel="stylesheet" href="/nav-auth.css" />
+    <link rel="stylesheet" href="/theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <!-- ── Navbar (full, matches all other pages) ──────────────── -->
+    <div id="navbar">
+      <h1 class="navbar-logo">
+        <a style="text-decoration: none" href="/"
+          ><span style="color: white">Wander</span
+          ><span style="color: rgb(6, 187, 6)">Smart</span></a
+        >
+      </h1>
+      <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle navigation">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      <ul class="nav__items" id="nav-items">
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
+        <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></li>
+        <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
+        <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</span></li>
+        <li class="theme-toggle-item">
+          <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+        </li>
+        <div id="nav-auth-slot"></div>
+      </ul>
+    </div>
+
+    <!-- ── Page layout ────────────────────────────────────────────── -->
+    <div class="auth-page">
+      <!-- Left decorative panel -->
+      <div class="auth-panel">
+        <div class="panel-content">
+          <div class="panel-tagline">We'd love to<br />hear from you.</div>
+          <div class="panel-sub">
+            Have a question about a booking, need help planning your trip, or
+            just want to say hello? Our team is here to help you.
+          </div>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📧</div>
+              <div>
+                <div class="contact-info-label">Email us</div>
+                <div class="contact-info-value">support@wandersmart.com</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">📞</div>
+              <div>
+                <div class="contact-info-label">Call us</div>
+                <div class="contact-info-value">+91 1800-123-4567</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">🏢</div>
+              <div>
+                <div class="contact-info-label">Visit us</div>
+                <div class="contact-info-value">123 Tourism Avenue, Delhi</div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">⏰</div>
+              <div>
+                <div class="contact-info-label">Support hours</div>
+                <div class="contact-info-value">Mon–Sat, 9am – 6pm IST</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form panel -->
+      <div class="auth-form-panel">
+        <div class="auth-card">
+          <div class="auth-welcome">Send us a message</div>
+          <div class="auth-sub">We typically reply within 24 hours.</div>
+
+          <!-- Success box (hidden by default) -->
+          <div class="contact-success" id="contact-success" style="display:none">
+            <div class="success-icon">✓</div>
+            <div class="success-title">Message sent!</div>
+            <div class="success-msg">Thanks for reaching out. We'll get back to you shortly.</div>
+            <button class="btn-auth" onclick="resetForm()" style="margin-top:20px">Send another message</button>
+          </div>
+
+          <!-- Contact form -->
+          <div id="contact-form-wrap">
+            <div class="form-row-2">
+              <div class="form-field">
+                <label class="form-label">Full name <span class="req">*</span></label>
+                <input id="c-name" class="form-input" type="text" placeholder="Arjun Sharma" autocomplete="name" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Phone number</label>
+                <input id="c-phone" class="form-input" type="tel" placeholder="+91 98765 43210" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Email address <span class="req">*</span></label>
+              <input id="c-email" class="form-input" type="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Subject <span class="req">*</span></label>
+              <select id="c-subject" class="form-input">
+                <option value="">Select a topic</option>
+                <option value="Hotel Booking Support">Hotel Booking Support</option>
+                <option value="Tour Package Enquiry">Tour Package Enquiry</option>
+                <option value="Trip Planning Help">Trip Planning Help</option>
+                <option value="Payment / Refund Issue">Payment / Refund Issue</option>
+                <option value="Technical Support">Technical Support</option>
+                <option value="Partnership Enquiry">Partnership Enquiry</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Message <span class="req">*</span></label>
+              <textarea
+                id="c-message"
+                class="form-input contact-textarea"
+                placeholder="Tell us how we can help you..."
+                rows="5"
+              ></textarea>
+            </div>
+
+            <div class="auth-error" id="c-error" style="display:none"></div>
+
+            <button class="btn-auth" id="btn-contact" onclick="handleContact()">
+              <span id="c-btn-text">Send Message</span>
+              <div class="btn-spinner" id="c-spinner" style="display:none"></div>
+            </button>
+
+            <div class="auth-switch" style="margin-top:8px">
+              <a href="/">← Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/auth.js"></script>
+    <script>
+      // ── Hamburger menu toggle ───────────────────────────────────
+      const navToggle = document.getElementById('navbar-toggle');
+      const navItems  = document.getElementById('nav-items');
+      navToggle.addEventListener('click', () => {
+        navItems.classList.toggle('active');
+        navToggle.classList.toggle('active');
+      });
+      document.querySelectorAll('.nav__item').forEach(item => {
+        item.addEventListener('click', () => {
+          navItems.classList.remove('active');
+          navToggle.classList.remove('active');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#navbar')) {
+          navItems.classList.remove('active');
+          navToggle.classList.remove('active');
+        }
+      });
+
+      // ── Nav logout / dashboard swap (same as other pages) ─────
+      const navLogout = document.getElementById('nav-logout');
+      navLogout.addEventListener('click', () => Auth.logout());
+
+      const dasboardli = document.getElementById('nav-dashboard');
+      const logoutli   = document.getElementById('nav-logout');
+      if (!Auth.isLoggedIn()) {
+        dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`;
+        logoutli.innerHTML   = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`;
+      }
+
+      // ── Auto-fill form with logged-in user's data ──────────────
+      if (Auth.isLoggedIn()) {
+        const user = Auth.getUser();
+        if (user) {
+          // Fill name and email directly
+          const nameEl  = document.getElementById('c-name');
+          const emailEl = document.getElementById('c-email');
+          const phoneEl = document.getElementById('c-phone');
+
+          if (nameEl  && user.name  && !nameEl.value)  nameEl.value  = user.name;
+          if (emailEl && user.email && !emailEl.value) emailEl.value = user.email;
+
+          // Format phone as +91 XXXXX XXXXX
+          if (phoneEl && user.phone && !phoneEl.value) {
+            const digits = String(user.phone).replace(/\D/g, ''); // strip non-digits
+            const local  = digits.slice(-10); // take last 10 digits
+            if (local.length === 10) {
+              phoneEl.value = `+91 ${local.slice(0, 5)} ${local.slice(5)}`;
+            } else {
+              phoneEl.value = user.phone; // fallback if unusual format
+            }
+          }
+        }
+      }
+    </script>
+    <script>
+      const API =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000"
+          : "https://college-project-int222.onrender.com";
+
+      /* ── Error helpers ─────────────────────────────────────── */
+      function showError(msg) {
+        const el = document.getElementById("c-error");
+        el.textContent = msg;
+        el.style.display = "block";
+      }
+      function clearError() {
+        const el = document.getElementById("c-error");
+        el.style.display = "none";
+        el.textContent = "";
+        document.querySelectorAll(".form-input").forEach(i => i.classList.remove("input-error"));
+      }
+      function markErr(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add("input-error");
+          el.addEventListener("input", () => el.classList.remove("input-error"), { once: true });
+        }
+      }
+
+      /* ── Loading state ─────────────────────────────────────── */
+      function setLoading(on) {
+        document.getElementById("c-btn-text").style.display = on ? "none" : "inline";
+        document.getElementById("c-spinner").style.display  = on ? "block" : "none";
+        document.getElementById("btn-contact").disabled = on;
+      }
+
+      /* ── Reset form ────────────────────────────────────────── */
+      function resetForm() {
+        document.getElementById("contact-success").style.display  = "none";
+        document.getElementById("contact-form-wrap").style.display = "block";
+        ["c-name","c-phone","c-email","c-subject","c-message"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.value = "";
+        });
+        clearError();
+      }
+
+      /* ── Submit handler ────────────────────────────────────── */
+      async function handleContact() {
+        clearError();
+
+        const name    = document.getElementById("c-name").value.trim();
+        const phone   = document.getElementById("c-phone").value.trim();
+        const email   = document.getElementById("c-email").value.trim();
+        const subject = document.getElementById("c-subject").value;
+        const message = document.getElementById("c-message").value.trim();
+
+        if (!name)    { markErr("c-name");    showError("Please enter your full name."); return; }
+        if (!email)   { markErr("c-email");   showError("Please enter your email address."); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          markErr("c-email"); showError("Please enter a valid email address."); return;
+        }
+        if (!subject) { markErr("c-subject"); showError("Please select a subject."); return; }
+        if (!message) { markErr("c-message"); showError("Please enter your message."); return; }
+        if (message.length < 10) { markErr("c-message"); showError("Message must be at least 10 characters."); return; }
+
+        setLoading(true);
+        try {
+          const res = await fetch(`${API}/contact`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, phone, email, subject, message }),
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            showError(data.message || "Failed to send message. Please try again.");
+            return;
+          }
+
+          /* Show success state */
+          document.getElementById("contact-form-wrap").style.display = "none";
+          document.getElementById("contact-success").style.display   = "block";
+        } catch (err) {
+          console.error("Contact error:", err);
+          showError("Cannot connect to server. Please try again later.");
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      /* ── Allow Enter in fields (not textarea) ──────────────── */
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        if (document.activeElement?.id === "c-message") return; // allow newline in textarea
+        handleContact();
+      });
+    </script>
+  </body>
+</html>

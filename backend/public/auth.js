@@ -127,9 +127,13 @@ const Auth = (() => {
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
             My Dashboard
           </a>
-          <a class="nav-dd-item" href="/dashboard#bookings">
+          <a class="nav-dd-item" href="/dashboard#tours">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h12" stroke="currentColor" stroke-width="1.2"/><path d="M4 1v2M10 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             My Bookings
+          </a>
+          <a class="nav-dd-item" href="/contact">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 2.5A1.5 1.5 0 012.5 1h9A1.5 1.5 0 0113 2.5v7A1.5 1.5 0 0111.5 11H8l-3 2v-2H2.5A1.5 1.5 0 011 9.5v-7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            Contact Us
           </a>
           <div class="nav-dd-divider"></div>
           <button class="nav-dd-item nav-dd-logout" id="nav-logout-btn">

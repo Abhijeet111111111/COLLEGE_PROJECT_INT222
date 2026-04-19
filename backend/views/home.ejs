@@ -7,8 +7,10 @@
     <title> WanderSmart</title>
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="/nav-auth.css">
+    <link rel="stylesheet" href="/theme.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="/theme.js"></script>
   </head>
   <body>
     <!-- ════════════════════════════════════════════════════════════
@@ -316,13 +318,14 @@
         <ul class="nav__items" id="nav-items">
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
-          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></li>
           <li class="nav__item" id="dashboard"></li>
           <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
           <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</span></li>
-          <div id="nav-auth-slot">
-
-          </div>
+          <li class="theme-toggle-item">
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+          </li>
+          <div id="nav-auth-slot"></div>
         </ul>
         <!-- <div class="nav__item-ctx"> -->
           
@@ -385,7 +388,7 @@
       <section class="main__destinations">
         <div class="main__destinations-header">
           <h2 class="main__destinations-header__head">Top Destinations</h2>
-          <a href="#" class="main__destinations-header__a">view all ➡️</a>
+          <a href="/explore" class="main__destinations-header__a">view all ➡️</a>
         </div>
         <section class="main__top-destinations">
           <% for(let i=0;i<5;i++){ %>
@@ -408,7 +411,7 @@
       <section class="main__featured-hotels">
         <section class="main__featured-hotels__header">
           <h2>Featured Hotels</h2>
-          <a href="#">view all➡️</a>
+          <a href="/hotels">view all➡️</a>
         </section>
         <section class="main__featured-hotels__hotels">
           <% for(let i=0;i<4;i++){ %>
@@ -456,9 +459,9 @@
     <div class="footer__section">
       <h3 class="footer__title">Quick Links</h3>
       <ul class="footer__list">
-        <li><a href="#" class="footer__link">Home</a></li>
-        <li><a href="#" class="footer__link">Destinations</a></li>
-        <li><a href="#" class="footer__link">Hotels</a></li>
+        <li><a href="/" class="footer__link">Home</a></li>
+        <li><a href="/explore" class="footer__link">Destinations</a></li>
+        <li><a href="/hotels" class="footer__link">Hotels</a></li>
         <li><a href="#" class="footer__link">Special Offers</a></li>
       </ul>
     </div>
@@ -467,10 +470,10 @@
     <div class="footer__section">
       <h3 class="footer__title">Information</h3>
       <ul class="footer__list">
-        <li><a href="#" class="footer__link">About Us</a></li>
+        <li><a href="/about" class="footer__link">About Us</a></li>
         <li><a href="#" class="footer__link">Booking Terms</a></li>
         <li><a href="#" class="footer__link">Privacy Policy</a></li>
-        <li><a href="#" class="footer__link">Contact Support</a></li>
+        <li><a href="/contact" class="footer__link">Contact Support</a></li>
       </ul>
     </div>
 

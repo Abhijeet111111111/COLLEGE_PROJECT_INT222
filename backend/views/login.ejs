@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login — WanderSmart</title>
     <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="/theme.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <script src="/theme.js"></script>
   </head>
   <body>
     <!-- ── Navbar (minimal) ────────────────────────────────────── -->
     <nav class="navbar">
       <a class="nav-logo" href="/">Wander<span>Smart</span></a>
-      <div id="nav-auth-slot"></div>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:12px;">
+        <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+        <div id="nav-auth-slot"></div>
+      </div>
     </nav>
 
     <!-- ── Page layout ─────────────────────────────────────────── -->

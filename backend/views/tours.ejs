@@ -7,18 +7,12 @@
     <title>Tours — WanderSmart</title>
     <link rel="stylesheet" href="tours.css" />
     <link rel="stylesheet" href="/nav-auth.css">
+    <link rel="stylesheet" href="/theme.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <script src="/theme.js"></script>
   </head>
   <body>
     <!-- ── Navbar ──────────────────────────────────────────────────── -->
@@ -40,9 +34,12 @@
         <ul class="nav__items" id="nav-items">
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/explore">Explore</a></li>
           <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/hotels">Hotels</a></li>
-          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></</li>
+          <li class="nav__item"><a style="text-decoration: none; color: inherit;" href="/tours">Tours</a></li>
           <li class="nav__item" id="nav-dashboard"><a style="text-decoration: none; color: inherit;" href="/Dashboard">Dashboard</a></li>
           <li class="nav__item" id="nav-logout"><span style="text-decoration: none; color: inherit;">Logout</span></li>
+          <li class="theme-toggle-item">
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+          </li>
           <div id="nav-auth-slot"></div>
         </ul>
         <!-- <div class="nav__item-ctx"> -->
