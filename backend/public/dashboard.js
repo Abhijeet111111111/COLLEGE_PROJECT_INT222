@@ -193,17 +193,41 @@ function setupAvatarUpload() {
 /* ══════════════════════════════════════════════════════════════
    TABS
 ══════════════════════════════════════════════════════════════ */
+function activateTab(tabName) {
+  document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+  const targetTab = document.querySelector(`.dash-tab[data-tab="${tabName}"]`);
+  const targetPanel = document.getElementById(`panel-${tabName}`);
+  if (targetTab) targetTab.classList.add('active');
+  if (targetPanel) targetPanel.style.display = 'block';
+}
+
+function activateTabFromHash() {
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  if (hash === 'tours' || hash === 'bookings') {
+    activateTab('tours');
+  } else if (hash === 'hotels') {
+    activateTab('hotels');
+  } else if (hash === 'profile') {
+    activateTab('profile');
+  }
+}
+
 function setupTabs() {
   document.querySelectorAll('.dash-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
-      tab.classList.add('active');
-      document.getElementById(`panel-${tab.dataset.tab}`).style.display = 'block';
+      activateTab(tab.dataset.tab);
     });
   });
 
-  // Edit profile button → profile tab
+  // Activate tab from URL hash on initial page load
+  activateTabFromHash();
+
+  // Also react when hash changes while already on the dashboard
+  // (e.g. user clicks "My Bookings" from the nav dropdown)
+  window.addEventListener('hashchange', activateTabFromHash);
+
+  // Edit profile button → edit modal
   document.getElementById('btn-edit-profile').addEventListener('click', () => {
     openEditModal();
   });
