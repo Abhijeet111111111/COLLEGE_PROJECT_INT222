@@ -193,10 +193,12 @@ const resetPassword = catchAsync(async (req, res, next) => {
 })
 
 const updatePassword = catchAsync(async (req, res, next) => {
+    console.log("got update password req")
     // 1.get the user 
     const user = await userModel.findOne({ _id: req.user._id }).select('password');
     // 2. match the passwords
-    const isCorrect = await user.verifyPassword(req.body.password, user.password);
+    // console.log(req.body)
+    const isCorrect = await user.verifyPassword(req.body.currentPassword, user.password);
     if (!isCorrect) {
         return next(new AppError('incorrect password', 401)); // unauthorized
     }

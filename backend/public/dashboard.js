@@ -591,8 +591,8 @@ async function changePassword() {
   setLoading('mp-txt', 'mp-spin', true);
   try {
     const res = await Auth.authFetch(`${API}/users/updatePassword`, {
-      method: 'PUT',
-      body: JSON.stringify({ currentPassword: current, newPassword: newPw }),
+      method: 'PATCH',
+      body: JSON.stringify({ currentPassword: current, newPassword: newPw, newConfirmPassword: confirm }),
     });
     const data = await res.json();
 
