@@ -389,43 +389,5 @@
 
 <script src="auth.js"></script>
 <script src="dashboard.js"></script>
-<script>
-
-  const navLogout = document.getElementById('nav-logout');
-  navLogout.addEventListener('click',(evt)=>{
-    Auth.logout();
-  })
-    
-const navToggle = document.getElementById('navbar-toggle');
-const navItems = document.getElementById('nav-items');
-
-navToggle.addEventListener('click', () => {
-  navItems.classList.toggle('active');
-  navToggle.classList.toggle('active');
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll('.nav__item').forEach(item => {
-  item.addEventListener('click', () => {
-    navItems.classList.remove('active');
-    navToggle.classList.remove('active');
-  });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('#navbar')) {
-    navItems.classList.remove('active');
-    navToggle.classList.remove('active');
-  }
-});
-const dasboardli = document.getElementById('nav-dashboard');
-const logoutli = document.getElementById('nav-logout');
-
-if(!Auth.isLoggedIn()){
-  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
-  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
-}
-</script>
 </body>
 </html>

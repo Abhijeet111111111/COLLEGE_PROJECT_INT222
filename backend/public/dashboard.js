@@ -624,9 +624,9 @@ async function changePasswordInline() {
 
   setLoading('pw-txt', 'pw-spin', true);
   try {
-    const res = await Auth.authFetch(`${API}/users/updateMe`, {
-      method: 'PUT',
-      body: JSON.stringify({ currentPassword: current, newPassword: newPw }),
+    const res = await Auth.authFetch(`${API}/users/updatePassword`, {
+      method: 'PATCH',
+      body: JSON.stringify({ currentPassword: current, newPassword: newPw, newConfirmPassword: confirm }),
     });
     const data = await res.json();
     if (!res.ok) { showMsg('pw-error', data.message || 'Password change failed.'); return; }
@@ -723,3 +723,40 @@ window.openPwModal = openPwModal;
 window.closePwModal = closePwModal;
 window.checkMpStrength = checkMpStrength;
 window.confirmDelete = confirmDelete;
+
+
+const navLogout = document.getElementById('nav-logout');
+navLogout.addEventListener('click', (evt) => {
+  Auth.logout();
+})
+
+const navToggle = document.getElementById('navbar-toggle');
+const navItems = document.getElementById('nav-items');
+
+navToggle.addEventListener('click', () => {
+  navItems.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav__item').forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#navbar')) {
+    navItems.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
+const dasboardli = document.getElementById('nav-dashboard');
+const logoutli = document.getElementById('nav-logout');
+
+if (!Auth.isLoggedIn()) {
+  dasboardli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login">Login</a>`
+  logoutli.innerHTML = `<a style="text-decoration: none; color: inherit;" href="/login?mode=signup">Signup</a>`
+}
