@@ -82,6 +82,89 @@ The backend relies on environment values in `backend/config.env`. Important vari
 - `GMAIL`
 - `GMAIL_PASSWORD`
 
+ PROJECT STRUCTURE 
+ COLLEGE_PROJECT_INT222/
+├── a.txt
+├── backend/                    # Node.js/Express Backend
+│   ├── app.js                  # Main Express app
+│   ├── config.env              # Environment config
+│   ├── package.json            # Dependencies
+│   ├── destinations.json       # Destination data
+│   ├── destinations1.json
+│   ├── hotelGuests.json        # Hotel booking records
+│   ├── hotels.json             # Hotels data
+│   ├── ToursBooked.json        # Tour bookings
+│   ├── tours.json              # Tours data
+│   ├── test_models.js
+│   │
+│   ├── controllers/            # Route handlers
+│   │   ├── authController.js
+│   │   ├── bookingControllers.js
+│   │   ├── destinationControllers.js
+│   │   ├── exploreControllers.js
+│   │   ├── guideControllers.js
+│   │   ├── handlerFactory.js
+│   │   ├── homeControllers.js
+│   │   ├── hotelControllers.js
+│   │   ├── loginControllers.js
+│   │   ├── tourControllers.js
+│   │   └── userControllers.js
+│   │
+│   ├── models/                 # Mongoose schemas
+│   │   ├── bookedTours.js
+│   │   ├── bookingModel.js
+│   │   ├── hotelModel.js
+│   │   ├── tourModel.js
+│   │   └── userModel.js
+│   │
+│   ├── routes/                # API routes
+│   │   ├── aiPlanRoutes.js
+│   │   ├── bookingRoutes.js
+│   │   ├── contactRoutes.js
+│   │   ├── destinationsRoutes.js
+│   │   ├── exploreRoutes.js
+│   │   ├── guides.js
+│   │   ├── home.js
+│   │   ├── hotelsRoutes.js
+│   │   ├── loginRoutes.js
+│   │   ├── tourRoutes.js
+│   │   └── userRoutes.js
+│   │
+│   ├── public/                 # Static assets & frontend
+│   │   ├── *.css               # Stylesheets
+│   │   ├── *.js                # Client-side JS
+│   │   ├── destinations/       # Destination images
+│   │   ├── hotels/            # Hotel images
+│   │   └── topAttractions/     # Attraction images
+│   │
+│   ├── views/                  # EJS templates
+│   │   ├── about.ejs
+│   │   ├── contact.ejs
+│   │   ├── dashboard.ejs
+│   │   ├── explorePage.ejs
+│   │   ├── forgotPassword.ejs
+│   │   ├── home.ejs
+│   │   ├── hotelDetails.ejs
+│   │   ├── hotelsPage.ejs
+│   │   ├── login.ejs
+│   │   ├── planTrip.ejs
+│   │   ├── resetPassword.ejs
+│   │   └── tours.ejs
+│   │
+│   └── utils/                  # Helper modules
+│       ├── appError.js
+│       ├── catchAsync.js
+│       ├── seedBookings.js
+│       ├── seedHotels.js
+│       ├── sendMail.js
+│       └── sortHotels.js
+│
+└── Frontend/                   # Static HTML frontend
+    ├── *.html                  # Page templates
+    ├── *.css                   # Styles
+    ├── *.js                    # Scripts
+    └── a.json
+
 
 - The homepage uses the `home` route and the `renderHomePage` controller to combine database hotel data with destination JSON data.
 - Static frontend pages are available in `backend/Frontend/` but the main application uses server-rendered EJS views from `backend/views/`.
