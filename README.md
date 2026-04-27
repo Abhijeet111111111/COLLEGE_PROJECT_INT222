@@ -84,6 +84,8 @@ The backend relies on environment values in `backend/config.env`. Important vari
 
  PROJECT STRUCTURE 
  COLLEGE_PROJECT_INT222/
+COLLEGE_PROJECT_INT222/
+
 ├── a.txt
 ├── backend/                    # Node.js/Express Backend
 │   ├── app.js                  # Main Express app
@@ -163,8 +165,7 @@ The backend relies on environment values in `backend/config.env`. Important vari
     ├── *.html                  # Page templates
     ├── *.css                   # Styles
     ├── *.js                    # Scripts
-    └── a.json
-
+    └── a.json 
 
 - The homepage uses the `home` route and the `renderHomePage` controller to combine database hotel data with destination JSON data.
 - Static frontend pages are available in `backend/Frontend/` but the main application uses server-rendered EJS views from `backend/views/`.
